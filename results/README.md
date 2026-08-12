@@ -5,6 +5,10 @@ this folder and every number below can be recomputed from them. The instances
 themselves (1000 ChartNet samples, 686 perturbed variants) stay outside the repo
 like the rest of the data, I can share a tarball on request.
 
+If you want to retrace the cases from the sync first: [examples/](examples/README.md)
+has the discussed instances plus all 13 judge disagreements, each with the correct
+and the flawed render side by side, my call, and the judge's reasoning.
+
 ## Where generation stands
 
 1000 samples pulled from ChartNet `core_permissive` (stratified over library x
@@ -78,3 +82,13 @@ votes: `qc_strict_filter.json`.
 tie on usable output, Sonnet is about 30% cheaper, Haiku returns
 `applicable=true` with empty scripts and is unusable. Hence Sonnet 5 as the
 generator. Data: `pilot_results.json`.
+
+## Files
+
+- `examples/` : side-by-side charts for the sync cases and all 13 disagreements
+- `annotation_scores.json` : human vs judge on the random 100, with per-case notes and judge reasoning
+- `judge_results.json` : Opus verdicts over all 686, plus an earlier 75-instance Sonnet pass
+- `judge_results_rits.json` : 6,430 verdicts from the five RITS families, including the prompt-variant runs
+- `judge_agreement.json` : consensus and prompt-sensitivity aggregation
+- `qc_strict_filter.json` : the majority-vote filter, 35 flagged IDs with per-instance votes
+- `pilot_results.json` : the July generator comparison
