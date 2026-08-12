@@ -108,25 +108,28 @@ cover, name it explicitly — `--model openai:some-new-id`.
 
 ### Open-weight models via vLLM
 
-Serve the model yourself, with tool calling turned on:
+Serve the model yourself, with tool calling turned on — `scripts/serve_vllm.sh` wraps
+this, including the separate uv venv vLLM wants:
 
 ```bash
-vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
+vllm serve /data2/Qwen/Qwen3-VL-8B-Instruct \
+    --served-model-name Qwen3-VL-8B-Instruct \
     --enable-auto-tool-choice --tool-call-parser hermes \
-    --limit-mm-per-prompt image=8
+    --limit-mm-per-prompt '{"image": 16}'
 ```
 
 then point the harness at it:
 
 ```bash
 uv run chartsandbox run tasks/debug_repair_01 \
-    --agent llm --model vllm:Qwen/Qwen2.5-VL-72B-Instruct \
-    --judge vllm:Qwen/Qwen2.5-VL-72B-Instruct \
+    --agent llm --model vllm:Qwen3-VL-8B-Instruct \
+    --judge vllm:Qwen3-VL-8B-Instruct \
     --base-url http://localhost:8000/v1        # or $VLLM_BASE_URL
 ```
 
-Self-hosted names are arbitrary, so the `vllm:` prefix is required — everything after
-the first colon is the model id, slashes and all. Notes specific to this backend:
+The model id must match `--served-model-name` (default: the path you served, slashes
+and all). Self-hosted names are arbitrary, so the `vllm:` prefix is required —
+everything after the first colon is the id. Notes specific to this backend:
 
 - **`--effort` is ignored.** Reasoning depth is a property of the weights you loaded,
   so the flag is accepted and dropped rather than sent and rejected.
@@ -135,9 +138,10 @@ the first colon is the model id, slashes and all. Notes specific to this backend
 - **The judge uses guided decoding** — `response_format` with a JSON schema, falling
   back to `guided_json` on older servers, with a salvage path if the model wraps its
   JSON in prose anyway. A verdict that still can't be parsed fails closed.
-- **`--limit-mm-per-prompt image=N`** matters: the agent accumulates one image per
-  `view_image` call, so a low limit will truncate long episodes. Pair a small limit
-  with `--max-history-images`.
+- **`--limit-mm-per-prompt '{"image": N}'`** matters: the agent accumulates one image
+  per `view_image` call, so a low limit will truncate long episodes. Pair a small limit
+  with `--max-history-images`. (The old `image=N` spelling was dropped in vLLM 0.27 —
+  it now takes JSON.)
 - **Tool calling is the gate.** A model that can't emit tool calls ends its episode via
   the agent's no-tool-call guard. That is a real capability result, not a harness bug —
   check `agent_stats.transcript` in `result.json` to tell the two apart.
