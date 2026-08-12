@@ -10,6 +10,7 @@ import json
 import shutil
 import time
 from pathlib import Path
+from typing import Callable
 
 from .agent import Agent, ToolCall
 from .contract import LoadedTask, load_task
@@ -44,7 +45,12 @@ def _dispatch(sandbox: Sandbox, tc: ToolCall) -> dict:
 
 
 def _summarize_obs(tc: ToolCall, obs: dict) -> dict:
-    """Compact form of an observation for the trajectory log (drop image bytes)."""
+    """Compact form of an observation for the trajectory *log* (drop image bytes).
+
+    This is for humans and result files only — never feed it back to the agent.
+    The agent gets the full observation (see `run_episode`), because dropping
+    `base64` here is exactly what would blind a multimodal agent to its own chart.
+    """
     s = {k: v for k, v in obs.items() if k != "base64"}
     if tc.tool == "view_image" and obs.get("ok"):
         s["image"] = f"{obs.get('width')}x{obs.get('height')} {obs.get('mime')}"
@@ -66,7 +72,14 @@ def _eval_subgoal(sg, ctx_factory, cheap_only: bool):
     return passed, score, results
 
 
-def run_episode(task_dir: str | Path, agent: Agent, out_dir: str | Path | None = None) -> dict:
+def run_episode(task_dir: str | Path, agent: Agent, out_dir: str | Path | None = None,
+                extra_stats: Callable[[], dict] | None = None) -> dict:
+    """Drive `agent` through one task and score it.
+
+    `extra_stats` is called once, after verification, and merged into the result —
+    it exists so the caller can record the cost of a *verifier* (the LLM judge is
+    installed globally, so the runner has no other way to see it).
+    """
     lt = load_task(task_dir)
     task = lt.task
 
@@ -94,13 +107,18 @@ def run_episode(task_dir: str | Path, agent: Agent, out_dir: str | Path | None =
     last_exec: dict | None = None
     finished = False
     t0 = time.time()
+    # The agent sees the *full* observation, including image bytes from view_image;
+    # `_tool` tells it which tool produced this one. The trajectory keeps the
+    # summarized copy so result files stay readable.
+    agent_obs: dict = _initial_observation(lt, sandbox)
 
     for step in range(task.step_budget):
         if time.time() - t0 > task.wall_time_s:
             trajectory.append({"step": step, "tool": "<wall_time_exceeded>"})
             break
-        tc = agent.act(trajectory[-1]["observation"] if trajectory else _initial_observation(lt, sandbox))
+        tc = agent.act(agent_obs)
         obs = _dispatch(sandbox, tc)
+        agent_obs = {**obs, "_tool": tc.tool}
         tool_counts[tc.tool] = tool_counts.get(tc.tool, 0) + 1
         if tc.tool == "execute_python":
             last_exec = obs
@@ -154,6 +172,13 @@ def run_episode(task_dir: str | Path, agent: Agent, out_dir: str | Path | None =
         "tool_counts": tool_counts,
         "progress_curve": progress_curve(first_pass_step, steps_taken, len(task.subgoals)),
     }
+    # Agents that talk to a model expose token/cost accounting; the scripted one
+    # doesn't. Recording it here makes a run's price part of its result record.
+    agent_stats = getattr(agent, "stats", None)
+    if agent_stats:
+        result["agent_stats"] = agent_stats
+    if extra_stats is not None:
+        result.update(extra_stats())
 
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "result.json").write_text(json.dumps(result, indent=2))

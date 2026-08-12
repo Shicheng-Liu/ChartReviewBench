@@ -42,6 +42,12 @@ tool set (`execute_python` / `read_file` / `write_file` / `list_files` / `view_i
 `finish`) path-sandboxed to the workspace, and pluggable verifiers. It writes
 `result.json` + `trajectory.jsonl` with score, progress curve, and metrics.
 
+The agent in the loop can be a scripted replay (for testing the sandbox) or a **real
+multimodal model** — Claude or GPT, selected by model ID. `view_image` hands the model
+the actual bytes of the chart it just rendered, so it can check its own output; the same
+models can also score the `vlm_judge` rubrics. Token counts and cost land in
+`result.json`.
+
 Full details, extension points, and current status: [`sandbox/README.md`](sandbox/README.md).
 
 ## Quickstart
