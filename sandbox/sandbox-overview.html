@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How ChartSandbox Works</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #dbe2ea;
+      --panel: #f7f9fc;
+      --blue: #2563eb;
+      --blue-soft: #eaf1ff;
+      --green: #0f8a5f;
+      --green-soft: #e8f7f1;
+      --amber: #a15c00;
+      --amber-soft: #fff5df;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--ink);
+      font: 16px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 52px 0 44px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .lead {
+      max-width: 800px;
+      margin: 18px 0 38px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .flow { margin-bottom: 30px; }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 1fr 42px 1fr 42px 1fr;
+      align-items: stretch;
+      gap: 10px;
+    }
+
+    .step {
+      min-height: 125px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .arrow {
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .down-arrow {
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .runtime-loop {
+      display: grid;
+      grid-template-columns: 1fr 110px 1fr;
+      align-items: center;
+      gap: 14px;
+      padding: 18px;
+      border: 2px solid #b9e5d5;
+      border-radius: 18px;
+      background: #f4fbf8;
+    }
+
+    .runtime-loop .step { min-height: 116px; background: #fff; }
+
+    .loop-arrow {
+      color: var(--green);
+      text-align: center;
+      font-size: 27px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .loop-arrow small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .loop-caption {
+      grid-column: 1 / -1;
+      margin: 0;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .oracle-tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #fff0c2;
+      color: #754500;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .task { background: var(--blue-soft); border-color: #bfd1ff; }
+    .agent { background: var(--green-soft); border-color: #b9e5d5; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    section {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 21px;
+      letter-spacing: -0.02em;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 21px;
+    }
+
+    li + li { margin-top: 8px; }
+
+    code {
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: #edf1f6;
+      font: 0.9em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid #f1d091;
+      border-radius: 12px;
+      background: var(--amber-soft);
+      color: #754500;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      .flow-row, .runtime-loop { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); min-height: 24px; }
+      .loop-arrow { transform: rotate(90deg); min-height: 42px; }
+      .loop-caption { grid-column: 1; }
+      .step { min-height: auto; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>How ChartSandbox Works</h1>
+      <p class="lead">
+        ChartSandbox turns LLM-generated chart code into an executable, observable,
+        and reproducible agent task—not just a text answer.
+      </p>
+    </header>
+
+    <div class="flow" aria-label="ChartSandbox execution flow">
+      <div class="flow-row">
+        <article class="step task">
+          <strong>1. Task package</strong>
+          <p><code>task.yaml</code> defines the instruction, subgoals, verifiers, and budgets. <code>workspace/</code> contains the input files.</p>
+        </article>
+        <div class="arrow" aria-hidden="true">→</div>
+        <article class="step">
+          <strong>2. Fresh run workspace</strong>
+          <p>The inputs are copied into an isolated writable directory. The original task remains unchanged.</p>
+        </article>
+        <div class="arrow" aria-hidden="true">→</div>
+        <article class="step agent">
+          <strong>3. Agent starts</strong>
+          <p>The LLM receives the task, visible files, available tools, and remaining step budget.</p>
+        </article>
+      </div>
+
+      <div class="down-arrow" aria-hidden="true">↓</div>
+
+      <div class="runtime-loop">
+        <article class="step agent">
+          <strong>4. Agent uses tools</strong>
+          <p><code>read</code>, <code>write</code>, <code>list</code>, <code>execute_python</code>, <code>view_image</code>, and <code>finish</code>.</p>
+        </article>
+        <div class="loop-arrow" aria-hidden="true">
+          ⇄
+          <small>code →<br>← feedback</small>
+        </div>
+        <article class="step">
+          <strong>5. Persistent Python worker</strong>
+          <p>Runs code with state across steps and returns output, tracebacks, timeouts, changed files, and image artifacts.</p>
+        </article>
+        <p class="loop-caption">The agent uses each observation to revise its code and repeat the loop.</p>
+      </div>
+
+      <div class="down-arrow" aria-hidden="true">↓</div>
+
+      <div class="flow-row">
+        <article class="step">
+          <strong>6. Finish or budget limit</strong>
+          <p>The loop ends when the agent calls <code>finish</code>, reaches the step limit, or exceeds the wall-time budget.</p>
+        </article>
+        <div class="arrow" aria-hidden="true">→</div>
+        <article class="step task">
+          <strong>7. Verify and score</strong>
+          <p>Execution, data, and visual verifiers evaluate each weighted subgoal.</p>
+          <span class="oracle-tag">Hidden oracle → verifiers only</span>
+        </article>
+        <div class="arrow" aria-hidden="true">→</div>
+        <article class="step">
+          <strong>8. Save the run</strong>
+          <p><code>result.json</code> stores scores and metrics; <code>trajectory.jsonl</code> stores every tool call and observation.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section>
+        <h2>Runtime feedback to the agent</h2>
+        <ul>
+          <li>Python <code>stdout</code>, <code>stderr</code>, tracebacks, and timeouts</li>
+          <li>Files changed and images created</li>
+          <li>Workspace file contents and metadata</li>
+          <li>Image artifact type and dimensions</li>
+          <li>Tool, path, timeout, and kernel-state errors</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What the benchmark records</h2>
+        <ul>
+          <li>Complete tool-call trajectory</li>
+          <li>Per-subgoal pass/fail status and score</li>
+          <li>Weighted final score and progress curve</li>
+          <li>Steps, wall time, and tool usage</li>
+          <li>Final code, data files, and chart artifacts</li>
+        </ul>
+      </section>
+    </div>
+
+    <aside class="note">
+      <strong>Current scope:</strong> the MVP uses a persistent local Python subprocess,
+      path-checked file tools, execution timeouts, and best-effort network blocking.
+      The real LLM agent and visual judge are still integration points. The runtime is
+      not yet a hard security boundary; untrusted code should eventually run inside
+      Docker, gVisor, or another system-level sandbox.
+    </aside>
+
+    <p class="footer">
+      In short: <strong>controlled execution + iterative feedback + reproducible verification.</strong>
+    </p>
+  </main>
+</body>
+</html>

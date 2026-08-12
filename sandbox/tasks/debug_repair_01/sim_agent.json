@@ -1,0 +1,39 @@
+[
+  {
+    "tool": "read_file",
+    "args": {
+      "path": "broken.py"
+    }
+  },
+  {
+    "tool": "execute_python",
+    "args": {
+      "code": "exec(compile(open('broken.py').read(), 'broken.py', 'exec'))"
+    }
+  },
+  {
+    "tool": "write_file",
+    "args": {
+      "path": "broken.py",
+      "content": "import matplotlib.pyplot as plt\n\ndata = {\n    'Sector': ['Fast Fashion', 'Luxury Apparel', 'Automotive ICE', 'Automotive EV',\n               'Traditional Build', 'Green Construction', 'Fossil Energy', 'Renewable Energy'],\n    'Economic Share': [12.3, 20.8, 28.5, 31.2, 8.6, 12.5, 18.4, 27.7],\n    'Growth Category': ['Stagnant', 'Growing', 'Declining', 'Rapid Growth',\n                        'Stagnant', 'Rapid Growth', 'Declining', 'Rapid Growth']\n}\n\ncolors = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3',\n          '#a6d854', '#ffd92f', '#e5c494', '#b3b3b3']\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))\n\nax1.pie(data['Economic Share'], labels=data['Sector'], autopct='%1.1f%%',\n        startangle=90, colors=colors, wedgeprops={'linewidth': 0.5, 'edgecolor': 'white'})\nax1.set_title('Economic Share by Sector (2024)', fontsize=14, pad=20)\n\ngrowth_dist = {g: sum(s for s, cat in zip(data['Economic Share'], data['Growth Category']) if cat == g)\n               for g in set(data['Growth Category'])}\ngrowth_labels = list(growth_dist.keys())\ngrowth_values = list(growth_dist.values())\ngrowth_colors = ['#ffd92f', '#e78ac3', '#66c2a5', '#fc8d62']\n\nax2.pie(growth_values, labels=growth_labels, autopct='%1.1f%%',\n        startangle=90, colors=growth_colors, wedgeprops={'linewidth': 0.5, 'edgecolor': 'white'})\nax2.set_title('Economic Share by Growth Category (2024)', fontsize=14, pad=20)\n\nplt.tight_layout()\nplt.savefig('out.png', dpi=300, bbox_inches='tight')"
+    }
+  },
+  {
+    "tool": "execute_python",
+    "args": {
+      "code": "exec(compile(open('broken.py').read(), 'broken.py', 'exec'))"
+    }
+  },
+  {
+    "tool": "view_image",
+    "args": {
+      "path": "out.png"
+    }
+  },
+  {
+    "tool": "finish",
+    "args": {
+      "message": "fixed typo saveFig -> savefig"
+    }
+  }
+]

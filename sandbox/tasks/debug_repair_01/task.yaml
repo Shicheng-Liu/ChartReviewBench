@@ -1,0 +1,16 @@
+id: debug_repair_01
+family: debug_repair
+instruction: |
+  broken.py is supposed to render a Pie Chart and save it as out.png, but it currently crashes. Find and fix the bug so it runs and produces out.png. Do not change what the chart shows.
+horizon_hint: 5
+step_budget: 15
+workspace_files: [broken.py]
+subgoals:
+  - id: renders_ok
+    desc: Fixed script runs without error and produces out.png
+    weight: 1.0
+    verifiers:
+      - type: execution
+        params: {produces: out.png}
+      - type: vlm_judge
+        params: {candidate: out.png, rubric: "a valid Pie Chart was produced"}
