@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -195,7 +196,16 @@ def main() -> int:
                 if marker.is_file() and marker.read_text().strip() == digest:
                     skipped += 1
                     continue
-                raise ValueError(f"existing task differs or is incomplete: {dest}; use a new --out")
+                # A previous materialization may have been interrupted after the
+                # temporary directory was renamed. Keep it for inspection, then
+                # replace it with a complete atomic build rather than treating a
+                # missing marker as a valid task.
+                archive = dest.with_name(dest.name + f".incomplete-{os.getpid()}")
+                suffix = 0
+                while archive.exists():
+                    suffix += 1
+                    archive = dest.with_name(dest.name + f".incomplete-{os.getpid()}-{suffix}")
+                dest.rename(archive)
             with tempfile.TemporaryDirectory(prefix=".prepare-", dir=args.out) as tmp:
                 task = build(row, Path(tmp), args.release, tuple(WORKSPACE_FILE),
                              steps, turns, wall, args.step_timeout_s)
