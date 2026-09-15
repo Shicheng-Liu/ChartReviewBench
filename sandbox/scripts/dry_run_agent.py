@@ -154,6 +154,10 @@ try:
     check("all six scripted tool calls executed", result["steps_taken"] == 6,
           f"steps_taken={result['steps_taken']}")
     check("agent finished cleanly", result["finished"] is True)
+    check("episode-level stop_reason recorded", result["stop_reason"] == "finished",
+          f"{result['stop_reason']}")
+    check("finish_origin attributes it to the agent", result["finish_origin"] == "agent",
+          f"{result['finish_origin']}")
     check("the fake agent actually rendered a chart", png.exists() and png.stat().st_size > 0)
 
     # --- the blocker: does the image reach the model? -----------------------

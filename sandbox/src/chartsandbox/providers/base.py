@@ -88,6 +88,11 @@ class Provider:
         self.model = model
         self.usage: dict[str, int] = {}
         self.calls = 0
+        #: One entry per API call. The running totals answer "what did this
+        #: provider cost"; the log answers "what did *this episode* cost", which is
+        #: a different question whenever a provider outlives one episode — the judge
+        #: is installed once and then billed against every task it scores.
+        self.usage_log: list[dict] = []
 
     # -- accounting ----------------------------------------------------------
     def _account(self, usage: dict) -> None:
@@ -95,6 +100,21 @@ class Provider:
         for k, v in usage.items():
             if isinstance(v, int):
                 self.usage[k] = self.usage.get(k, 0) + v
+        self.usage_log.append(dict(usage))
+
+    def mark(self) -> int:
+        """A point in the call log, to attribute later calls to one episode."""
+        return len(self.usage_log)
+
+    def usage_since(self, mark: int) -> dict:
+        """Usage for the calls made after `mark`, plus how many there were."""
+        window = self.usage_log[mark:]
+        out: dict[str, int] = {}
+        for entry in window:
+            for k, v in entry.items():
+                if isinstance(v, int):
+                    out[k] = out.get(k, 0) + v
+        return {"calls": len(window), "usage": out}
 
     @property
     def cost_usd(self) -> float | None:
@@ -104,12 +124,52 @@ class Provider:
         return {"provider": self.name, "model": self.model, "calls": self.calls,
                 "usage": dict(self.usage), "cost_usd": self.cost_usd}
 
+    def episode_stats(self, mark: int) -> dict:
+        """`stats()` restricted to the calls made since `mark`.
+
+        The judge is installed once and then scores every task in a suite, so its
+        lifetime totals answer a question nobody asked. Per-episode accounting has
+        to window the log, or every task after the first is billed for its
+        predecessors.
+        """
+        window = self.usage_since(mark)
+        return {"provider": self.name, "model": self.model,
+                "calls": window["calls"], "usage": window["usage"],
+                "cost_usd": usage_cost(self.model, window["usage"])}
+
     # -- interface -----------------------------------------------------------
     def complete(self, system: str, messages: list[dict], tools: list[dict]) -> ProviderTurn:
         raise NotImplementedError
 
     def judge(self, rubric: str, images: list[dict], context: str = "") -> JudgeVerdict:
         raise NotImplementedError
+
+
+def token_summary(usage: dict, calls: int = 0, model: str | None = None) -> dict:
+    """Normalise one provider's usage into the shape a cost estimate needs.
+
+    Providers report different fields, and two of them are easy to lose while
+    still looking complete: reasoning tokens are billed as output but arrive
+    nested under a details object, and cache-hit tokens are billed at a fraction
+    of the input rate. `input_tokens` and `output_tokens` are the *totals*, with
+    the specially-priced spans reported alongside as subsets rather than
+    subtracted, so nothing is double-counted and nothing is silently dropped.
+    """
+    inp = usage.get("input_tokens", 0)
+    out = usage.get("output_tokens", 0)
+    summary = {
+        "calls": calls,
+        "input_tokens": inp,
+        "output_tokens": out,
+        "total_tokens": inp + out,
+        "reasoning_tokens": usage.get("reasoning_tokens", 0),
+        "cache_read_input_tokens": usage.get("cache_read_input_tokens", 0),
+        "cache_write_input_tokens": usage.get("cache_creation_input_tokens", 0),
+    }
+    if model is not None:
+        summary["model"] = model
+        summary["cost_usd"] = usage_cost(model, usage)
+    return summary
 
 
 # --- pricing ----------------------------------------------------------------

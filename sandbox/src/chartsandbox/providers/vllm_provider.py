@@ -56,8 +56,10 @@ _JUDGE_SYSTEM = (
     "reference image is supplied, the candidate does not need to match it pixel for "
     "pixel — it needs to convey the same data and the same chart type.\n\n"
     "Reply with JSON only: passed (boolean, is the rubric satisfied), score (number "
-    "from 0.0 to 1.0, your confidence), detail (one or two sentences naming the "
-    "specific visual evidence you based that on)."
+    "from 0.0 to 1.0 for how fully it is satisfied — 1.0 holds completely, 0.0 does "
+    "not hold at all, in between holds in part; this is not your confidence in your "
+    "own verdict, so a rubric you are certain is violated scores near 0.0), detail "
+    "(one or two sentences naming the specific visual evidence you based that on)."
 )
 
 
@@ -164,14 +166,19 @@ class VLLMProvider(Provider):
 
     # -- agent loop ----------------------------------------------------------
     def complete(self, system: str, messages: list[dict], tools: list[dict]) -> ProviderTurn:
-        return self._parse(self._create(
-            model=self.model,
-            messages=[{"role": "system", "content": system}, *self._to_native(messages)],
-            tools=self._tools(tools),
-            tool_choice="auto",
-            max_tokens=self.max_tokens,
-            temperature=self.temperature,
-        ))
+        kwargs: dict[str, Any] = {
+            "model": self.model,
+            "messages": [{"role": "system", "content": system}, *self._to_native(messages)],
+            "max_tokens": self.max_tokens,
+            "temperature": self.temperature,
+        }
+        # No tools under the tagged-text protocol — which is the point of that
+        # protocol here: the server no longer needs --enable-auto-tool-choice, so
+        # a model whose tool-call parser is weak or missing is still evaluable.
+        if tools:
+            kwargs["tools"] = self._tools(tools)
+            kwargs["tool_choice"] = "auto"
+        return self._parse(self._create(**kwargs))
 
     def _parse(self, resp: Any) -> ProviderTurn:
         choice = resp.choices[0]
@@ -268,12 +275,40 @@ def _as_dict(message: Any) -> Any:
     return message
 
 
+def _sub(obj: Any, *path: str) -> Any:
+    """Walk attributes or dict keys, whichever this SDK object happens to use."""
+    for key in path:
+        if obj is None:
+            return None
+        obj = getattr(obj, key, None) if not isinstance(obj, dict) else obj.get(key)
+    return obj
+
+
 def _usage_dict(usage: Any) -> dict:
+    """Token counts, including the two spans that are priced differently.
+
+    `prompt_tokens`/`completion_tokens` alone look complete and are not: reasoning
+    tokens are billed as output but arrive nested under a details object, and
+    cache-hit input is billed at a fraction of the normal rate. Dropping either
+    does not lose the run, it loses the ability to cost it afterwards — so both are
+    carried alongside the totals they are part of.
+    """
     if usage is None:
         return {}
     out: dict[str, int] = {}
-    if isinstance(getattr(usage, "prompt_tokens", None), int):
-        out["input_tokens"] = usage.prompt_tokens
-    if isinstance(getattr(usage, "completion_tokens", None), int):
-        out["output_tokens"] = usage.completion_tokens
+    if isinstance(_sub(usage, "prompt_tokens"), int):
+        out["input_tokens"] = _sub(usage, "prompt_tokens")
+    if isinstance(_sub(usage, "completion_tokens"), int):
+        out["output_tokens"] = _sub(usage, "completion_tokens")
+
+    reasoning = _sub(usage, "completion_tokens_details", "reasoning_tokens")
+    if isinstance(reasoning, int) and reasoning:
+        out["reasoning_tokens"] = reasoning
+
+    # DeepSeek spells the cached span twice; either is the same number.
+    cached = _sub(usage, "prompt_tokens_details", "cached_tokens")
+    if not isinstance(cached, int) or not cached:
+        cached = _sub(usage, "prompt_cache_hit_tokens")
+    if isinstance(cached, int) and cached:
+        out["cache_read_input_tokens"] = cached
     return out

@@ -19,12 +19,25 @@ def summarize(result: dict) -> str:
         f"final_score: {result['final_score']:.3f}"
         + ("  ALL SUBGOALS PASSED" if result["all_passed"] else ""),
         f"subgoals:    {result['subgoals_passed']}/{result['subgoals_total']} passed",
-        f"steps:       {result['steps_taken']}/{result['step_budget']}"
+        f"steps:       {result['steps_taken']}/{result['step_budget'] or 'uncapped'}"
         + (f"  (horizon_hint={result['horizon_hint']})" if result.get("horizon_hint") else ""),
         f"wall_time:   {result['wall_time_s']:.1f}s",
         f"tools:       {result['tool_counts']}",
-        "per-subgoal:",
     ]
+    # How the agent acted and why it stopped — the second half of a long-horizon
+    # result, and the only place a wrong stopping decision is visible at a glance.
+    agent = result.get("agent_stats") or {}
+    if agent.get("protocol"):
+        line = f"protocol:    {agent['protocol']}"
+        if agent.get("turns_taken") is not None:
+            line += f"  iterations={agent['turns_taken']}/{agent['max_turns'] or 'uncapped'}"
+            if agent.get("max_turns_requested"):
+                line += f" (clamped from {agent['max_turns_requested']})"
+        line += f"  stop={agent.get('stop_reason') or 'budget/wall-time'}"
+        if agent.get("parse_failures"):
+            line += f"  parse_failures={agent['parse_failures']}"
+        lines.append(line)
+    lines.append("per-subgoal:")
     for sg in result["subgoal_results"]:
         mark = "PASS" if sg["passed"] else "FAIL"
         fp = sg["first_pass_step"]

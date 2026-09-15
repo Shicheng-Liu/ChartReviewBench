@@ -75,6 +75,11 @@ TOOL_SCHEMAS: list[dict] = [
 _IMG_MIME = {"png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg",
              "gif": "image/gif", "webp": "image/webp"}
 
+#: Extensions a model can actually be shown. The kernel also reports .svg/.pdf as
+#: images it wrote, but no provider accepts those as image blocks, so anything
+#: auto-attaching a rendered file has to filter on this.
+VIEWABLE_MIME = dict(_IMG_MIME)
+
 
 class Sandbox:
     """A writable workspace + its persistent kernel + safe file ops."""
@@ -83,6 +88,7 @@ class Sandbox:
         self.workspace = Path(workspace).resolve()
         self.workspace.mkdir(parents=True, exist_ok=True)
         self.kernel = PersistentKernel(self.workspace, step_timeout)
+        self.executions = 0
 
     # -- path safety ---------------------------------------------------------
     def _safe(self, rel: str) -> Path:
@@ -93,7 +99,8 @@ class Sandbox:
 
     # -- tools ---------------------------------------------------------------
     def execute_python(self, code: str) -> dict:
-        return self.kernel.execute(code)
+        self.executions += 1
+        return self.kernel.execute(code, turn=self.executions)
 
     def write_file(self, path: str, content: str) -> dict:
         try:

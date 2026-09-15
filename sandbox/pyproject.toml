@@ -2,7 +2,7 @@
 name = "chartsandbox"
 version = "0.1.0"
 description = "Sandbox runtime for a long-horizon chart-agent benchmark (built on ChartNet task instances)"
-requires-python = ">=3.10"
+requires-python = ">=3.11"   # matplotlib 3.11.1, from the benchmark env-lock, needs it
 dependencies = [
     # model backends — imported lazily, so only the one you run needs to work
     "anthropic>=0.69",
@@ -10,11 +10,20 @@ dependencies = [
     "pyyaml>=6.0",
     "pydantic>=2.0",
     "pillow>=9.0",
+    # The rendering stack is pinned, not ranged. These versions are what the
+    # benchmark's own scorer was locked to (its env-lock.txt), and they decide the
+    # numbers: a different matplotlib moves autoscale floats and so moves the
+    # preservation score, and plotly 6 changes enough of the figure API that the
+    # scorer cannot capture a reference at all. Loosening any of these silently
+    # changes results rather than breaking loudly.
     "numpy>=1.23",
     "pandas>=1.5",
-    "matplotlib>=3.6",
-    "seaborn>=0.12",
-    "plotly>=5.0",
+    "matplotlib==3.11.1",
+    "seaborn==0.13.2",
+    "plotly==5.24.1",
+    # kaleido 0.2.x ships its own static renderer; 1.x drives a real Chrome, which
+    # this sandbox has no way to install or run.
+    "kaleido==0.2.1",
 ]
 
 [project.scripts]

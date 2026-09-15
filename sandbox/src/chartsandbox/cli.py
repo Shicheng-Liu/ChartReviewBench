@@ -7,6 +7,10 @@
 smoke-tests the sandbox. `--agent llm` puts a real multimodal model in the loop;
 `--judge <model>` replaces the mock rubric scorer with a real one. Either flag
 spends money, so neither is on by default.
+
+`--protocol` picks how a real model acts: `xml` (the default) is the tagged
+`<reasoning>/<code>/<decision>` loop, `tools` is tool calling. Running one model
+under both is the response-protocol ablation.
 """
 from __future__ import annotations
 
@@ -15,13 +19,13 @@ import json
 import sys
 from pathlib import Path
 
-from .agent import LLMAgent, ScriptedAgent
+from .agent import LLMAgent, ScriptedAgent, TaggedAgent
 from .contract import load_task
 from .metrics import summarize
 from .providers import DEFAULT_MODEL, get_provider
 from .runner import run_episode
 
-_EFFORTS = ("low", "medium", "high", "xhigh", "max")
+_EFFORTS = ("default", "none", "minimal", "low", "medium", "high", "xhigh", "max")
 
 
 def _cmd_validate(args) -> int:
@@ -44,9 +48,17 @@ def _build_agent(args):
             return None
         return ScriptedAgent(json.loads(sim_path.read_text()))
 
-    provider = get_provider(args.model, effort=args.effort, max_tokens=args.max_tokens,
-                            base_url=args.base_url)
-    return LLMAgent(provider, max_history_images=args.max_history_images)
+    provider = get_provider(args.model, max_tokens=args.max_tokens, base_url=args.base_url,
+                            **({"effort": args.effort} if args.effort != "default" else {}))
+    if args.protocol == "tools":
+        return LLMAgent(provider, max_history_images=args.max_history_images)
+    kwargs = {}
+    if args.no_turn_limit:
+        kwargs["max_turns"] = None          # explicit: no cap
+    elif args.max_turns is not None:
+        kwargs["max_turns"] = args.max_turns
+    return TaggedAgent(provider, max_history_images=args.max_history_images,
+                       max_images_per_turn=args.max_images_per_turn, **kwargs)
 
 
 def _cmd_run(args) -> int:
@@ -58,22 +70,37 @@ def _cmd_run(args) -> int:
     if args.judge:
         from .judge import install_judge
 
-        judge_provider = install_judge(args.judge, judge_effort=args.judge_effort,
-                                       base_url=args.base_url)
+        judge_provider = install_judge(args.judge, base_url=args.base_url,
+                                       **({"judge_effort": args.judge_effort}
+                                          if args.judge_effort != "default" else {}))
+        # Windowed from here: a judge outlives one episode, and its lifetime totals
+        # would bill this task for every task scored before it.
+        judge_mark = judge_provider.mark()
 
         def extra_stats() -> dict:
-            return {"judge_stats": judge_provider.stats()}
+            return {"judge_stats": judge_provider.episode_stats(judge_mark)}
 
     result = run_episode(args.task_dir, agent, out_dir=args.out, extra_stats=extra_stats)
     print(summarize(result))
+    tu = result.get("token_usage") or {}
     for key, label in (("agent_stats", "agent"), ("judge_stats", "judge")):
         stats = result.get(key)
         if stats:
+            t = tu.get(label, {})
             print(f"\n{label}:      {stats['model']} via {stats['provider']}, "
                   f"{stats['calls']} call(s)")
-            print(f"             tokens={stats['usage']}")
+            print(f"             in={t.get('input_tokens', 0)} out={t.get('output_tokens', 0)}"
+                  + (f" (reasoning {t['reasoning_tokens']})" if t.get("reasoning_tokens") else "")
+                  + (f" (cached in {t['cache_read_input_tokens']})"
+                     if t.get("cache_read_input_tokens") else ""))
             cost = stats["cost_usd"]
             print(f"             cost={'$%.4f' % cost if cost is not None else 'n/a (no price on file)'}")
+    if tu.get("total"):
+        t = tu["total"]
+        cost = t.get("cost_usd")
+        print(f"\ntokens:      {t['total_tokens']} total ({t['input_tokens']} in, "
+              f"{t['output_tokens']} out) over {t['calls']} call(s)"
+              + (f"  cost=${cost:.4f}" if cost is not None else ""))
     print(f"\nwrote: {result['_run_dir']}/result.json")
     return 0
 
@@ -94,8 +121,19 @@ def main(argv=None) -> int:
                     help=f"agent model: claude-opus-5, gpt-5.4, or vllm:<hf-repo-id> "
                          f"for a locally served one (default: {DEFAULT_MODEL})")
     pr.add_argument("--base-url", default=None,
-                    help="endpoint for a self-hosted (vllm:) model; "
+                    help="endpoint override for vllm, DeepSeek or OpenRouter; "
                          "defaults to $VLLM_BASE_URL or http://localhost:8000/v1")
+    pr.add_argument("--protocol", choices=("xml", "tools"), default="xml",
+                    help="how an llm agent acts: xml = <reasoning>/<code>/<decision> "
+                         "iterations (default), tools = tool calling")
+    pr.add_argument("--max-turns", type=int, default=None,
+                    help="iteration cap for --protocol xml (default: the task's max_turns); "
+                         "clamped down if the task's step_budget cannot fit it")
+    pr.add_argument("--no-turn-limit", action="store_true",
+                    help="run --protocol xml uncapped: only the agent's own "
+                         "<decision>stop</decision> ends the episode")
+    pr.add_argument("--max-images-per-turn", type=int, default=4,
+                    help="images auto-attached per xml iteration (default: 4)")
     pr.add_argument("--effort", choices=_EFFORTS, default="high",
                     help="reasoning effort for the agent; ignored on vllm (default: high)")
     pr.add_argument("--max-tokens", type=int, default=16000,

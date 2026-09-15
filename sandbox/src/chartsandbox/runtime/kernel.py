@@ -58,12 +58,14 @@ class PersistentKernel:
         except queue.Empty:
             return None
 
-    def execute(self, code: str, timeout: int | None = None) -> dict:
+    def execute(self, code: str, timeout: int | None = None, turn: int = 0) -> dict:
         timeout = timeout or self.default_timeout
-        empty = {"stdout": "", "stderr": "", "files_changed": [], "images_created": []}
+        empty = {"stdout": "", "stderr": "", "warnings": [], "files_changed": [],
+                 "images_created": [], "figures_captured": []}
         assert self.proc and self.proc.stdin
         try:
-            self.proc.stdin.write(json.dumps({"code": code, "timeout": timeout}) + "\n")
+            self.proc.stdin.write(
+                json.dumps({"code": code, "timeout": timeout, "turn": turn}) + "\n")
             self.proc.stdin.flush()
         except (BrokenPipeError, ValueError):
             self._restart()

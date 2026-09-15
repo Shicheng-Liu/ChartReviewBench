@@ -47,10 +47,18 @@ class Task(BaseModel):
     workspace_files: list[str] = Field(default_factory=list)
     subgoals: list[Subgoal]
 
-    # runtime budget (sandbox-enforced)
-    step_budget: int = 30
+    # Runtime budget (sandbox-enforced). `None` means *uncapped*: the released
+    # A/B/C suite selects this deliberately (protocol `abc-uncapped-v1`), so that an
+    # episode ends on the agent's own judgement rather than on a harness ceiling.
+    # The finite guards that remain are per-step: `step_timeout_s`, and the HTTP and
+    # kernel timeouts underneath it.
+    step_budget: int | None = 30
+    # Iteration budget for the tagged-text protocol: one iteration is one
+    # reason -> code -> execute -> inspect cycle. The tool-calling protocol ignores
+    # it and spends `step_budget` directly, one tool call per step.
+    max_turns: int | None = 10
     step_timeout_s: int = 30
-    wall_time_s: int = 900
+    wall_time_s: int | None = 900
 
     @model_validator(mode="after")
     def _check(self) -> "Task":
@@ -59,6 +67,16 @@ class Task(BaseModel):
         ids = [s.id for s in self.subgoals]
         if len(ids) != len(set(ids)):
             raise ValueError(f"task {self.id!r} has duplicate subgoal ids")
+        for field in ("step_budget", "max_turns", "wall_time_s"):
+            value = getattr(self, field)
+            if value is not None and value < 1:
+                raise ValueError(f"task {self.id!r} has {field}={value}; use a positive "
+                                 f"value, or null for uncapped")
+        # Deliberately no cross-check between step_budget and max_turns. An
+        # interaction-budget sweep runs the same instance at 1, 2, 3, 5, 10 steps, and
+        # a task is not malformed for having fewer steps than the tagged-text default
+        # would like — the agent reconciles the two at reset and reports having done
+        # so (see TaggedAgent.max_turns_clamped), rather than the task failing to load.
         return self
 
 

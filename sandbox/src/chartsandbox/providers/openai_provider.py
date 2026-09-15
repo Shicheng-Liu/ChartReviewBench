@@ -47,9 +47,12 @@ _JUDGE_SYSTEM = (
     "you are given; do not assume anything about the code that produced it. When a "
     "reference image is supplied, the candidate does not need to match it pixel for "
     "pixel — it needs to convey the same data and the same chart type.\n\n"
-    "score is your confidence that the rubric is satisfied, from 0.0 to 1.0. passed is "
-    "whether it is satisfied. detail is one or two sentences naming the specific visual "
-    "evidence you based that on."
+    "score is how fully the rubric is satisfied, from 0.0 to 1.0: 1.0 when it holds "
+    "completely, 0.0 when it does not hold at all, in between when it holds in part. "
+    "It is not your confidence in your own verdict — a rubric you are certain is "
+    "violated scores near 0.0, not near 1.0. passed is whether it is satisfied at all, "
+    "and must agree with score. detail is one or two sentences naming the specific "
+    "visual evidence you based that on."
 )
 
 
@@ -145,12 +148,15 @@ class OpenAIProvider(Provider):
             "model": self.model,
             "instructions": system,
             "input": self._to_native(messages),
-            "tools": self._tools(tools),
-            "parallel_tool_calls": False,
             "max_output_tokens": self.max_tokens,
             "store": False,             # a benchmark run is not the vendor's to keep
             "include": ["reasoning.encrypted_content"],
         }
+        # The tagged-text protocol declares no tools; parallel_tool_calls is only
+        # meaningful alongside them, so both are omitted there.
+        if tools:
+            kwargs["tools"] = self._tools(tools)
+            kwargs["parallel_tool_calls"] = False
         if self.effort:
             # summary=auto costs nothing extra and puts the model's reasoning in
             # the trajectory, which is most of what you want when a run goes wrong.

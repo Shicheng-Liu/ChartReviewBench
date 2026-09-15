@@ -17,6 +17,7 @@ from .base import (
     assistant,
     image_block,
     text_block,
+    token_summary,
     tool_call_block,
     tool_result_block,
     usage_cost,
@@ -27,9 +28,10 @@ DEFAULT_MODEL = "claude-opus-5"
 
 _ANTHROPIC_PREFIXES = ("claude", "fable", "mythos")
 _OPENAI_PREFIXES = ("gpt", "chatgpt", "o1", "o3", "o4")
+_DEEPSEEK_PREFIXES = ("deepseek",)
 
 
-BACKENDS = ("anthropic", "openai", "vllm")
+BACKENDS = ("anthropic", "openai", "vllm", "deepseek", "openrouter")
 
 
 def resolve(model: str) -> tuple[str, str]:
@@ -49,6 +51,8 @@ def resolve(model: str) -> tuple[str, str]:
         return "anthropic", model
     if lowered.startswith(_OPENAI_PREFIXES):
         return "openai", model
+    if lowered.startswith(_DEEPSEEK_PREFIXES):
+        return "deepseek", model
     raise ValueError(
         f"cannot infer a backend for model {model!r}. Prefix it explicitly, e.g. "
         f"'vllm:{model}' for a locally served model, or 'anthropic:{model}' / "
@@ -58,6 +62,10 @@ def resolve(model: str) -> tuple[str, str]:
 
 def get_provider(model: str = DEFAULT_MODEL, **kwargs) -> Provider:
     backend, ident = resolve(model)
+    if backend == "openrouter":
+        from .openrouter_provider import OpenRouterProvider
+
+        return OpenRouterProvider(ident, **kwargs)
     if backend == "anthropic":
         from .anthropic_provider import AnthropicProvider
 
@@ -66,6 +74,10 @@ def get_provider(model: str = DEFAULT_MODEL, **kwargs) -> Provider:
         from .vllm_provider import VLLMProvider
 
         return VLLMProvider(ident, **kwargs)
+    if backend == "deepseek":
+        from .deepseek_provider import DeepSeekProvider
+
+        return DeepSeekProvider(ident, **_drop(kwargs, "effort"))
     from .openai_provider import OpenAIProvider
 
     return OpenAIProvider(ident, **_drop(kwargs, "base_url"))
@@ -87,6 +99,7 @@ __all__ = [
     "image_block",
     "resolve",
     "text_block",
+    "token_summary",
     "tool_call_block",
     "tool_result_block",
     "usage_cost",

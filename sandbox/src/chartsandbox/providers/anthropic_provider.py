@@ -28,9 +28,12 @@ _JUDGE_SYSTEM = (
     "you are given; do not assume anything about the code that produced it. When a "
     "reference image is supplied, the candidate does not need to match it pixel for "
     "pixel — it needs to convey the same data and the same chart type.\n\n"
-    "score is your confidence that the rubric is satisfied, from 0.0 to 1.0. passed is "
-    "whether it is satisfied. detail is one or two sentences naming the specific visual "
-    "evidence you based that on."
+    "score is how fully the rubric is satisfied, from 0.0 to 1.0: 1.0 when it holds "
+    "completely, 0.0 when it does not hold at all, in between when it holds in part. "
+    "It is not your confidence in your own verdict — a rubric you are certain is "
+    "violated scores near 0.0, not near 1.0. passed is whether it is satisfied at all, "
+    "and must agree with score. detail is one or two sentences naming the specific "
+    "visual evidence you based that on."
 )
 
 
@@ -107,13 +110,16 @@ class AnthropicProvider(Provider):
             "max_tokens": self.max_tokens,
             "system": [{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
             "messages": native,
-            "tools": tools,
+            "output_config": {"effort": self.effort},
+        }
+        # The tagged-text protocol declares no tools; sending an empty list is a
+        # request error, so the tool parameters are omitted entirely there.
+        if tools:
+            kwargs["tools"] = tools
             # One action per step keeps the trajectory, the progress curve and the
             # persistent kernel in lockstep. _pending in LLMAgent handles a batch
             # anyway, in case a model ignores this.
-            "tool_choice": {"type": "auto", "disable_parallel_tool_use": True},
-            "output_config": {"effort": self.effort},
-        }
+            kwargs["tool_choice"] = {"type": "auto", "disable_parallel_tool_use": True}
         if self.model.startswith(_ADAPTIVE):
             # display=summarized is free (thinking is billed the same either way)
             # and puts the model's reasoning in the trajectory for debugging.
