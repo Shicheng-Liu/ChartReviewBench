@@ -1,0 +1,771 @@
+{
+  "task_id": "5604d148__multi2__swapped-legend-labels+wrong-chart-type__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.9667,
+  "all_passed": true,
+  "subgoals_total": 3,
+  "subgoals_passed": 3,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 1,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (114310 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 1.0,
+          "detail": "REAL: The image is a multi-series line chart with monthly markers, matching the summary's description. Each legend color matches its table.csv series: blue starts at 12.1, orange at 10.5, green at 15.0, red at 13.2, purple at 9.0 and brown at 8.2, and green peaks at 17.2 in August."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.9,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.9,
+          "detail": "REAL: The title, axis labels, month and percentage tick labels, and the legend are all legible and unclipped, and the legend sits outside the plot so it covers no data. The pastel lines are fairly light and some markers overlap where series cross, but every series stays distinguishable and there are no missing-glyph boxes."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 4,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 24.85,
+  "tool_counts": {
+    "execute_python": 3,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 3,
+    "usage": {
+      "input_tokens": 10327,
+      "output_tokens": 1422,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 307
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463875-oOype45wqTxC4Aakpl6t",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 141,
+          "prompt_tokens": 1186,
+          "total_tokens": 1327,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.007564,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.007564,
+            "upstream_inference_prompt_cost": 0.004744,
+            "upstream_inference_completions_cost": 0.00282
+          }
+        }
+      },
+      {
+        "id": "gen-1794463878-VLWFrEgzkJjggMWUjBc3",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 906,
+          "prompt_tokens": 3410,
+          "total_tokens": 4316,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 307,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.03176,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.03176,
+            "upstream_inference_prompt_cost": 0.01364,
+            "upstream_inference_completions_cost": 0.01812
+          }
+        }
+      },
+      {
+        "id": "gen-1794463887-rQgtcDHuRDNUEh52Pxmx",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 375,
+          "prompt_tokens": 5731,
+          "total_tokens": 6106,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.030424,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.030424,
+            "upstream_inference_prompt_cost": 0.022924,
+            "upstream_inference_completions_cost": 0.0075
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 3,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI haven't seen any of the workspace files yet, so this first iteration only inspects them. I'll print chart.py, table.csv and summary.txt so I can compare the chart logic against the data and the summary.\n</reasoning>\n<code>\nfor f in ['chart.py','table.csv','summary.txt']:\n    print('=== ',f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I haven't seen any of the workspace files yet, so this first iteration only inspects them. I'll print chart.py, table.csv and summary.txt so I can compare the chart logic against the data and the summary.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThere are two problems.\n\n1. **Wrong chart type.** The summary describes a line chart with six lines, each with markers. The code uses `sns.scatterplot`, which draws no lines.\n2. **Mislabelled legend.** `plt.legend` is given a hardcoded list of labels in the wrong order: Automated Irrigation is listed before Smart Planting. The data order has Smart Planting third and fourth, so those four series are mislabelled.\n\nFixes:\n- Switch to `sns.lineplot(markers=True, dashes=False)`.\n- Let the legend take its labels from the plotted handles, keeping the same title and position.\n\nI'll also print the rest of the summary to check the colour and y-range claims. The pastel palette keeps the stated hue order (blue, orange, green, red, purple, brown), so I'm leaving it unchanged.\n</reasoning>\n<code>\ns=open('summary.txt').read(); print(s[1500:])\nsrc=open('chart.py').read()\nsrc=src.replace(\"sns.scatterplot(\",\"sns.lineplot(\").replace(\"    markers=True\\n)\",\"    markers=True,\\n    dashes=False\\n)\")\nsrc=src.replace(\"plt.legend(['Precision Soil Prep (North)', 'Precision Soil Prep (South)', 'Automated Irrigation (North)', 'Automated Irrigation (South)', 'Smart Planting (North)', 'Smart Planting (South)'], title=\",\"plt.legend(title=\")\nwith open('chart.py','w') as f: f.write(src)\nexec(open('chart.py').read())\nax=plt.gca()\nprint([t.get_text() for t in ax.get_legend().get_texts()], ax.get_ylim(), len(ax.lines))\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm checking the chart against the summary: it's a scatterplot where the summary says line chart, the legend order is hardcoded and mislabels the series, and the palette is pastel instead of the blue, orange, green, red, purple, brown hues the summary describes.\n\nNow I'm weighing whether the pastel palette is actually a mistake or was there from the start, since the summary's hues are close to it. I want to read the rest of the summary before deciding, and I also need to look at the y-axis range, which runs from 8 to 18.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "There are two problems.\n\n1. **Wrong chart type.** The summary describes a line chart with six lines, each with markers. The code uses `sns.scatterplot`, which draws no lines.\n2. **Mislabelled legend.** `plt.legend` is given a hardcoded list of labels in the wrong order: Automated Irrigation is listed before Smart Planting. The data order has Smart Planting third and fourth, so those four series are mislabelled.\n\nFixes:\n- Switch to `sns.lineplot(markers=True, dashes=False)`.\n- Let the legend take its labels from the plotted handles, keeping the same title and position.\n\nI'll also print the rest of the summary to check the colour and y-range claims. The pastel palette keeps the stated hue order (blue, orange, green, red, purple, brown), so I'm leaving it unchanged.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nI fixed two errors in chart.py:\n- **Chart type:** the scatterplot is now a lineplot with markers and solid lines, matching the summary's \"line chart\".\n- **Legend:** the hardcoded, misordered legend labels are gone. The legend now takes its labels from the plotted series.\n\nChecks against the figure:\n- The legend labels, read from the legend object, are in data order and match the series: Precision Soil Prep (North, South), Smart Planting (North, South), Automated Irrigation (North, South).\n- The axes hold 12 line objects. Seaborn adds one per series for the legend handles, which accounts for 6 of them, so the 6 series are drawn as lines.\n- The rendered image shows lines with distinct markers, and the legend sits outside the plot area with no overlap.\n- The y-limits read from the axes are about 7.75 to 17.65. Visually the axis covers roughly the 8\u201318 range the summary describes.\n\nI left the title, axis labels, palette, figure size and legend position unchanged.\n</reasoning>\n<code>\nprint('done')\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I fixed two errors in chart.py:\n- **Chart type:** the scatterplot is now a lineplot with markers and solid lines, matching the summary's \"line chart\".\n- **Legend:** the hardcoded, misordered legend labels are gone. The legend now takes its labels from the plotted series.\n\nChecks against the figure:\n- The legend labels, read from the legend object, are in data order and match the series: Precision Soil Prep (North, South), Smart Planting (North, South), Automated Irrigation (North, South).\n- The axes hold 12 line objects. Seaborn adds one per series for the legend handles, which accounts for 6 of them, so the 6 series are drawn as lines.\n- The rendered image shows lines with distinct markers, and the legend sits outside the plot area with no overlap.\n- The y-limits read from the axes are about 7.75 to 17.65. Visually the axis covers roughly the 8\u201318 range the summary describes.\n\nI left the title, axis labels, palette, figure size and legend position unchanged.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 4552,
+      "output_tokens": 382,
+      "reasoning_tokens": 136,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463893-83jcq7GU7Jx6yqM8sWfF",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 262,
+          "prompt_tokens": 2717,
+          "total_tokens": 2979,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 136,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.016108,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.016108,
+            "upstream_inference_prompt_cost": 0.010868,
+            "upstream_inference_completions_cost": 0.00524
+          }
+        }
+      },
+      {
+        "id": "gen-1794463896-JOrYiOgsHZNa6lb4wOgK",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 120,
+          "prompt_tokens": 1835,
+          "total_tokens": 1955,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00974,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00974,
+            "upstream_inference_prompt_cost": 0.00734,
+            "upstream_inference_completions_cost": 0.0024
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 3,
+      "input_tokens": 10327,
+      "output_tokens": 1422,
+      "total_tokens": 11749,
+      "reasoning_tokens": 307,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 4552,
+      "output_tokens": 382,
+      "total_tokens": 4934,
+      "reasoning_tokens": 136,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 5,
+      "input_tokens": 14879,
+      "output_tokens": 1804,
+      "total_tokens": 16683,
+      "reasoning_tokens": 443,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 0.9352,
+    "preservation": 1.0,
+    "recovery_binary": 0,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 0.9352,
+        "lenient": 0.9352
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].legend.labels",
+          "axes[0].series[line0].alpha",
+          "axes[0].series[line0].color",
+          "axes[0].series[line0].color_alpha",
+          "axes[0].series[line0].drawstyle",
+          "axes[0].series[line0].fillstyle",
+          "axes[0].series[line0].kind",
+          "axes[0].series[line0].linestyle",
+          "axes[0].series[line0].linewidth",
+          "axes[0].series[line0].marker",
+          "axes[0].series[line0].markeredgecolor",
+          "axes[0].series[line0].markeredgecolor_alpha",
+          "axes[0].series[line0].markeredgewidth",
+          "axes[0].series[line0].markerfacecolor",
+          "axes[0].series[line0].markerfacecolor_alpha",
+          "axes[0].series[line0].markersize",
+          "axes[0].series[line0].values",
+          "axes[0].series[line0].zorder",
+          "axes[0].series[line1].alpha",
+          "axes[0].series[line1].color",
+          "axes[0].series[line1].color_alpha",
+          "axes[0].series[line1].drawstyle",
+          "axes[0].series[line1].fillstyle",
+          "axes[0].series[line1].kind",
+          "axes[0].series[line1].linestyle",
+          "axes[0].series[line1].linewidth",
+          "axes[0].series[line1].marker",
+          "axes[0].series[line1].markeredgecolor",
+          "axes[0].series[line1].markeredgecolor_alpha",
+          "axes[0].series[line1].markeredgewidth",
+          "axes[0].series[line1].markerfacecolor",
+          "axes[0].series[line1].markerfacecolor_alpha",
+          "axes[0].series[line1].markersize",
+          "axes[0].series[line1].values",
+          "axes[0].series[line1].zorder",
+          "axes[0].series[line2].alpha",
+          "axes[0].series[line2].color",
+          "axes[0].series[line2].color_alpha",
+          "axes[0].series[line2].drawstyle",
+          "axes[0].series[line2].fillstyle",
+          "axes[0].series[line2].kind",
+          "axes[0].series[line2].linestyle",
+          "axes[0].series[line2].linewidth",
+          "axes[0].series[line2].marker",
+          "axes[0].series[line2].markeredgecolor",
+          "axes[0].series[line2].markeredgecolor_alpha",
+          "axes[0].series[line2].markeredgewidth",
+          "axes[0].series[line2].markerfacecolor",
+          "axes[0].series[line2].markerfacecolor_alpha",
+          "axes[0].series[line2].markersize",
+          "axes[0].series[line2].values",
+          "axes[0].series[line2].zorder",
+          "axes[0].series[line3].alpha",
+          "axes[0].series[line3].color",
+          "axes[0].series[line3].color_alpha",
+          "axes[0].series[line3].drawstyle",
+          "axes[0].series[line3].fillstyle",
+          "axes[0].series[line3].kind",
+          "axes[0].series[line3].linestyle",
+          "axes[0].series[line3].linewidth",
+          "axes[0].series[line3].marker",
+          "axes[0].series[line3].markeredgecolor",
+          "axes[0].series[line3].markeredgecolor_alpha",
+          "axes[0].series[line3].markeredgewidth",
+          "axes[0].series[line3].markerfacecolor",
+          "axes[0].series[line3].markerfacecolor_alpha",
+          "axes[0].series[line3].markersize",
+          "axes[0].series[line3].values",
+          "axes[0].series[line3].zorder",
+          "axes[0].series[line4].alpha",
+          "axes[0].series[line4].color",
+          "axes[0].series[line4].color_alpha",
+          "axes[0].series[line4].drawstyle",
+          "axes[0].series[line4].fillstyle",
+          "axes[0].series[line4].kind",
+          "axes[0].series[line4].linestyle",
+          "axes[0].series[line4].linewidth",
+          "axes[0].series[line4].marker",
+          "axes[0].series[line4].markeredgecolor",
+          "axes[0].series[line4].markeredgecolor_alpha",
+          "axes[0].series[line4].markeredgewidth",
+          "axes[0].series[line4].markerfacecolor",
+          "axes[0].series[line4].markerfacecolor_alpha",
+          "axes[0].series[line4].markersize",
+          "axes[0].series[line4].values",
+          "axes[0].series[line4].zorder",
+          "axes[0].series[line5].alpha",
+          "axes[0].series[line5].color",
+          "axes[0].series[line5].color_alpha",
+          "axes[0].series[line5].drawstyle",
+          "axes[0].series[line5].fillstyle",
+          "axes[0].series[line5].kind",
+          "axes[0].series[line5].linestyle",
+          "axes[0].series[line5].linewidth",
+          "axes[0].series[line5].marker",
+          "axes[0].series[line5].markeredgecolor",
+          "axes[0].series[line5].markeredgecolor_alpha",
+          "axes[0].series[line5].markeredgewidth",
+          "axes[0].series[line5].markerfacecolor",
+          "axes[0].series[line5].markerfacecolor_alpha",
+          "axes[0].series[line5].markersize",
+          "axes[0].series[line5].values",
+          "axes[0].series[line5].zorder",
+          "axes[0].series[scatter0].color",
+          "axes[0].series[scatter0].colors",
+          "axes[0].series[scatter0].kind",
+          "axes[0].series[scatter0].values"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[line0].alpha",
+            "axes[0].series[line0].color",
+            "axes[0].series[line0].color_alpha",
+            "axes[0].series[line0].drawstyle",
+            "axes[0].series[line0].fillstyle",
+            "axes[0].series[line0].kind",
+            "axes[0].series[line0].linestyle",
+            "axes[0].series[line0].linewidth",
+            "axes[0].series[line0].marker",
+            "axes[0].series[line0].markeredgecolor",
+            "axes[0].series[line0].markeredgecolor_alpha",
+            "axes[0].series[line0].markeredgewidth",
+            "axes[0].series[line0].markerfacecolor",
+            "axes[0].series[line0].markerfacecolor_alpha",
+            "axes[0].series[line0].markersize",
+            "axes[0].series[line0].values",
+            "axes[0].series[line0].zorder",
+            "axes[0].series[line1].alpha",
+            "axes[0].series[line1].color",
+            "axes[0].series[line1].color_alpha",
+            "axes[0].series[line1].drawstyle",
+            "axes[0].series[line1].fillstyle",
+            "axes[0].series[line1].kind",
+            "axes[0].series[line1].linestyle",
+            "axes[0].series[line1].linewidth",
+            "axes[0].series[line1].marker",
+            "axes[0].series[line1].markeredgecolor",
+            "axes[0].series[line1].markeredgecolor_alpha",
+            "axes[0].series[line1].markeredgewidth",
+            "axes[0].series[line1].markerfacecolor",
+            "axes[0].series[line1].markerfacecolor_alpha",
+            "axes[0].series[line1].markersize",
+            "axes[0].series[line1].values",
+            "axes[0].series[line1].zorder",
+            "axes[0].series[line2].alpha",
+            "axes[0].series[line2].color",
+            "axes[0].series[line2].color_alpha",
+            "axes[0].series[line2].drawstyle",
+            "axes[0].series[line2].fillstyle",
+            "axes[0].series[line2].kind",
+            "axes[0].series[line2].linestyle",
+            "axes[0].series[line2].linewidth",
+            "axes[0].series[line2].marker",
+            "axes[0].series[line2].markeredgecolor",
+            "axes[0].series[line2].markeredgecolor_alpha",
+            "axes[0].series[line2].markeredgewidth",
+            "axes[0].series[line2].markerfacecolor",
+            "axes[0].series[line2].markerfacecolor_alpha",
+            "axes[0].series[line2].markersize",
+            "axes[0].series[line2].values",
+            "axes[0].series[line2].zorder",
+            "axes[0].series[line3].alpha",
+            "axes[0].series[line3].color",
+            "axes[0].series[line3].color_alpha",
+            "axes[0].series[line3].drawstyle",
+            "axes[0].series[line3].fillstyle",
+            "axes[0].series[line3].kind",
+            "axes[0].series[line3].linestyle",
+            "axes[0].series[line3].linewidth",
+            "axes[0].series[line3].marker",
+            "axes[0].series[line3].markeredgecolor",
+            "axes[0].series[line3].markeredgecolor_alpha",
+            "axes[0].series[line3].markeredgewidth",
+            "axes[0].series[line3].markerfacecolor",
+            "axes[0].series[line3].markerfacecolor_alpha",
+            "axes[0].series[line3].markersize",
+            "axes[0].series[line3].values",
+            "axes[0].series[line3].zorder",
+            "axes[0].series[line4].alpha",
+            "axes[0].series[line4].color",
+            "axes[0].series[line4].color_alpha",
+            "axes[0].series[line4].drawstyle",
+            "axes[0].series[line4].fillstyle",
+            "axes[0].series[line4].kind",
+            "axes[0].series[line4].linestyle",
+            "axes[0].series[line4].linewidth",
+            "axes[0].series[line4].marker",
+            "axes[0].series[line4].markeredgecolor",
+            "axes[0].series[line4].markeredgecolor_alpha",
+            "axes[0].series[line4].markeredgewidth",
+            "axes[0].series[line4].markerfacecolor",
+            "axes[0].series[line4].markerfacecolor_alpha",
+            "axes[0].series[line4].markersize",
+            "axes[0].series[line4].values",
+            "axes[0].series[line4].zorder",
+            "axes[0].series[line5].alpha",
+            "axes[0].series[line5].color",
+            "axes[0].series[line5].color_alpha",
+            "axes[0].series[line5].drawstyle",
+            "axes[0].series[line5].fillstyle",
+            "axes[0].series[line5].kind",
+            "axes[0].series[line5].linestyle",
+            "axes[0].series[line5].linewidth",
+            "axes[0].series[line5].marker",
+            "axes[0].series[line5].markeredgecolor",
+            "axes[0].series[line5].markeredgecolor_alpha",
+            "axes[0].series[line5].markeredgewidth",
+            "axes[0].series[line5].markerfacecolor",
+            "axes[0].series[line5].markerfacecolor_alpha",
+            "axes[0].series[line5].markersize",
+            "axes[0].series[line5].values",
+            "axes[0].series[line5].zorder",
+            "axes[0].series[scatter0].color",
+            "axes[0].series[scatter0].colors",
+            "axes[0].series[scatter0].kind",
+            "axes[0].series[scatter0].values"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[line0].alpha",
+            "axes[0].series[line0].color",
+            "axes[0].series[line0].color_alpha",
+            "axes[0].series[line0].drawstyle",
+            "axes[0].series[line0].fillstyle",
+            "axes[0].series[line0].kind",
+            "axes[0].series[line0].linestyle",
+            "axes[0].series[line0].linewidth",
+            "axes[0].series[line0].marker",
+            "axes[0].series[line0].markeredgecolor",
+            "axes[0].series[line0].markeredgecolor_alpha",
+            "axes[0].series[line0].markeredgewidth",
+            "axes[0].series[line0].markerfacecolor",
+            "axes[0].series[line0].markerfacecolor_alpha",
+            "axes[0].series[line0].markersize",
+            "axes[0].series[line0].values",
+            "axes[0].series[line0].zorder",
+            "axes[0].series[line1].alpha",
+            "axes[0].series[line1].color",
+            "axes[0].series[line1].color_alpha",
+            "axes[0].series[line1].drawstyle",
+            "axes[0].series[line1].fillstyle",
+            "axes[0].series[line1].kind",
+            "axes[0].series[line1].linestyle",
+            "axes[0].series[line1].linewidth",
+            "axes[0].series[line1].marker",
+            "axes[0].series[line1].markeredgecolor",
+            "axes[0].series[line1].markeredgecolor_alpha",
+            "axes[0].series[line1].markeredgewidth",
+            "axes[0].series[line1].markerfacecolor",
+            "axes[0].series[line1].markerfacecolor_alpha",
+            "axes[0].series[line1].markersize",
+            "axes[0].series[line1].values",
+            "axes[0].series[line1].zorder",
+            "axes[0].series[line2].alpha",
+            "axes[0].series[line2].color",
+            "axes[0].series[line2].color_alpha",
+            "axes[0].series[line2].drawstyle",
+            "axes[0].series[line2].fillstyle",
+            "axes[0].series[line2].kind",
+            "axes[0].series[line2].linestyle",
+            "axes[0].series[line2].linewidth",
+            "axes[0].series[line2].marker",
+            "axes[0].series[line2].markeredgecolor",
+            "axes[0].series[line2].markeredgecolor_alpha",
+            "axes[0].series[line2].markeredgewidth",
+            "axes[0].series[line2].markerfacecolor",
+            "axes[0].series[line2].markerfacecolor_alpha",
+            "axes[0].series[line2].markersize",
+            "axes[0].series[line2].values",
+            "axes[0].series[line2].zorder",
+            "axes[0].series[line3].alpha",
+            "axes[0].series[line3].color",
+            "axes[0].series[line3].color_alpha",
+            "axes[0].series[line3].drawstyle",
+            "axes[0].series[line3].fillstyle",
+            "axes[0].series[line3].kind",
+            "axes[0].series[line3].linestyle",
+            "axes[0].series[line3].linewidth",
+            "axes[0].series[line3].marker",
+            "axes[0].series[line3].markeredgecolor",
+            "axes[0].series[line3].markeredgecolor_alpha",
+            "axes[0].series[line3].markeredgewidth",
+            "axes[0].series[line3].markerfacecolor",
+            "axes[0].series[line3].markerfacecolor_alpha",
+            "axes[0].series[line3].markersize",
+            "axes[0].series[line3].values",
+            "axes[0].series[line3].zorder",
+            "axes[0].series[line4].alpha",
+            "axes[0].series[line4].color",
+            "axes[0].series[line4].color_alpha",
+            "axes[0].series[line4].drawstyle",
+            "axes[0].series[line4].fillstyle",
+            "axes[0].series[line4].kind",
+            "axes[0].series[line4].linestyle",
+            "axes[0].series[line4].linewidth",
+            "axes[0].series[line4].marker",
+            "axes[0].series[line4].markeredgecolor",
+            "axes[0].series[line4].markeredgecolor_alpha",
+            "axes[0].series[line4].markeredgewidth",
+            "axes[0].series[line4].markerfacecolor",
+            "axes[0].series[line4].markerfacecolor_alpha",
+            "axes[0].series[line4].markersize",
+            "axes[0].series[line4].values",
+            "axes[0].series[line4].zorder",
+            "axes[0].series[line5].alpha",
+            "axes[0].series[line5].color",
+            "axes[0].series[line5].color_alpha",
+            "axes[0].series[line5].drawstyle",
+            "axes[0].series[line5].fillstyle",
+            "axes[0].series[line5].kind",
+            "axes[0].series[line5].linestyle",
+            "axes[0].series[line5].linewidth",
+            "axes[0].series[line5].marker",
+            "axes[0].series[line5].markeredgecolor",
+            "axes[0].series[line5].markeredgecolor_alpha",
+            "axes[0].series[line5].markeredgewidth",
+            "axes[0].series[line5].markerfacecolor",
+            "axes[0].series[line5].markerfacecolor_alpha",
+            "axes[0].series[line5].markersize",
+            "axes[0].series[line5].values",
+            "axes[0].series[line5].zorder",
+            "axes[0].series[scatter0].color",
+            "axes[0].series[scatter0].colors",
+            "axes[0].series[scatter0].kind",
+            "axes[0].series[scatter0].values"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 72,
+          "submission": 72
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 0.9352,
+            "binary": 0,
+            "fixed": 101,
+            "injected": 108,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].series[line0].linewidth",
+              "axes[0].series[line1].linewidth",
+              "axes[0].series[line2].linewidth",
+              "axes[0].series[line3].linewidth",
+              "axes[0].series[line4].linewidth",
+              "axes[0].series[line5].linewidth"
+            ]
+          },
+          "lenient": {
+            "score": 0.9352,
+            "binary": 0,
+            "fixed": 101,
+            "injected": 108,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].series[line0].linewidth",
+              "axes[0].series[line1].linewidth",
+              "axes[0].series[line2].linewidth",
+              "axes[0].series[line3].linewidth",
+              "axes[0].series[line4].linewidth",
+              "axes[0].series[line5].linewidth"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 15,
+            "total": 15,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 15,
+            "total": 15,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

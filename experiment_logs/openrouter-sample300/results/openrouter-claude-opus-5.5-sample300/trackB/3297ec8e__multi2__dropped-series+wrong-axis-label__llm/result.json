@@ -1,0 +1,538 @@
+{
+  "task_id": "3297ec8e__multi2__dropped-series+wrong-axis-label__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.9333,
+  "all_passed": true,
+  "subgoals_total": 3,
+  "subgoals_passed": 3,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 1,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (203153 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.95,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.95,
+          "detail": "REAL: The axes are labeled \"Employment Stage\" (x) and \"Number of Individuals\" (y), which match the CSV stages and counts. The legend lists all 12 demographic series from table.csv and each has a visible line, though Windhoek Urban Women 18-25 (dark blue) is largely overlapped by the cyan Rundu Urban Men line."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.85,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.85,
+          "detail": "REAL: The title, axis labels and rotated x tick labels are readable and not clipped, and the legend sits outside the plot so it covers no data. Twelve lines with similar colors (light blue vs blue, orange vs light orange) overlap heavily at the start and in the later stages, which makes individual series harder to tell apart, but nothing is obscured enough to fail."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 4,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 20.22,
+  "tool_counts": {
+    "execute_python": 3,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 3,
+    "usage": {
+      "input_tokens": 10146,
+      "output_tokens": 1021,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 140
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463793-G9GrBNTYTvQMltvCMWcm",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 1185,
+          "total_tokens": 1269,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00642,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00642,
+            "upstream_inference_prompt_cost": 0.00474,
+            "upstream_inference_completions_cost": 0.00168
+          }
+        }
+      },
+      {
+        "id": "gen-1794463794-GVJD4IklNLK0ISXsREdi",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 626,
+          "prompt_tokens": 3271,
+          "total_tokens": 3897,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 140,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.025604,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.025604,
+            "upstream_inference_prompt_cost": 0.013084,
+            "upstream_inference_completions_cost": 0.01252
+          }
+        }
+      },
+      {
+        "id": "gen-1794463802-9lqyodw8hmYWBjSZVRNZ",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 311,
+          "prompt_tokens": 5690,
+          "total_tokens": 6001,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.02898,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.02898,
+            "upstream_inference_prompt_cost": 0.02276,
+            "upstream_inference_completions_cost": 0.00622
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 3,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nStart by reading the files.\n</reasoning>\n<code>\nfor f in ['chart.py','summary.txt','table.csv']:\n    print('=== ',f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "Start by reading the files.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nTwo faults in chart.py: the loop drops 'Opuwo Rural Women 18-25', which leaves 11 lines where the summary describes twelve. The y label also reads 'Average Time in Stage (Days)', but the values are counts of individuals. I'll fix both, check the hardcoded data against table.csv, and inspect the figure.\n</reasoning>\n<code>\nimport pandas as pd\nt = pd.read_csv('table.csv'); print(t.head(3).to_string()); print(t.shape)\ns = open('chart.py').read()\ns = s.replace(\"df.columns[1:].drop('Opuwo Rural Women 18-25')\", \"df.columns[1:]\")\ns = s.replace(\"'Average Time in Stage (Days)'\", \"'Number of Individuals'\")\nopen('chart.py','w').write(s)\nimport matplotlib.pyplot as plt\nplt.close('all')\nexec(s)\nax = plt.gca()\nprint(len(ax.get_lines()), ax.get_ylabel(), ax.get_ylim())\nns = {}; exec(s.split(\"df = pd.DataFrame\")[0], ns)\nd = pd.DataFrame(ns['data'])\nprint(d.columns.tolist()==t.columns.tolist() if t.shape==d.shape else 'shape differs')\ntry: print((d.values==t.values).all())\nexcept Exception as e: print(e)\n</code>\n<decision>continue</decision>",
+        "thinking": "I've spotted two problems: the Opuwo Rural Women series was dropped, and the y-axis label reads \"Average Time in Stage (Days)\" when it should be the number of individuals. I'll remove the .drop call and change the label to \"Number of Individuals\", then check that table.csv matches the data. The 0 to 1000 y-limit looks like it can stay on default autoscale, so I'll leave it alone.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "Two faults in chart.py: the loop drops 'Opuwo Rural Women 18-25', which leaves 11 lines where the summary describes twelve. The y label also reads 'Average Time in Stage (Days)', but the values are counts of individuals. I'll fix both, check the hardcoded data against table.csv, and inspect the figure.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nI fixed two things in chart.py:\n1. **Missing series:** the plotting loop dropped 'Opuwo Rural Women 18-25'. All 12 lines are now drawn, which matches table.csv and the twelve lines in summary.txt.\n2. **Wrong y-axis label:** 'Average Time in Stage (Days)' is now 'Number of Individuals', matching what the data and summary describe.\n\nChecks against the figure object:\n- It has 12 lines.\n- The y-label reads 'Number of Individuals'.\n- The y-axis spans about -45 to 1050, so 0\u20131000 is covered.\n\nI also checked the data in chart.py against table.csv: the columns and values are identical. Everything else in chart.py is unchanged. In the rendered image the legend sits outside the plot area and nothing overlaps.\n</reasoning>\n<code>\nprint('done')\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I fixed two things in chart.py:\n1. **Missing series:** the plotting loop dropped 'Opuwo Rural Women 18-25'. All 12 lines are now drawn, which matches table.csv and the twelve lines in summary.txt.\n2. **Wrong y-axis label:** 'Average Time in Stage (Days)' is now 'Number of Individuals', matching what the data and summary describe.\n\nChecks against the figure object:\n- It has 12 lines.\n- The y-label reads 'Number of Individuals'.\n- The y-axis spans about -45 to 1050, so 0\u20131000 is covered.\n\nI also checked the data in chart.py against table.csv: the columns and values are identical. Everything else in chart.py is unchanged. In the rendered image the legend sits outside the plot area and nothing overlaps.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 5202,
+      "output_tokens": 279,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463806-IFIjklSAJktmQFnXBRER",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 141,
+          "prompt_tokens": 3195,
+          "total_tokens": 3336,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0156,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0156,
+            "upstream_inference_prompt_cost": 0.01278,
+            "upstream_inference_completions_cost": 0.00282
+          }
+        }
+      },
+      {
+        "id": "gen-1794463809-MBpgLHElM0vvMa0LHYWb",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 138,
+          "prompt_tokens": 2007,
+          "total_tokens": 2145,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.010788,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.010788,
+            "upstream_inference_prompt_cost": 0.008028,
+            "upstream_inference_completions_cost": 0.00276
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 3,
+      "input_tokens": 10146,
+      "output_tokens": 1021,
+      "total_tokens": 11167,
+      "reasoning_tokens": 140,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 5202,
+      "output_tokens": 279,
+      "total_tokens": 5481,
+      "reasoning_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 5,
+      "input_tokens": 15348,
+      "output_tokens": 1300,
+      "total_tokens": 16648,
+      "reasoning_tokens": 140,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 1.0,
+    "preservation": 1.0,
+    "recovery_binary": 1,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "recovery_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].legend.labels",
+          "axes[0].series[Katima Mulilo Urban Men 18-25].color",
+          "axes[0].series[Katima Mulilo Urban Men 18-25].markeredgecolor",
+          "axes[0].series[Katima Mulilo Urban Men 18-25].markerfacecolor",
+          "axes[0].series[Katima Mulilo Urban Women 18-25].color",
+          "axes[0].series[Katima Mulilo Urban Women 18-25].markeredgecolor",
+          "axes[0].series[Katima Mulilo Urban Women 18-25].markerfacecolor",
+          "axes[0].series[Opuwo Rural Men 18-25].color",
+          "axes[0].series[Opuwo Rural Men 18-25].markeredgecolor",
+          "axes[0].series[Opuwo Rural Men 18-25].markerfacecolor",
+          "axes[0].series[Opuwo Rural Women 18-25].alpha",
+          "axes[0].series[Opuwo Rural Women 18-25].color",
+          "axes[0].series[Opuwo Rural Women 18-25].color_alpha",
+          "axes[0].series[Opuwo Rural Women 18-25].drawstyle",
+          "axes[0].series[Opuwo Rural Women 18-25].fillstyle",
+          "axes[0].series[Opuwo Rural Women 18-25].kind",
+          "axes[0].series[Opuwo Rural Women 18-25].linestyle",
+          "axes[0].series[Opuwo Rural Women 18-25].linewidth",
+          "axes[0].series[Opuwo Rural Women 18-25].marker",
+          "axes[0].series[Opuwo Rural Women 18-25].markeredgecolor",
+          "axes[0].series[Opuwo Rural Women 18-25].markeredgecolor_alpha",
+          "axes[0].series[Opuwo Rural Women 18-25].markeredgewidth",
+          "axes[0].series[Opuwo Rural Women 18-25].markerfacecolor",
+          "axes[0].series[Opuwo Rural Women 18-25].markerfacecolor_alpha",
+          "axes[0].series[Opuwo Rural Women 18-25].markersize",
+          "axes[0].series[Opuwo Rural Women 18-25].values",
+          "axes[0].series[Opuwo Rural Women 18-25].zorder",
+          "axes[0].series[Rundu Urban Men 26-35].color",
+          "axes[0].series[Rundu Urban Men 26-35].markeredgecolor",
+          "axes[0].series[Rundu Urban Men 26-35].markerfacecolor",
+          "axes[0].series[Rundu Urban Women 26-35].color",
+          "axes[0].series[Rundu Urban Women 26-35].markeredgecolor",
+          "axes[0].series[Rundu Urban Women 26-35].markerfacecolor",
+          "axes[0].ylabel",
+          "axes[0].ylim"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[Katima Mulilo Urban Men 18-25].color",
+            "axes[0].series[Katima Mulilo Urban Men 18-25].markeredgecolor",
+            "axes[0].series[Katima Mulilo Urban Men 18-25].markerfacecolor",
+            "axes[0].series[Katima Mulilo Urban Women 18-25].color",
+            "axes[0].series[Katima Mulilo Urban Women 18-25].markeredgecolor",
+            "axes[0].series[Katima Mulilo Urban Women 18-25].markerfacecolor",
+            "axes[0].series[Opuwo Rural Men 18-25].color",
+            "axes[0].series[Opuwo Rural Men 18-25].markeredgecolor",
+            "axes[0].series[Opuwo Rural Men 18-25].markerfacecolor",
+            "axes[0].series[Opuwo Rural Women 18-25].alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].color",
+            "axes[0].series[Opuwo Rural Women 18-25].color_alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].drawstyle",
+            "axes[0].series[Opuwo Rural Women 18-25].fillstyle",
+            "axes[0].series[Opuwo Rural Women 18-25].kind",
+            "axes[0].series[Opuwo Rural Women 18-25].linestyle",
+            "axes[0].series[Opuwo Rural Women 18-25].linewidth",
+            "axes[0].series[Opuwo Rural Women 18-25].marker",
+            "axes[0].series[Opuwo Rural Women 18-25].markeredgecolor",
+            "axes[0].series[Opuwo Rural Women 18-25].markeredgecolor_alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].markeredgewidth",
+            "axes[0].series[Opuwo Rural Women 18-25].markerfacecolor",
+            "axes[0].series[Opuwo Rural Women 18-25].markerfacecolor_alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].markersize",
+            "axes[0].series[Opuwo Rural Women 18-25].values",
+            "axes[0].series[Opuwo Rural Women 18-25].zorder",
+            "axes[0].series[Rundu Urban Men 26-35].color",
+            "axes[0].series[Rundu Urban Men 26-35].markeredgecolor",
+            "axes[0].series[Rundu Urban Men 26-35].markerfacecolor",
+            "axes[0].series[Rundu Urban Women 26-35].color",
+            "axes[0].series[Rundu Urban Women 26-35].markeredgecolor",
+            "axes[0].series[Rundu Urban Women 26-35].markerfacecolor",
+            "axes[0].ylabel",
+            "axes[0].ylim"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[Katima Mulilo Urban Men 18-25].color",
+            "axes[0].series[Katima Mulilo Urban Men 18-25].markeredgecolor",
+            "axes[0].series[Katima Mulilo Urban Men 18-25].markerfacecolor",
+            "axes[0].series[Katima Mulilo Urban Women 18-25].color",
+            "axes[0].series[Katima Mulilo Urban Women 18-25].markeredgecolor",
+            "axes[0].series[Katima Mulilo Urban Women 18-25].markerfacecolor",
+            "axes[0].series[Opuwo Rural Men 18-25].color",
+            "axes[0].series[Opuwo Rural Men 18-25].markeredgecolor",
+            "axes[0].series[Opuwo Rural Men 18-25].markerfacecolor",
+            "axes[0].series[Opuwo Rural Women 18-25].alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].color",
+            "axes[0].series[Opuwo Rural Women 18-25].color_alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].drawstyle",
+            "axes[0].series[Opuwo Rural Women 18-25].fillstyle",
+            "axes[0].series[Opuwo Rural Women 18-25].kind",
+            "axes[0].series[Opuwo Rural Women 18-25].linestyle",
+            "axes[0].series[Opuwo Rural Women 18-25].linewidth",
+            "axes[0].series[Opuwo Rural Women 18-25].marker",
+            "axes[0].series[Opuwo Rural Women 18-25].markeredgecolor",
+            "axes[0].series[Opuwo Rural Women 18-25].markeredgecolor_alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].markeredgewidth",
+            "axes[0].series[Opuwo Rural Women 18-25].markerfacecolor",
+            "axes[0].series[Opuwo Rural Women 18-25].markerfacecolor_alpha",
+            "axes[0].series[Opuwo Rural Women 18-25].markersize",
+            "axes[0].series[Opuwo Rural Women 18-25].values",
+            "axes[0].series[Opuwo Rural Women 18-25].zorder",
+            "axes[0].series[Rundu Urban Men 26-35].color",
+            "axes[0].series[Rundu Urban Men 26-35].markeredgecolor",
+            "axes[0].series[Rundu Urban Men 26-35].markerfacecolor",
+            "axes[0].series[Rundu Urban Women 26-35].color",
+            "axes[0].series[Rundu Urban Women 26-35].markeredgecolor",
+            "axes[0].series[Rundu Urban Women 26-35].markerfacecolor",
+            "axes[0].ylabel",
+            "axes[0].ylim"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 120,
+          "submission": 120
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 36,
+            "injected": 36,
+            "missed": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 36,
+            "injected": 36,
+            "missed": []
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 185,
+            "total": 185,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 185,
+            "total": 185,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

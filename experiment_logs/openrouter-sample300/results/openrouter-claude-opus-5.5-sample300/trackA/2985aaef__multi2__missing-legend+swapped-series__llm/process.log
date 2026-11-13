@@ -1,0 +1,27 @@
+task:        2985aaef__multi2__missing-legend+swapped-series__llm  (debug_repair)
+final_score: 0.760
+subgoals:    2/3 passed
+steps:       4/14  (horizon_hint=6)
+wall_time:   115.3s
+tools:       {'execute_python': 3, 'finish': 1}
+protocol:    xml  iterations=3/6  stop=agent_stop
+per-subgoal:
+  [PASS] code_valid               score=1.00  w=1.0  (first passed @step 1)
+        - ok execution    1.00  artifact 'output.png' present (42122 bytes)
+  [PASS] flaw_fixed               score=0.93  w=1.0  (never passed)
+        - ok vlm_judge    0.93  REAL: A legend in the lower right identifies 'Success Rate (%)' and 'Processes Remaining'. The colored bars end at 100, 85, 68, 52, 40 and 33, and the gray bars end at 42, 38, 32, 25, 18 and 15, so each series matches its own table.csv column; some count labels are hard to read against the dark bars.
+  [FAIL] visual_quality           score=0.35  w=1.0  (never passed)
+        - xx vlm_judge    0.35  REAL: The process-count labels "42" and "38" are dark gray text on dark purple and dark blue bars, so they are nearly illegible. The gray 'Processes Remaining' bars are drawn over the left part of each success-rate bar, hiding that portion of the plotted data. The title, axis labels, ticks and legend are otherwise readable and unclipped.
+progress:    [0.0, 0.3333, 0.3333, 0.3333]
+
+agent:      anthropic/claude-opus-5.5 via openrouter, 3 call(s)
+             in=8786 out=1242 (reasoning 285)
+             cost=n/a (no price on file)
+
+judge:      anthropic/claude-opus-5.5 via openrouter, 2 call(s)
+             in=3847 out=668 (reasoning 389)
+             cost=n/a (no price on file)
+
+tokens:      14543 total (12633 in, 1910 out) over 5 call(s)
+
+wrote: /home/tuo96248/projects/ChartNet/data/runs/openrouter-claude-opus-5.5-sample300/trackA/2985aaef__multi2__missing-legend+swapped-series__llm/result.json

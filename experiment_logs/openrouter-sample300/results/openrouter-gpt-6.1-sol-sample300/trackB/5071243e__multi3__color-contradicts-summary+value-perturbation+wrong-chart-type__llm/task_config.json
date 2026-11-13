@@ -1,0 +1,31 @@
+{
+  "id": "5071243e__multi3__color-contradicts-summary+value-perturbation+wrong-chart-type__llm",
+  "track": "B",
+  "clean": false,
+  "arity": "triple",
+  "n_flaws": 3,
+  "combination": "color-contradicts-summary+value-perturbation+wrong-chart-type",
+  "flaws": [
+    {
+      "category": "wrong-chart-type",
+      "description": "Swapped sns.boxplot to sns.violinplot at its single call site (used identically in the 2x2 subplot loop) and removed the boxplot-only fliersize= keyword, which violinplot does not accept."
+    },
+    {
+      "category": "color-contradicts-summary",
+      "description": "Changed the stripplot's data-point color from 'black' to 'red', contradicting the summary's statement that individual data points are marked as black dots."
+    },
+    {
+      "category": "value-perturbation",
+      "description": "Changed Lesotho's GDP_Per_Capita_2022 value from 3800 to 6080 (multiplied by 1.6), corrupting a single data point in the inline GDP series while the table still reflects the true Africa GDP median of 3800."
+    }
+  ],
+  "library": "seaborn",
+  "chart_type": "Box Plot",
+  "prompt_file": "prompts/94c863c56c4803677d395fb0c0cc8b001c7729d473022a118e2092088969e64f.txt",
+  "modalities": [
+    "code",
+    "table",
+    "summary",
+    "chart"
+  ]
+}

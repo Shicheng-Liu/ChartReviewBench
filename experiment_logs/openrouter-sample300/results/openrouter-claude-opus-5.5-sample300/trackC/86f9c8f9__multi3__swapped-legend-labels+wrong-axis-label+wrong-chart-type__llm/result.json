@@ -1,0 +1,612 @@
+{
+  "task_id": "86f9c8f9__multi3__swapped-legend-labels+wrong-axis-label+wrong-chart-type__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.9333,
+  "all_passed": true,
+  "subgoals_total": 3,
+  "subgoals_passed": 3,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 1,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (50026 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.85,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.85,
+          "detail": "REAL: Axes read 'Impact Score' and 'Risk Factor', and the legend maps blue to Base Impact (75, 68, \u2026) and red to Mitigated Impact (42, 38, \u2026), matching table.csv. The chart is horizontal bars sorted by descending base impact, a tornado-style layout, though the paired bars are overlaid from zero rather than extending from a central axis as summary.txt describes."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.95,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.95,
+          "detail": "REAL: The title, axis labels, risk-factor tick labels and legend are all readable and unclipped, with no missing-glyph boxes. The legend sits in the lower right over empty space beside the Reputation Damage bar (which ends near 35) and does not cover any data. The bars fill the plot area clearly."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 4,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 28.09,
+  "tool_counts": {
+    "execute_python": 3,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 3,
+    "usage": {
+      "input_tokens": 9479,
+      "output_tokens": 1625,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 260
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464003-jPICTcOFtNZ2cXurZH49",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 99,
+          "prompt_tokens": 1186,
+          "total_tokens": 1285,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.006724,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.006724,
+            "upstream_inference_prompt_cost": 0.004744,
+            "upstream_inference_completions_cost": 0.00198
+          }
+        }
+      },
+      {
+        "id": "gen-1794464005-q1h6CC90OkMd5hy2qnhP",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 1143,
+          "prompt_tokens": 2913,
+          "total_tokens": 4056,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 260,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.034512,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.034512,
+            "upstream_inference_prompt_cost": 0.011652,
+            "upstream_inference_completions_cost": 0.02286
+          }
+        }
+      },
+      {
+        "id": "gen-1794464016-yeWjRiSyHVgWCNfgazOe",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 383,
+          "prompt_tokens": 5380,
+          "total_tokens": 5763,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.02918,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.02918,
+            "upstream_inference_prompt_cost": 0.02152,
+            "upstream_inference_completions_cost": 0.00766
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 3,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nFirst inspect the files: chart.py, table.csv, summary.txt.\n</reasoning>\n<code>\nfor f in ['chart.py','table.csv','summary.txt']:\n    print('=== '+f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "First inspect the files: chart.py, table.csv, summary.txt.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe data values in chart.py match table.csv, but three things contradict the summary:\n1. **Wrong chart type.** It uses `sns.lineplot`, but the summary describes horizontal bars: a blue base bar and a red mitigated bar for each risk factor.\n2. **Legend labels swapped.** The blue series (BaseImpact) is labelled \"Mitigated Impact\" and the red series is labelled \"Base Impact\".\n3. **Axis labels swapped.** The x-axis holds impact scores but is labelled \"Risk Factor\", and the y-axis label is the reverse.\n\nFix: switch to horizontal `sns.barplot` with blue base bars and red mitigated bars drawn over them. I'll pass an explicit order so the categorical dtype doesn't re-sort the factors alphabetically; they must run top to bottom by descending base impact. I'll correct the legend and axis labels. The title, size, style and legend location stay as they are. After rendering, I'll check the labels, legend entries and tick order on the figure object.\n</reasoning>\n<code>\nsrc = open('chart.py').read()\nold_start = src.index('bar_plot = sns.lineplot(')\nold_end = src.index('plt.xlabel(')\nnew_block = '''order = list(df[\"RiskFactor\"])\nbar_plot = sns.barplot(\n    y=\"RiskFactor\",\n    x=\"BaseImpact\",\n    data=df,\n    order=order,\n    color=palette[0],\n    label=\"Base Impact\",\n    orient=\"h\"\n)\n\nsns.barplot(\n    y=\"RiskFactor\",\n    x=\"MitigatedImpact\",\n    data=df,\n    order=order,\n    color=palette[1],\n    label=\"Mitigated Impact\",\n    orient=\"h\"\n)\n\n'''\nsrc = src[:old_start] + new_block + src[old_end:]\nsrc = src.replace('plt.xlabel(\"Risk Factor\", fontsize=12)', 'plt.xlabel(\"Impact Score\", fontsize=12)')\nsrc = src.replace('plt.ylabel(\"Impact Score\", fontsize=12)', 'plt.ylabel(\"Risk Factor\", fontsize=12)')\nwith open('chart.py','w') as f: f.write(src)\nexec(compile(src,'chart.py','exec'))\nax = plt.gca()\nprint(ax.get_xlabel(), '|', ax.get_ylabel(), '|', ax.get_title())\nprint([t.get_text() for t in ax.get_yticklabels()])\nprint([t.get_text() for t in ax.get_legend().get_texts()])\nprint(ax.get_xlim())\n</code>\n<decision>continue</decision>",
+        "thinking": "I've spotted the plot problems: it's drawn as a line plot rather than horizontal bars, the legend labels for base and mitigated are swapped, and the axis labels are reversed. The values themselves match the table, so only the presentation needs fixing. My plan is a horizontal barplot with the mitigated bars overlapping the base bars, then correct the labels. Since the bars follow the category order on the y-axis, I need to check how that ordering is set, because the default alphabetical sort may not be what I want.\n\nI need the order set explicitly, since the default category order would otherwise be alphabetical, and I'll also keep the legend in the lower right, where there's room because the lower bars are short.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The data values in chart.py match table.csv, but three things contradict the summary:\n1. **Wrong chart type.** It uses `sns.lineplot`, but the summary describes horizontal bars: a blue base bar and a red mitigated bar for each risk factor.\n2. **Legend labels swapped.** The blue series (BaseImpact) is labelled \"Mitigated Impact\" and the red series is labelled \"Base Impact\".\n3. **Axis labels swapped.** The x-axis holds impact scores but is labelled \"Risk Factor\", and the y-axis label is the reverse.\n\nFix: switch to horizontal `sns.barplot` with blue base bars and red mitigated bars drawn over them. I'll pass an explicit order so the categorical dtype doesn't re-sort the factors alphabetically; they must run top to bottom by descending base impact. I'll correct the legend and axis labels. The title, size, style and legend location stay as they are. After rendering, I'll check the labels, legend entries and tick order on the figure object.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe chart contradicted the summary in three ways. I changed only those in chart.py:\n- **Chart type:** I replaced the line plots with horizontal bar plots. Blue base bars sit behind red mitigated bars, and an explicit order keeps the factors in descending base impact.\n- **Legend labels:** they were swapped. Blue is now \"Base Impact\" and red is \"Mitigated Impact\".\n- **Axis labels:** they were swapped. The x-axis is now \"Impact Score\" and the y-axis is \"Risk Factor\".\n\nChecked on the figure object:\n- The axis labels are correct and the title is unchanged.\n- The y tick order matches the summary's top-to-bottom list.\n- The legend entries read \"Base Impact\" then \"Mitigated Impact\".\n- The x-axis starts at 0 and covers up to 75.\n\nChecked in the rendered image:\n- Bar lengths match table.csv.\n- The legend in the lower right sits in empty space and doesn't cover any bars.\n- No text is clipped.\n\noutput.png has been written.\n</reasoning>\n<code>\nprint('done')\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The chart contradicted the summary in three ways. I changed only those in chart.py:\n- **Chart type:** I replaced the line plots with horizontal bar plots. Blue base bars sit behind red mitigated bars, and an explicit order keeps the factors in descending base impact.\n- **Legend labels:** they were swapped. Blue is now \"Base Impact\" and red is \"Mitigated Impact\".\n- **Axis labels:** they were swapped. The x-axis is now \"Impact Score\" and the y-axis is \"Risk Factor\".\n\nChecked on the figure object:\n- The axis labels are correct and the title is unchanged.\n- The y tick order matches the summary's top-to-bottom list.\n- The legend entries read \"Base Impact\" then \"Mitigated Impact\".\n- The x-axis starts at 0 and covers up to 75.\n\nChecked in the rendered image:\n- Bar lengths match table.csv.\n- The legend in the lower right sits in empty space and doesn't cover any bars.\n- No text is clipped.\n\noutput.png has been written.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 4351,
+      "output_tokens": 586,
+      "reasoning_tokens": 311,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464022-C55UC9kiZAjaX3vKc017",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 466,
+          "prompt_tokens": 2547,
+          "total_tokens": 3013,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 311,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.019508,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.019508,
+            "upstream_inference_prompt_cost": 0.010188,
+            "upstream_inference_completions_cost": 0.00932
+          }
+        }
+      },
+      {
+        "id": "gen-1794464028-xXCXYuxY8bCLvzW6SJSK",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 120,
+          "prompt_tokens": 1804,
+          "total_tokens": 1924,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.009616,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.009616,
+            "upstream_inference_prompt_cost": 0.007216,
+            "upstream_inference_completions_cost": 0.0024
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 3,
+      "input_tokens": 9479,
+      "output_tokens": 1625,
+      "total_tokens": 11104,
+      "reasoning_tokens": 260,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 4351,
+      "output_tokens": 586,
+      "total_tokens": 4937,
+      "reasoning_tokens": 311,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 5,
+      "input_tokens": 13830,
+      "output_tokens": 2211,
+      "total_tokens": 16041,
+      "reasoning_tokens": 571,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 0.375,
+    "recovery": 0.95,
+    "preservation": 0.9231,
+    "recovery_binary": 0,
+    "preservation_binary": 0,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 0.375,
+        "lenient": 0.375
+      },
+      "data_fidelity_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "recovery": {
+        "strict": 0.95,
+        "lenient": 0.95
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 0.9231,
+        "lenient": 0.9231
+      },
+      "preservation_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].legend.labels",
+          "axes[0].series[Base Impact].alpha",
+          "axes[0].series[Base Impact].color",
+          "axes[0].series[Base Impact].color_alpha",
+          "axes[0].series[Base Impact].drawstyle",
+          "axes[0].series[Base Impact].edgecolor",
+          "axes[0].series[Base Impact].fillstyle",
+          "axes[0].series[Base Impact].kind",
+          "axes[0].series[Base Impact].linestyle",
+          "axes[0].series[Base Impact].linewidth",
+          "axes[0].series[Base Impact].markeredgecolor",
+          "axes[0].series[Base Impact].markeredgecolor_alpha",
+          "axes[0].series[Base Impact].markeredgewidth",
+          "axes[0].series[Base Impact].markerfacecolor",
+          "axes[0].series[Base Impact].markerfacecolor_alpha",
+          "axes[0].series[Base Impact].markersize",
+          "axes[0].series[Base Impact].values",
+          "axes[0].series[Base Impact].zorder",
+          "axes[0].series[Mitigated Impact].alpha",
+          "axes[0].series[Mitigated Impact].color",
+          "axes[0].series[Mitigated Impact].color_alpha",
+          "axes[0].series[Mitigated Impact].drawstyle",
+          "axes[0].series[Mitigated Impact].edgecolor",
+          "axes[0].series[Mitigated Impact].fillstyle",
+          "axes[0].series[Mitigated Impact].kind",
+          "axes[0].series[Mitigated Impact].linestyle",
+          "axes[0].series[Mitigated Impact].linewidth",
+          "axes[0].series[Mitigated Impact].markeredgecolor",
+          "axes[0].series[Mitigated Impact].markeredgecolor_alpha",
+          "axes[0].series[Mitigated Impact].markeredgewidth",
+          "axes[0].series[Mitigated Impact].markerfacecolor",
+          "axes[0].series[Mitigated Impact].markerfacecolor_alpha",
+          "axes[0].series[Mitigated Impact].markersize",
+          "axes[0].series[Mitigated Impact].values",
+          "axes[0].series[Mitigated Impact].zorder",
+          "axes[0].xlabel",
+          "axes[0].xlim",
+          "axes[0].ylabel",
+          "axes[0].ylim"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[Base Impact].alpha",
+            "axes[0].series[Base Impact].color",
+            "axes[0].series[Base Impact].color_alpha",
+            "axes[0].series[Base Impact].drawstyle",
+            "axes[0].series[Base Impact].edgecolor",
+            "axes[0].series[Base Impact].fillstyle",
+            "axes[0].series[Base Impact].kind",
+            "axes[0].series[Base Impact].linestyle",
+            "axes[0].series[Base Impact].linewidth",
+            "axes[0].series[Base Impact].markeredgecolor",
+            "axes[0].series[Base Impact].markeredgecolor_alpha",
+            "axes[0].series[Base Impact].markeredgewidth",
+            "axes[0].series[Base Impact].markerfacecolor",
+            "axes[0].series[Base Impact].markerfacecolor_alpha",
+            "axes[0].series[Base Impact].markersize",
+            "axes[0].series[Base Impact].values",
+            "axes[0].series[Base Impact].zorder",
+            "axes[0].series[Mitigated Impact].alpha",
+            "axes[0].series[Mitigated Impact].color",
+            "axes[0].series[Mitigated Impact].color_alpha",
+            "axes[0].series[Mitigated Impact].drawstyle",
+            "axes[0].series[Mitigated Impact].edgecolor",
+            "axes[0].series[Mitigated Impact].fillstyle",
+            "axes[0].series[Mitigated Impact].kind",
+            "axes[0].series[Mitigated Impact].linestyle",
+            "axes[0].series[Mitigated Impact].linewidth",
+            "axes[0].series[Mitigated Impact].markeredgecolor",
+            "axes[0].series[Mitigated Impact].markeredgecolor_alpha",
+            "axes[0].series[Mitigated Impact].markeredgewidth",
+            "axes[0].series[Mitigated Impact].markerfacecolor",
+            "axes[0].series[Mitigated Impact].markerfacecolor_alpha",
+            "axes[0].series[Mitigated Impact].markersize",
+            "axes[0].series[Mitigated Impact].values",
+            "axes[0].series[Mitigated Impact].zorder",
+            "axes[0].xlabel",
+            "axes[0].xlim",
+            "axes[0].ylabel",
+            "axes[0].ylim"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[Base Impact].alpha",
+            "axes[0].series[Base Impact].color",
+            "axes[0].series[Base Impact].color_alpha",
+            "axes[0].series[Base Impact].drawstyle",
+            "axes[0].series[Base Impact].edgecolor",
+            "axes[0].series[Base Impact].fillstyle",
+            "axes[0].series[Base Impact].kind",
+            "axes[0].series[Base Impact].linestyle",
+            "axes[0].series[Base Impact].linewidth",
+            "axes[0].series[Base Impact].markeredgecolor",
+            "axes[0].series[Base Impact].markeredgecolor_alpha",
+            "axes[0].series[Base Impact].markeredgewidth",
+            "axes[0].series[Base Impact].markerfacecolor",
+            "axes[0].series[Base Impact].markerfacecolor_alpha",
+            "axes[0].series[Base Impact].markersize",
+            "axes[0].series[Base Impact].values",
+            "axes[0].series[Base Impact].zorder",
+            "axes[0].series[Mitigated Impact].alpha",
+            "axes[0].series[Mitigated Impact].color",
+            "axes[0].series[Mitigated Impact].color_alpha",
+            "axes[0].series[Mitigated Impact].drawstyle",
+            "axes[0].series[Mitigated Impact].edgecolor",
+            "axes[0].series[Mitigated Impact].fillstyle",
+            "axes[0].series[Mitigated Impact].kind",
+            "axes[0].series[Mitigated Impact].linestyle",
+            "axes[0].series[Mitigated Impact].linewidth",
+            "axes[0].series[Mitigated Impact].markeredgecolor",
+            "axes[0].series[Mitigated Impact].markeredgecolor_alpha",
+            "axes[0].series[Mitigated Impact].markeredgewidth",
+            "axes[0].series[Mitigated Impact].markerfacecolor",
+            "axes[0].series[Mitigated Impact].markerfacecolor_alpha",
+            "axes[0].series[Mitigated Impact].markersize",
+            "axes[0].series[Mitigated Impact].values",
+            "axes[0].series[Mitigated Impact].zorder",
+            "axes[0].xlabel",
+            "axes[0].xlim",
+            "axes[0].ylabel",
+            "axes[0].ylim"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 0.375,
+            "recall": 0.375,
+            "f1": 0.375,
+            "binary": 0
+          },
+          "lenient": {
+            "precision": 0.375,
+            "recall": 0.375,
+            "f1": 0.375,
+            "binary": 0
+          },
+          "wide": {
+            "precision": 0.375,
+            "recall": 0.375,
+            "f1": 0.375,
+            "binary": 0
+          }
+        },
+        "data_fidelity_wide": 0.375,
+        "hallucinations": [
+          {
+            "coordinate": "y",
+            "expected": 58.0,
+            "got": 75.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 40.0,
+            "got": 68.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 75.0,
+            "got": 58.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 35.0,
+            "got": 40.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 68.0,
+            "got": 35.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 28.0,
+            "got": 42.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 12.0,
+            "got": 38.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 42.0,
+            "got": 28.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 8.0,
+            "got": 12.0
+          },
+          {
+            "coordinate": "y",
+            "expected": 38.0,
+            "got": 8.0
+          }
+        ],
+        "n_points": {
+          "gt": 16,
+          "submission": 16
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 0.95,
+            "binary": 0,
+            "fixed": 38,
+            "injected": 40,
+            "missed": [
+              "axes[0].series[Base Impact].values",
+              "axes[0].series[Mitigated Impact].values"
+            ]
+          },
+          "lenient": {
+            "score": 0.95,
+            "binary": 0,
+            "fixed": 38,
+            "injected": 40,
+            "missed": [
+              "axes[0].series[Base Impact].values",
+              "axes[0].series[Mitigated Impact].values"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 0.9231,
+            "binary": 0,
+            "kept": 12,
+            "total": 13,
+            "damaged": [
+              "axes[0].ytick_policy"
+            ],
+            "added": []
+          },
+          "lenient": {
+            "score": 0.9231,
+            "binary": 0,
+            "kept": 12,
+            "total": 13,
+            "damaged": [
+              "axes[0].ytick_policy"
+            ],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

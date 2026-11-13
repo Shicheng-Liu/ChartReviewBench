@@ -1,0 +1,27 @@
+task:        44c6e0ce__multi2__swapped-series+wrong-chart-type__llm  (debug_repair)
+final_score: 0.773
+subgoals:    2/3 passed
+steps:       6/14  (horizon_hint=6)
+wall_time:   31.6s
+tools:       {'execute_python': 5, 'finish': 1}
+protocol:    xml  iterations=5/6  stop=agent_stop
+per-subgoal:
+  [PASS] code_valid               score=1.00  w=1.0  (first passed @step 3)
+        - ok execution    1.00  artifact 'output.png' present (86192 bytes)
+  [FAIL] flaw_fixed               score=0.40  w=1.0  (never passed)
+        - xx vlm_judge    0.40  REAL: summary.txt describes a kernel density estimate contour plot, but the image is a categorical strip/scatter plot of individual dots, with no contours or density surfaces, so criterion 1 fails. The series data does match table.csv: for example, Public Portugal Faculty Salaries runs 73–81, Campus Maintenance 7–11, and Private Haiti Faculty Salaries 65–70, so criterion 2 holds.
+  [PASS] visual_quality           score=0.92  w=1.0  (never passed)
+        - ok vlm_judge    0.92  REAL: The title, axis labels, country tick labels, subplot titles and legend are all readable, and none are clipped or overlapping. The dots are clearly visible across both facets. One minor issue: in the South Korea public row the yellow and teal dots touch, but they stay distinguishable.
+progress:    [0.0, 0.0, 0.0, 0.3333, 0.3333, 0.3333]
+
+agent:      anthropic/claude-opus-5.5 via openrouter, 5 call(s)
+             in=23835 out=1790 (reasoning 456)
+             cost=n/a (no price on file)
+
+judge:      anthropic/claude-opus-5.5 via openrouter, 2 call(s)
+             in=6441 out=455 (reasoning 180)
+             cost=n/a (no price on file)
+
+tokens:      32521 total (30276 in, 2245 out) over 7 call(s)
+
+wrote: /home/tuo96248/projects/ChartNet/data/runs/openrouter-claude-opus-5.5-sample300/trackB/44c6e0ce__multi2__swapped-series+wrong-chart-type__llm/result.json

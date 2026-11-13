@@ -1,0 +1,27 @@
+task:        05aac689__multi2__axis-truncation+wrong-title__llm  (debug_repair)
+final_score: 0.833
+subgoals:    2/3 passed
+steps:       4/14  (horizon_hint=6)
+wall_time:   32.7s
+tools:       {'execute_python': 3, 'finish': 1}
+protocol:    xml  iterations=3/6  stop=agent_stop
+per-subgoal:
+  [PASS] code_valid               score=1.00  w=1.0  (first passed @step 1)
+        - ok execution    1.00  artifact 'output.png' present (170187 bytes)
+  [PASS] flaw_fixed               score=1.00  w=1.0  (never passed)
+        - ok vlm_judge    1.00  REAL: The title explicitly identifies international aid funds allocation by sector and region (2010–2015), matching the summary’s quantity. The radar value axis spans 0–6 billion with 1B increments, matching the described range without truncating the baseline.
+  [FAIL] visual_quality           score=0.50  w=1.0  (never passed)
+        - xx vlm_judge    0.50  REAL: [score 0.88 contradicted a failing verdict; clamped to 0.50] The title, sector labels, and legend are readable and unclipped, and the radar plot is well sized. However, the 3B and 4B radial tick labels overlap colored data lines in the upper-right portion of the plot, violating the no-overlap requirement.
+progress:    [0.0, 0.3333, 0.3333, 0.3333]
+
+agent:      openai/gpt-6.1-sol via openrouter, 3 call(s)
+             in=6431 out=489 (reasoning 20) (cached in 2022)
+             cost=n/a (no price on file)
+
+judge:      openai/gpt-6.1-sol via openrouter, 2 call(s)
+             in=3375 out=376 (reasoning 224) (cached in 1523)
+             cost=n/a (no price on file)
+
+tokens:      10671 total (9806 in, 865 out) over 5 call(s)
+
+wrote: /home/tuo96248/projects/ChartNet/data/runs/openrouter-gpt-6.1-sol-sample300/trackB/05aac689__multi2__axis-truncation+wrong-title__llm/result.json

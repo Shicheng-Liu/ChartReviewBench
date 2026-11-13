@@ -1,0 +1,838 @@
+{
+  "task_id": "3e2a88de__multi3__color-contradicts-summary+swapped-legend-labels+wrong-axis-label__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.7067,
+  "all_passed": false,
+  "subgoals_total": 3,
+  "subgoals_passed": 2,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 2,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (88528 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": false,
+      "score": 0.4,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": false,
+          "score": 0.4,
+          "detail": "REAL: Axis labels (Impact Score, Debt-to-GDP Ratio (%), Geographical Region) fit the data, but the colors do not match summary.txt: Low is pink rather than red and Medium is olive/khaki rather than orange (High green and the blue line do match). The boxes also disagree with table.csv's per-risk ranges; for example, West Africa's 'Medium' box spans about -8 to 12 with median ~2, versus the table's 6\u201312 with median 9. That casts doubt on the legend-to-series mapping."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.72,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.72,
+          "detail": "REAL: The title, both y-axis labels, the rotated region tick labels and both legends are readable and unclipped, and neither legend covers a box or the line. Two things detract: the misaligned gridlines from the two y-axes add clutter, and the 'Low' risk entries render as thin flat dashes whose pink colour is barely discernible."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 6,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 62.64,
+  "tool_counts": {
+    "execute_python": 5,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 5,
+    "usage": {
+      "input_tokens": 33336,
+      "output_tokens": 4276,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 1438
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463816-dVmO3iZdY65oYs7LBi4l",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 137,
+          "prompt_tokens": 1185,
+          "total_tokens": 1322,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00748,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00748,
+            "upstream_inference_prompt_cost": 0.00474,
+            "upstream_inference_completions_cost": 0.00274
+          }
+        }
+      },
+      {
+        "id": "gen-1794463818-nZE8p4OQVpJzijbVWaqQ",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 216,
+          "prompt_tokens": 3521,
+          "total_tokens": 3737,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.018404,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.018404,
+            "upstream_inference_prompt_cost": 0.014084,
+            "upstream_inference_completions_cost": 0.00432
+          }
+        }
+      },
+      {
+        "id": "gen-1794463821-56dng0a7MuCESZSUlPfb",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 1137,
+          "prompt_tokens": 5674,
+          "total_tokens": 6811,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 504,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.045436,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.045436,
+            "upstream_inference_prompt_cost": 0.022696,
+            "upstream_inference_completions_cost": 0.02274
+          }
+        }
+      },
+      {
+        "id": "gen-1794463833-U6tTfBn0ys0NHCzrkDv9",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 2016,
+          "prompt_tokens": 9532,
+          "total_tokens": 11548,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 862,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.078448,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.078448,
+            "upstream_inference_prompt_cost": 0.038128,
+            "upstream_inference_completions_cost": 0.04032
+          }
+        }
+      },
+      {
+        "id": "gen-1794463854-EQJ9YMPueGjMRPXxlO5c",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 770,
+          "prompt_tokens": 13424,
+          "total_tokens": 14194,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 72,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.069096,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.069096,
+            "upstream_inference_prompt_cost": 0.053696,
+            "upstream_inference_completions_cost": 0.0154
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 5,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI haven't seen any of the workspace files yet, so this first iteration only reads chart.py, summary.txt and table.csv and prints them. I'll decide what to fix once I can see their contents.\n</reasoning>\n<code>\nfor f in ['chart.py','summary.txt','table.csv']:\n    print('=====',f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I haven't seen any of the workspace files yet, so this first iteration only reads chart.py, summary.txt and table.csv and prints them. I'll decide what to fix once I can see their contents.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe output was clipped right after `df = p`, so I still haven't seen the plotting code, summary.txt or table.csv. This iteration prints the rest of chart.py from character 3500 onward, followed by the full summary and table. I'm using context managers so the files get closed and the ResourceWarnings go away.\n</reasoning>\n<code>\nwith open('chart.py') as fh: src=fh.read()\nprint(src[3500:])\nwith open('summary.txt') as fh: print('=====summary\\n',fh.read())\nwith open('table.csv') as fh: print('=====table\\n',fh.read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The output was clipped right after `df = p`, so I still haven't seen the plotting code, summary.txt or table.csv. This iteration prints the rest of chart.py from character 3500 onward, followed by the full summary and table. I'm using context managers so the files get closed and the ResourceWarnings go away.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nI've now read all of chart.py, and the bug is already visible: `ax1` is labelled 'Debt-to-GDP Ratio (%)'. The summary says the left axis measures Impact Score, and the boxplot on `ax1` plots `Impact_Score`, so the label is wrong.\n\nThere is also a possible data discrepancy. The table gives West Africa an Avg_Debt_to_GDP of 45.0, but the script's six values average about 40.8. East Africa, by contrast, matches at 42.5.\n\nBefore editing anything, this iteration does two things. It recomputes per-region statistics from the script's data and compares them against every row of table.csv. It also lists the current figure's axis labels, line colours and box colours, so later fixes rest on exact values rather than the PNG.\n</reasoning>\n<code>\nimport pandas as pd, numpy as np\nt=pd.read_csv('table.csv'); pd.set_option('display.width',250); pd.set_option('display.max_columns',20)\nprint(t.to_string())\nns={}\nexec(src.split(\"df = pd.DataFrame(data)\")[0],ns)\ndf=pd.DataFrame(ns['data'])\ng=df.groupby(['Region','Risk_Level'])['Impact_Score'].agg(['min','max','median']).unstack()\nprint(g.to_string())\nprint(df.groupby('Region')['Debt_to_GDP_Ratio'].mean())\nimport matplotlib; matplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nexec(src,{})\nfig=plt.gcf(); axs=fig.axes\nfor a in axs: print(repr(a.get_ylabel()), [l.get_color() for l in a.lines][:3])\nprint([p.get_facecolor() for p in axs[0].patches][:3])\nplt.close('all')\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm noticing the first-axis y-label reads Debt-to-GDP when it should be Impact Score. The summary also calls the line blue, but the code sets it to orange-red, while the second axis label is the blue one, so the line color may have been changed by mistake.\n\nI'm weighing whether the palette order explains the orange-red line, since the summary's red, orange, and green mapping doesn't match a three-color husl setup, so I'm not sure of the original order. Next I want to check the table's South Asia and West Africa figures against the raw data, because the West Africa average looks off (45 in the table versus about 40.8 from the rows), and I'll compute the per-region summaries directly rather than assume.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "I've now read all of chart.py, and the bug is already visible: `ax1` is labelled 'Debt-to-GDP Ratio (%)'. The summary says the left axis measures Impact Score, and the boxplot on `ax1` plots `Impact_Score`, so the label is wrong.\n\nThere is also a possible data discrepancy. The table gives West Africa an Avg_Debt_to_GDP of 45.0, but the script's six values average about 40.8. East Africa, by contrast, matches at 42.5.\n\nBefore editing anything, this iteration does two things. It recomputes per-region statistics from the script's data and compares them against every row of table.csv. It also lists the current figure's axis labels, line colours and box colours, so later fixes rest on exact values rather than the PNG.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe statistics confirm several defects, and the rendered image shows them.\n\n**What is wrong:**\n1. **Left axis label.** It reads 'Debt-to-GDP Ratio (%)', but the left axis holds the Impact Score boxplots, which the summary also describes.\n2. **Line colour.** The summary describes a blue line, and the right-axis label is already coloured `#45B7D1`. The line itself is drawn in `#FF5733` (orange-red).\n3. **Line order.** `groupby` returns regions alphabetically, and `sort=False` draws the points in that order, which produces the zigzag across the plot. Each marker sits at the correct value (e.g. West Africa \u2248 40.8, Latin America 42.5), but the connecting line is meaningless. I'll reindex the averages to the plotted region order.\n4. **Risk colours.** The summary says red = Low, orange = Medium, green = High. With `hue_order=['High','Medium','Low']`, husl currently gives High pink-red and Low green, which is reversed. I'll use `hue_order=['Low','Medium','High']` so the colours match.\n\n**What I'm leaving alone:**\n- The data values. The table's medians are loosely consistent with the script, and its averages match except West Africa (45.0 vs 40.83).\n- The title, sizes and limits.\n\nAfter applying the edits I'll re-run chart.py and check the axis labels, line colour, x positions and legend order on the figure object.\n</reasoning>\n<code>\norder_str=\"order=['West Africa', 'East Africa', 'South Asia', 'Southeast Asia', 'Pacific Islands',\\n           'Latin America', 'Caribbean', 'Middle East', 'Central Asia', 'Eastern Europe'],\"\nnew=src\nnew=new.replace(\"hue_order=['High', 'Medium', 'Low']\",\"hue_order=['Low', 'Medium', 'High']\")\nnew=new.replace(\"data=df.groupby('Region')['Debt_to_GDP_Ratio'].mean().reset_index(),\",\n \"data=df.groupby('Region')['Debt_to_GDP_Ratio'].mean().reindex(['West Africa', 'East Africa', 'South Asia', 'Southeast Asia', 'Pacific Islands', 'Latin America', 'Caribbean', 'Middle East', 'Central Asia', 'Eastern Europe']).reset_index(),\")\nnew=new.replace(\"color='#FF5733',\",\"color='#45B7D1',\")\nnew=new.replace(\"ax1.set_ylabel('Debt-to-GDP Ratio (%)'\",\"ax1.set_ylabel('Impact Score'\")\nassert new.count('reindex')==1 and \"'#45B7D1',\" in new and \"Impact Score'\" in new and \"['Low', 'Medium', 'High']\" in new\nwith open('chart.py','w') as fh: fh.write(new)\nsrc=new\nexec(src,{})\nfig=plt.gcf(); a1,a2=fig.axes\nprint(a1.get_ylabel(),'|',a2.get_ylabel())\nl=a2.lines[0]; print(l.get_color(), l.get_xdata(), np.round(l.get_ydata(),2))\nprint(a1.get_legend_handles_labels()[1], [h.get_facecolor() for h in a1.get_legend().legend_handles])\nplt.close('all')\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm noticing several problems, including a table whose averages match except for West Africa and whose medians are also off. I'll leave the data alone and focus on the clear defects, starting with the wrong y-axis label on the first plot, which should read 'Impact Score'. I'm also checking a line in the chart that seems to be zigzagging.\n\nI'm checking whether the zigzag comes from the line drawing in alphabetical order instead of the box order. The points themselves sit in the right places, so the fix is to reorder the data to match. I'm also weighing the line color: the code uses a different hex than the axis label, which looks like a mistake, though the legend colors don't match the summary, so I'll leave those alone.\n\nI'm going to correct the chart's color mapping so the box colors match the summary, reversing the hue order to put Low first. I'll also change the line color to match the axis label and fix the line order, then apply the edits and verify the result.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The statistics confirm several defects, and the rendered image shows them.\n\n**What is wrong:**\n1. **Left axis label.** It reads 'Debt-to-GDP Ratio (%)', but the left axis holds the Impact Score boxplots, which the summary also describes.\n2. **Line colour.** The summary describes a blue line, and the right-axis label is already coloured `#45B7D1`. The line itself is drawn in `#FF5733` (orange-red).\n3. **Line order.** `groupby` returns regions alphabetically, and `sort=False` draws the points in that order, which produces the zigzag across the plot. Each marker sits at the correct value (e.g. West Africa \u2248 40.8, Latin America 42.5), but the connecting line is meaningless. I'll reindex the averages to the plotted region order.\n4. **Risk colours.** The summary says red = Low, orange = Medium, green = High. With `hue_order=['High','Medium','Low']`, husl currently gives High pink-red and Low green, which is reversed. I'll use `hue_order=['Low','Medium','High']` so the colours match.\n\n**What I'm leaving alone:**\n- The data values. The table's medians are loosely consistent with the script, and its averages match except West Africa (45.0 vs 40.83).\n- The title, sizes and limits.\n\nAfter applying the edits I'll re-run chart.py and check the axis labels, line colour, x positions and legend order on the figure object.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nI fixed chart.py, re-ran it, and output.png is now consistent with the data and the summary.\n\n**What I changed:**\n- **Left axis label.** The left y-axis now reads 'Impact Score' instead of a duplicated 'Debt-to-GDP Ratio (%)'.\n- **Line colour.** The average Debt-to-GDP line is now blue (`#45B7D1`), matching the summary and the right-axis label colour.\n- **Line order.** The region averages are reindexed to the plotted region order, so the line runs left to right instead of zigzagging alphabetically.\n- **Risk colours.** `hue_order` is now Low, Medium, High, so Low is red/pink, Medium is orange/olive and High is green, as the summary describes.\n\n**What I verified on the figure object:**\n- The axis labels read 'Impact Score' (left) and 'Debt-to-GDP Ratio (%)' (right).\n- The line colour is `#45B7D1`, with x positions 0\u20139 in region order.\n- The y values match the means computed from the data: 40.83, 42.5, 34.17, 36.67, 38.0, 42.5, 41.67, 36.83, 35.83, 34.67.\n- The legend order is Low, Medium, High.\n\n**What I checked in the image:** no overlapping text, and neither legend sits on the data.\n\n**What I left alone:**\n- The title, sizes, limits and data values are unchanged.\n- The table's West Africa average (45.0) differs from the script's data (40.83), and its medians are loosely inconsistent with the script as well. I kept the script's values rather than guess which source is right.\n- The summary's claim that Latin America and the Caribbean are near 60% and 55% doesn't match either source; both put them at about 42.5% and 41.7%.\n- The remaining warnings are a Matplotlib deprecation notice and the `set_ticklabels` notice. The tick labels render correctly, so neither indicates a defect.\n</reasoning>\n<code>\nprint(open('chart.py').read()[-1200:])\n</code>\n<decision>stop</decision>",
+        "thinking": "I'm noting that the low boxes are single values, so they only show up as lines. I'm checking whether the legend in the top-left overlaps the South Asia Low label; the legend ends around x=365 and South Asia starts near x=400, so there's no overlap.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "I fixed chart.py, re-ran it, and output.png is now consistent with the data and the summary.\n\n**What I changed:**\n- **Left axis label.** The left y-axis now reads 'Impact Score' instead of a duplicated 'Debt-to-GDP Ratio (%)'.\n- **Line colour.** The average Debt-to-GDP line is now blue (`#45B7D1`), matching the summary and the right-axis label colour.\n- **Line order.** The region averages are reindexed to the plotted region order, so the line runs left to right instead of zigzagging alphabetically.\n- **Risk colours.** `hue_order` is now Low, Medium, High, so Low is red/pink, Medium is orange/olive and High is green, as the summary describes.\n\n**What I verified on the figure object:**\n- The axis labels read 'Impact Score' (left) and 'Debt-to-GDP Ratio (%)' (right).\n- The line colour is `#45B7D1`, with x positions 0\u20139 in region order.\n- The y values match the means computed from the data: 40.83, 42.5, 34.17, 36.67, 38.0, 42.5, 41.67, 36.83, 35.83, 34.67.\n- The legend order is Low, Medium, High.\n\n**What I checked in the image:** no overlapping text, and neither legend sits on the data.\n\n**What I left alone:**\n- The title, sizes, limits and data values are unchanged.\n- The table's West Africa average (45.0) differs from the script's data (40.83), and its medians are loosely inconsistent with the script as well. I kept the script's values rather than guess which source is right.\n- The summary's claim that Latin America and the Caribbean are near 60% and 55% doesn't match either source; both put them at about 42.5% and 41.7%.\n- The remaining warnings are a Matplotlib deprecation notice and the `set_ticklabels` notice. The tick labels render correctly, so neither indicates a defect.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 5438,
+      "output_tokens": 1259,
+      "reasoning_tokens": 932,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463862-PCOsG9uxREDciscDnNfX",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 780,
+          "prompt_tokens": 3228,
+          "total_tokens": 4008,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 582,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.028512,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.028512,
+            "upstream_inference_prompt_cost": 0.012912,
+            "upstream_inference_completions_cost": 0.0156
+          }
+        }
+      },
+      {
+        "id": "gen-1794463871-MhLHMMBUnlB5jO4YKv7a",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 479,
+          "prompt_tokens": 2210,
+          "total_tokens": 2689,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 350,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.01842,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.01842,
+            "upstream_inference_prompt_cost": 0.00884,
+            "upstream_inference_completions_cost": 0.00958
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 5,
+      "input_tokens": 33336,
+      "output_tokens": 4276,
+      "total_tokens": 37612,
+      "reasoning_tokens": 1438,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 5438,
+      "output_tokens": 1259,
+      "total_tokens": 6697,
+      "reasoning_tokens": 932,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 7,
+      "input_tokens": 38774,
+      "output_tokens": 5535,
+      "total_tokens": 44309,
+      "reasoning_tokens": 2370,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 0.9907,
+    "preservation": 0.9996,
+    "recovery_binary": 0,
+    "preservation_binary": 0,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 0.9907,
+        "lenient": 0.9907
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 0.9996,
+        "lenient": 0.9996
+      },
+      "preservation_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].legend.labels",
+          "axes[0].series[box0].values",
+          "axes[0].series[line0].values",
+          "axes[0].series[line10].values",
+          "axes[0].series[line120].values",
+          "axes[0].series[line121].values",
+          "axes[0].series[line122].values",
+          "axes[0].series[line123].values",
+          "axes[0].series[line124].values",
+          "axes[0].series[line126].values",
+          "axes[0].series[line127].values",
+          "axes[0].series[line128].values",
+          "axes[0].series[line129].values",
+          "axes[0].series[line12].values",
+          "axes[0].series[line130].values",
+          "axes[0].series[line132].values",
+          "axes[0].series[line133].values",
+          "axes[0].series[line134].values",
+          "axes[0].series[line135].values",
+          "axes[0].series[line136].values",
+          "axes[0].series[line138].values",
+          "axes[0].series[line139].values",
+          "axes[0].series[line13].values",
+          "axes[0].series[line140].values",
+          "axes[0].series[line141].values",
+          "axes[0].series[line142].values",
+          "axes[0].series[line144].values",
+          "axes[0].series[line145].values",
+          "axes[0].series[line146].values",
+          "axes[0].series[line147].values",
+          "axes[0].series[line148].values",
+          "axes[0].series[line14].values",
+          "axes[0].series[line150].values",
+          "axes[0].series[line151].values",
+          "axes[0].series[line152].values",
+          "axes[0].series[line153].values",
+          "axes[0].series[line154].values",
+          "axes[0].series[line156].values",
+          "axes[0].series[line157].values",
+          "axes[0].series[line158].values",
+          "axes[0].series[line159].values",
+          "axes[0].series[line15].values",
+          "axes[0].series[line160].values",
+          "axes[0].series[line162].values",
+          "axes[0].series[line163].values",
+          "axes[0].series[line164].values",
+          "axes[0].series[line165].values",
+          "axes[0].series[line166].values",
+          "axes[0].series[line168].values",
+          "axes[0].series[line169].values",
+          "axes[0].series[line16].values",
+          "axes[0].series[line170].values",
+          "axes[0].series[line171].values",
+          "axes[0].series[line172].values",
+          "axes[0].series[line174].values",
+          "axes[0].series[line175].values",
+          "axes[0].series[line176].values",
+          "axes[0].series[line177].values",
+          "axes[0].series[line178].values",
+          "axes[0].series[line18].values",
+          "axes[0].series[line19].values",
+          "axes[0].series[line1].values",
+          "axes[0].series[line20].values",
+          "axes[0].series[line21].values",
+          "axes[0].series[line22].values",
+          "axes[0].series[line24].values",
+          "axes[0].series[line25].values",
+          "axes[0].series[line26].values",
+          "axes[0].series[line27].values",
+          "axes[0].series[line28].values",
+          "axes[0].series[line2].values",
+          "axes[0].series[line30].values",
+          "axes[0].series[line31].values",
+          "axes[0].series[line32].values",
+          "axes[0].series[line33].values",
+          "axes[0].series[line34].values",
+          "axes[0].series[line36].values",
+          "axes[0].series[line37].values",
+          "axes[0].series[line38].values",
+          "axes[0].series[line39].values",
+          "axes[0].series[line3].values",
+          "axes[0].series[line40].values",
+          "axes[0].series[line42].values",
+          "axes[0].series[line43].values",
+          "axes[0].series[line44].values",
+          "axes[0].series[line45].values",
+          "axes[0].series[line46].values",
+          "axes[0].series[line48].values",
+          "axes[0].series[line49].values",
+          "axes[0].series[line4].values",
+          "axes[0].series[line50].values",
+          "axes[0].series[line51].values",
+          "axes[0].series[line52].values",
+          "axes[0].series[line54].values",
+          "axes[0].series[line55].values",
+          "axes[0].series[line56].values",
+          "axes[0].series[line57].values",
+          "axes[0].series[line58].values",
+          "axes[0].series[line6].values",
+          "axes[0].series[line7].values",
+          "axes[0].series[line8].values",
+          "axes[0].series[line9].values",
+          "axes[0].ylabel",
+          "axes[1].legend.entries",
+          "axes[1].series[Avg Debt-to-GDP Ratio].color",
+          "axes[1].series[Avg Debt-to-GDP Ratio].markerfacecolor"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[box0].values",
+            "axes[0].series[line0].values",
+            "axes[0].series[line10].values",
+            "axes[0].series[line120].values",
+            "axes[0].series[line121].values",
+            "axes[0].series[line122].values",
+            "axes[0].series[line123].values",
+            "axes[0].series[line124].values",
+            "axes[0].series[line126].values",
+            "axes[0].series[line127].values",
+            "axes[0].series[line128].values",
+            "axes[0].series[line129].values",
+            "axes[0].series[line12].values",
+            "axes[0].series[line130].values",
+            "axes[0].series[line132].values",
+            "axes[0].series[line133].values",
+            "axes[0].series[line134].values",
+            "axes[0].series[line135].values",
+            "axes[0].series[line136].values",
+            "axes[0].series[line138].values",
+            "axes[0].series[line139].values",
+            "axes[0].series[line13].values",
+            "axes[0].series[line140].values",
+            "axes[0].series[line141].values",
+            "axes[0].series[line142].values",
+            "axes[0].series[line144].values",
+            "axes[0].series[line145].values",
+            "axes[0].series[line146].values",
+            "axes[0].series[line147].values",
+            "axes[0].series[line148].values",
+            "axes[0].series[line14].values",
+            "axes[0].series[line150].values",
+            "axes[0].series[line151].values",
+            "axes[0].series[line152].values",
+            "axes[0].series[line153].values",
+            "axes[0].series[line154].values",
+            "axes[0].series[line156].values",
+            "axes[0].series[line157].values",
+            "axes[0].series[line158].values",
+            "axes[0].series[line159].values",
+            "axes[0].series[line15].values",
+            "axes[0].series[line160].values",
+            "axes[0].series[line162].values",
+            "axes[0].series[line163].values",
+            "axes[0].series[line164].values",
+            "axes[0].series[line165].values",
+            "axes[0].series[line166].values",
+            "axes[0].series[line168].values",
+            "axes[0].series[line169].values",
+            "axes[0].series[line16].values",
+            "axes[0].series[line170].values",
+            "axes[0].series[line171].values",
+            "axes[0].series[line172].values",
+            "axes[0].series[line174].values",
+            "axes[0].series[line175].values",
+            "axes[0].series[line176].values",
+            "axes[0].series[line177].values",
+            "axes[0].series[line178].values",
+            "axes[0].series[line18].values",
+            "axes[0].series[line19].values",
+            "axes[0].series[line1].values",
+            "axes[0].series[line20].values",
+            "axes[0].series[line21].values",
+            "axes[0].series[line22].values",
+            "axes[0].series[line24].values",
+            "axes[0].series[line25].values",
+            "axes[0].series[line26].values",
+            "axes[0].series[line27].values",
+            "axes[0].series[line28].values",
+            "axes[0].series[line2].values",
+            "axes[0].series[line30].values",
+            "axes[0].series[line31].values",
+            "axes[0].series[line32].values",
+            "axes[0].series[line33].values",
+            "axes[0].series[line34].values",
+            "axes[0].series[line36].values",
+            "axes[0].series[line37].values",
+            "axes[0].series[line38].values",
+            "axes[0].series[line39].values",
+            "axes[0].series[line3].values",
+            "axes[0].series[line40].values",
+            "axes[0].series[line42].values",
+            "axes[0].series[line43].values",
+            "axes[0].series[line44].values",
+            "axes[0].series[line45].values",
+            "axes[0].series[line46].values",
+            "axes[0].series[line48].values",
+            "axes[0].series[line49].values",
+            "axes[0].series[line4].values",
+            "axes[0].series[line50].values",
+            "axes[0].series[line51].values",
+            "axes[0].series[line52].values",
+            "axes[0].series[line54].values",
+            "axes[0].series[line55].values",
+            "axes[0].series[line56].values",
+            "axes[0].series[line57].values",
+            "axes[0].series[line58].values",
+            "axes[0].series[line6].values",
+            "axes[0].series[line7].values",
+            "axes[0].series[line8].values",
+            "axes[0].series[line9].values",
+            "axes[0].ylabel",
+            "axes[1].legend.entries",
+            "axes[1].series[Avg Debt-to-GDP Ratio].color",
+            "axes[1].series[Avg Debt-to-GDP Ratio].markerfacecolor"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[box0].values",
+            "axes[0].series[line0].values",
+            "axes[0].series[line10].values",
+            "axes[0].series[line120].values",
+            "axes[0].series[line121].values",
+            "axes[0].series[line122].values",
+            "axes[0].series[line123].values",
+            "axes[0].series[line124].values",
+            "axes[0].series[line126].values",
+            "axes[0].series[line127].values",
+            "axes[0].series[line128].values",
+            "axes[0].series[line129].values",
+            "axes[0].series[line12].values",
+            "axes[0].series[line130].values",
+            "axes[0].series[line132].values",
+            "axes[0].series[line133].values",
+            "axes[0].series[line134].values",
+            "axes[0].series[line135].values",
+            "axes[0].series[line136].values",
+            "axes[0].series[line138].values",
+            "axes[0].series[line139].values",
+            "axes[0].series[line13].values",
+            "axes[0].series[line140].values",
+            "axes[0].series[line141].values",
+            "axes[0].series[line142].values",
+            "axes[0].series[line144].values",
+            "axes[0].series[line145].values",
+            "axes[0].series[line146].values",
+            "axes[0].series[line147].values",
+            "axes[0].series[line148].values",
+            "axes[0].series[line14].values",
+            "axes[0].series[line150].values",
+            "axes[0].series[line151].values",
+            "axes[0].series[line152].values",
+            "axes[0].series[line153].values",
+            "axes[0].series[line154].values",
+            "axes[0].series[line156].values",
+            "axes[0].series[line157].values",
+            "axes[0].series[line158].values",
+            "axes[0].series[line159].values",
+            "axes[0].series[line15].values",
+            "axes[0].series[line160].values",
+            "axes[0].series[line162].values",
+            "axes[0].series[line163].values",
+            "axes[0].series[line164].values",
+            "axes[0].series[line165].values",
+            "axes[0].series[line166].values",
+            "axes[0].series[line168].values",
+            "axes[0].series[line169].values",
+            "axes[0].series[line16].values",
+            "axes[0].series[line170].values",
+            "axes[0].series[line171].values",
+            "axes[0].series[line172].values",
+            "axes[0].series[line174].values",
+            "axes[0].series[line175].values",
+            "axes[0].series[line176].values",
+            "axes[0].series[line177].values",
+            "axes[0].series[line178].values",
+            "axes[0].series[line18].values",
+            "axes[0].series[line19].values",
+            "axes[0].series[line1].values",
+            "axes[0].series[line20].values",
+            "axes[0].series[line21].values",
+            "axes[0].series[line22].values",
+            "axes[0].series[line24].values",
+            "axes[0].series[line25].values",
+            "axes[0].series[line26].values",
+            "axes[0].series[line27].values",
+            "axes[0].series[line28].values",
+            "axes[0].series[line2].values",
+            "axes[0].series[line30].values",
+            "axes[0].series[line31].values",
+            "axes[0].series[line32].values",
+            "axes[0].series[line33].values",
+            "axes[0].series[line34].values",
+            "axes[0].series[line36].values",
+            "axes[0].series[line37].values",
+            "axes[0].series[line38].values",
+            "axes[0].series[line39].values",
+            "axes[0].series[line3].values",
+            "axes[0].series[line40].values",
+            "axes[0].series[line42].values",
+            "axes[0].series[line43].values",
+            "axes[0].series[line44].values",
+            "axes[0].series[line45].values",
+            "axes[0].series[line46].values",
+            "axes[0].series[line48].values",
+            "axes[0].series[line49].values",
+            "axes[0].series[line4].values",
+            "axes[0].series[line50].values",
+            "axes[0].series[line51].values",
+            "axes[0].series[line52].values",
+            "axes[0].series[line54].values",
+            "axes[0].series[line55].values",
+            "axes[0].series[line56].values",
+            "axes[0].series[line57].values",
+            "axes[0].series[line58].values",
+            "axes[0].series[line6].values",
+            "axes[0].series[line7].values",
+            "axes[0].series[line8].values",
+            "axes[0].series[line9].values",
+            "axes[0].ylabel",
+            "axes[1].legend.entries",
+            "axes[1].series[Avg Debt-to-GDP Ratio].color",
+            "axes[1].series[Avg Debt-to-GDP Ratio].markerfacecolor"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 370,
+          "submission": 370
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 0.9907,
+            "binary": 0,
+            "fixed": 106,
+            "injected": 107,
+            "missed": [
+              "axes[0].ylabel"
+            ]
+          },
+          "lenient": {
+            "score": 0.9907,
+            "binary": 0,
+            "fixed": 106,
+            "injected": 107,
+            "missed": [
+              "axes[0].ylabel"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 0.9996,
+            "binary": 0,
+            "kept": 2495,
+            "total": 2496,
+            "damaged": [
+              "axes[1].series[Avg Debt-to-GDP Ratio].values"
+            ],
+            "added": []
+          },
+          "lenient": {
+            "score": 0.9996,
+            "binary": 0,
+            "kept": 2495,
+            "total": 2496,
+            "damaged": [
+              "axes[1].series[Avg Debt-to-GDP Ratio].values"
+            ],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

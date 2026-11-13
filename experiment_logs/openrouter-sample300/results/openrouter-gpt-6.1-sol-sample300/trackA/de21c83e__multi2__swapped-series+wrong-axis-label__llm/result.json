@@ -1,0 +1,696 @@
+{
+  "task_id": "de21c83e__multi2__swapped-series+wrong-axis-label__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.8333,
+  "all_passed": false,
+  "subgoals_total": 3,
+  "subgoals_passed": 2,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 1,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (81299 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": false,
+      "score": 0.5,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": false,
+          "score": 0.5,
+          "detail": "REAL: [score 0.60 contradicted a failing verdict; clamped to 0.50] The axis labels correctly identify year, IMF credit (US$), defense expenditure (US$), and GDP growth (%). However, the plotted distributions do not match table.csv: defense medians for 1980 and 1985 are about $2.2B and $3B rather than $7.8B and $8.8B, and the 1985 IMF $800M outlier is missing."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 1.0,
+          "detail": "REAL: The overall title, subplot titles, axis labels, and tick labels are readable and unclipped, with adequate spacing between panels. All box plots are clearly visible, with no overlapping text, obscured data, or missing-glyph boxes."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 5,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 43.16,
+  "tool_counts": {
+    "execute_python": 4,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "openai/gpt-6.1-sol",
+    "calls": 4,
+    "usage": {
+      "input_tokens": 13489,
+      "output_tokens": 1227,
+      "reasoning_tokens": 75,
+      "cache_write_input_tokens": 5686,
+      "cache_read_input_tokens": 6939
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794466992-dlbfpNzVnZsKSqtOlkhc",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 107,
+          "prompt_tokens": 855,
+          "total_tokens": 962,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 7,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00278,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00278,
+            "upstream_inference_prompt_cost": 0.00171,
+            "upstream_inference_completions_cost": 0.00107
+          }
+        }
+      },
+      {
+        "id": "gen-1794466997-vgZ7iSv2F7zIq6Yxz28P",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 443,
+          "prompt_tokens": 2524,
+          "total_tokens": 2967,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 16,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 2521,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0107385,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0107385,
+            "upstream_inference_prompt_cost": 0.0063085,
+            "upstream_inference_completions_cost": 0.00443
+          }
+        }
+      },
+      {
+        "id": "gen-1794467005-oqB8hSvKpHSWfh1tqUOh",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 331,
+          "prompt_tokens": 4421,
+          "total_tokens": 4752,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 16,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1897,
+            "cached_tokens": 2521,
+            "video_tokens": 0
+          },
+          "cost": 0.0083106,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0083106,
+            "upstream_inference_prompt_cost": 0.0050006,
+            "upstream_inference_completions_cost": 0.00331
+          }
+        }
+      },
+      {
+        "id": "gen-1794467010-qwmgLLIt28TP2oBXefNT",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 346,
+          "prompt_tokens": 5689,
+          "total_tokens": 6035,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 36,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1268,
+            "cached_tokens": 4418,
+            "video_tokens": 0
+          },
+          "cost": 0.0070778,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0070778,
+            "upstream_inference_prompt_cost": 0.0036178,
+            "upstream_inference_completions_cost": 0.00346
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 4,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI will inspect the plotting code, data, and summary to identify the swapped series and incorrect axis label, then make only those repairs.\n</reasoning>\n<code>\nfrom pathlib import Path\nprint(\"CHART CODE\\n\", Path(\"chart.py\").read_text())\nprint(\"SUMMARY\\n\", Path(\"summary.txt\").read_text())\nprint(\"TABLE\\n\", Path(\"table.csv\").read_text())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I will inspect the plotting code, data, and summary to identify the swapped series and incorrect axis label, then make only those repairs.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe IMF-credit and defense-expenditure panels use each other\u2019s data. Also, all three horizontal axes say \u201cQuarter,\u201d although their ticks represent years. I will swap the two data inputs back and change those axis labels to \u201cYear,\u201d leaving the styling and layout unchanged.\n</reasoning>\n<code>\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nsource = Path(\"chart.py\").read_text()\nsource = source.replace(\"axes[0].boxplot(defense_data,\", \"axes[0].boxplot(imf_data,\")\nsource = source.replace(\"axes[1].boxplot(imf_data,\", \"axes[1].boxplot(defense_data,\")\nsource = source.replace(\".set_xlabel('Quarter')\", \".set_xlabel('Year')\")\nPath(\"chart.py\").write_text(source)\n\n# Execute the repaired script, retaining its figure for exact checks.\nexec(compile(source, \"chart.py\", \"exec\"), globals())\n\ntable = pd.read_csv(\"table.csv\")\nprint(\"Table columns:\", table.columns.tolist())\nprint(\"Axis labels:\", [ax.get_xlabel() for ax in axes])\nprint(\"Panel titles:\", [ax.get_title() for ax in axes])\nprint(\"Panel y limits:\", [ax.get_ylim() for ax in axes])\nfor column in df.columns:\n    if column in table.columns:\n        if column == \"Country\":\n            assert df[column].tolist() == table[column].tolist()\n        else:\n            np.testing.assert_allclose(df[column], table[column])\nfor ax, values in zip(axes, [imf_data, defense_data, gdp_data]):\n    # Each box has seven line artists; the fifth is its median.\n    medians = [ax.lines[7*i + 4].get_ydata()[0] for i in range(3)]\n    np.testing.assert_allclose(medians, [np.median(v) for v in values])\n    print(\"Verified plotted medians:\", medians)\nprint(\"Saved repaired output.png\")\n</code>\n<decision>continue</decision>",
+        "thinking": "**Verifying table usage**\n\nI need to verify the table by reading the CSV output. I\u2019m thinking about how to summarize it concisely. I want to focus on presenting the full information but in a way that\u2019s easy to digest. Maybe I could create a summary that highlights the key points or findings? It\u2019s essential to ensure clarity while being concise. Let\u2019s explore how to best structure this summary!",
+        "stop_reason": "stop",
+        "reasoning": "The IMF-credit and defense-expenditure panels use each other\u2019s data. Also, all three horizontal axes say \u201cQuarter,\u201d although their ticks represent years. I will swap the two data inputs back and change those axis labels to \u201cYear,\u201d leaving the styling and layout unchanged.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe repaired chart looks readable, and the panel titles and axis labels are correct. The script ran successfully; only my separate verification failed because I assumed seven line artists per box rather than six. I will correct that check and compare the IMF box statistics with table.csv before finishing.\n</reasoning>\n<code>\nprint(Path(\"table.csv\").read_text())\nfor ax, values in zip(axes, [imf_data, defense_data, gdp_data]):\n    assert len(ax.lines) == 18\n    medians = [ax.lines[6*i + 4].get_ydata()[0] for i in range(3)]\n    np.testing.assert_allclose(medians, [np.median(v) for v in values])\n    assert ax.get_xlabel() == \"Year\"\n    print(ax.get_title(), \"verified medians:\", medians)\n\nfor i, row in table.iterrows():\n    values = np.asarray(imf_data[i])\n    np.testing.assert_allclose(\n        np.percentile(values, [25, 50, 75]),\n        [row[\"IMF_Credit_Q1\"], row[\"IMF_Credit_Median\"], row[\"IMF_Credit_Q3\"]]\n    )\nprint(\"IMF quartiles and medians match table.csv.\")\n# Re-run the saved script to confirm the final artifact is produced without errors.\nexec(compile(Path(\"chart.py\").read_text(), \"chart.py\", \"exec\"), globals())\n</code>\n<decision>continue</decision>",
+        "thinking": "**Evaluating table structure**\n\nI need to ensure that there are six lines per box in my table. It's important to inspect the entire setup to confirm that everything is arranged correctly. There might be some adjustments needed to make it visually appealing and informative. I'm keeping an eye on the overall layout so it meets expectations. I want to get it right for anyone who might view it later! Let's make sure it looks good!",
+        "stop_reason": "stop",
+        "reasoning": "The repaired chart looks readable, and the panel titles and axis labels are correct. The script ran successfully; only my separate verification failed because I assumed seven line artists per box rather than six. I will correct that check and compare the IMF box statistics with table.csv before finishing.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nI corrected the swapped IMF-credit and defense-expenditure inputs and changed \u201cQuarter\u201d to \u201cYear\u201d on all three horizontal axes. The rendered chart is readable, and figure checks confirm that each panel now plots its intended data. The supplied table\u2019s quartiles differ from those calculated from the script\u2019s original observations; I have left those observations unchanged because the requested repair is limited to the two diagnosed flaws. I will now rerun the saved script and verify the final labels and plotted medians.\n</reasoning>\n<code>\nexec(compile(Path(\"chart.py\").read_text(), \"chart.py\", \"exec\"), globals())\nfor ax, values, ylabel in zip(\n    axes,\n    [imf_data, defense_data, gdp_data],\n    [\"IMF Credit (in current US$)\", \"Defense Expenditure (in current US$)\", \"GDP Growth Rate (%)\"]\n):\n    assert ax.get_xlabel() == \"Year\"\n    assert ax.get_ylabel() == ylabel\n    assert [tick.get_text() for tick in ax.get_xticklabels()] == years\n    np.testing.assert_allclose(\n        [ax.lines[6*i + 4].get_ydata()[0] for i in range(3)],\n        [np.median(v) for v in values]\n    )\nassert Path(\"output.png\").is_file()\nprint(\"Finished: chart.py runs successfully; repaired data assignments and axis labels verified. output.png saved.\")\n</code>\n<decision>stop</decision>",
+        "thinking": "**Evaluating table mismatches**\n\nI realize I don't need to fix the additional table mismatches beyond the two I already noted. I guess I should acknowledge that the supplied stats don\u2019t match the existing raw data, so I won't change anything because that's outside the scope of what I'm working on. I'll just do some final checks and confirm that there's no claim for a table match here. That seems straightforward!",
+        "stop_reason": "stop",
+        "reasoning": "I corrected the swapped IMF-credit and defense-expenditure inputs and changed \u201cQuarter\u201d to \u201cYear\u201d on all three horizontal axes. The rendered chart is readable, and figure checks confirm that each panel now plots its intended data. The supplied table\u2019s quartiles differ from those calculated from the script\u2019s original observations; I have left those observations unchanged because the requested repair is limited to the two diagnosed flaws. I will now rerun the saved script and verify the final labels and plotted medians.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "openai/gpt-6.1-sol",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 3877,
+      "output_tokens": 299,
+      "reasoning_tokens": 121,
+      "cache_write_input_tokens": 3871
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794467019-e7bh8mYf2guAXJgP4VCU",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 230,
+          "prompt_tokens": 2351,
+          "total_tokens": 2581,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 121,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 2348,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.008176,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.008176,
+            "upstream_inference_prompt_cost": 0.005876,
+            "upstream_inference_completions_cost": 0.0023
+          }
+        }
+      },
+      {
+        "id": "gen-1794467031-Ye3RIXln1fFwLJOJrSrM",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 69,
+          "prompt_tokens": 1526,
+          "total_tokens": 1595,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1523,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0045035,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0045035,
+            "upstream_inference_prompt_cost": 0.0038135,
+            "upstream_inference_completions_cost": 0.00069
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 4,
+      "input_tokens": 13489,
+      "output_tokens": 1227,
+      "total_tokens": 14716,
+      "reasoning_tokens": 75,
+      "cache_read_input_tokens": 6939,
+      "cache_write_input_tokens": 0,
+      "model": "openai/gpt-6.1-sol",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 3877,
+      "output_tokens": 299,
+      "total_tokens": 4176,
+      "reasoning_tokens": 121,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "openai/gpt-6.1-sol",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 6,
+      "input_tokens": 17366,
+      "output_tokens": 1526,
+      "total_tokens": 18892,
+      "reasoning_tokens": 196,
+      "cache_read_input_tokens": 6939,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 1.0,
+    "preservation": 1.0,
+    "recovery_binary": 1,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "recovery_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].series[box0].values",
+          "axes[0].series[line0].values",
+          "axes[0].series[line10].values",
+          "axes[0].series[line12].values",
+          "axes[0].series[line13].values",
+          "axes[0].series[line14].values",
+          "axes[0].series[line15].values",
+          "axes[0].series[line16].values",
+          "axes[0].series[line1].values",
+          "axes[0].series[line2].values",
+          "axes[0].series[line3].values",
+          "axes[0].series[line4].values",
+          "axes[0].series[line5].alpha",
+          "axes[0].series[line5].color",
+          "axes[0].series[line5].color_alpha",
+          "axes[0].series[line5].drawstyle",
+          "axes[0].series[line5].fillstyle",
+          "axes[0].series[line5].kind",
+          "axes[0].series[line5].linestyle",
+          "axes[0].series[line5].linewidth",
+          "axes[0].series[line5].marker",
+          "axes[0].series[line5].markeredgecolor",
+          "axes[0].series[line5].markeredgecolor_alpha",
+          "axes[0].series[line5].markeredgewidth",
+          "axes[0].series[line5].markerfacecolor",
+          "axes[0].series[line5].markerfacecolor_alpha",
+          "axes[0].series[line5].markersize",
+          "axes[0].series[line5].values",
+          "axes[0].series[line5].zorder",
+          "axes[0].series[line6].values",
+          "axes[0].series[line7].values",
+          "axes[0].series[line8].values",
+          "axes[0].series[line9].values",
+          "axes[0].xlabel",
+          "axes[0].ylim",
+          "axes[0].yticklabels",
+          "axes[0].yticks",
+          "axes[1].series[box0].values",
+          "axes[1].series[line0].values",
+          "axes[1].series[line10].values",
+          "axes[1].series[line12].values",
+          "axes[1].series[line13].values",
+          "axes[1].series[line14].values",
+          "axes[1].series[line15].values",
+          "axes[1].series[line16].values",
+          "axes[1].series[line1].values",
+          "axes[1].series[line2].values",
+          "axes[1].series[line3].values",
+          "axes[1].series[line4].values",
+          "axes[1].series[line5].alpha",
+          "axes[1].series[line5].color",
+          "axes[1].series[line5].color_alpha",
+          "axes[1].series[line5].drawstyle",
+          "axes[1].series[line5].fillstyle",
+          "axes[1].series[line5].kind",
+          "axes[1].series[line5].linestyle",
+          "axes[1].series[line5].linewidth",
+          "axes[1].series[line5].marker",
+          "axes[1].series[line5].markeredgecolor",
+          "axes[1].series[line5].markeredgecolor_alpha",
+          "axes[1].series[line5].markeredgewidth",
+          "axes[1].series[line5].markerfacecolor",
+          "axes[1].series[line5].markerfacecolor_alpha",
+          "axes[1].series[line5].markersize",
+          "axes[1].series[line5].values",
+          "axes[1].series[line5].zorder",
+          "axes[1].series[line6].values",
+          "axes[1].series[line7].values",
+          "axes[1].series[line8].values",
+          "axes[1].series[line9].values",
+          "axes[1].xlabel",
+          "axes[1].ylim",
+          "axes[1].yticklabels",
+          "axes[1].yticks",
+          "axes[2].xlabel"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].series[box0].values",
+            "axes[0].series[line0].values",
+            "axes[0].series[line10].values",
+            "axes[0].series[line12].values",
+            "axes[0].series[line13].values",
+            "axes[0].series[line14].values",
+            "axes[0].series[line15].values",
+            "axes[0].series[line16].values",
+            "axes[0].series[line1].values",
+            "axes[0].series[line2].values",
+            "axes[0].series[line3].values",
+            "axes[0].series[line4].values",
+            "axes[0].series[line5].alpha",
+            "axes[0].series[line5].color",
+            "axes[0].series[line5].color_alpha",
+            "axes[0].series[line5].drawstyle",
+            "axes[0].series[line5].fillstyle",
+            "axes[0].series[line5].kind",
+            "axes[0].series[line5].linestyle",
+            "axes[0].series[line5].linewidth",
+            "axes[0].series[line5].marker",
+            "axes[0].series[line5].markeredgecolor",
+            "axes[0].series[line5].markeredgecolor_alpha",
+            "axes[0].series[line5].markeredgewidth",
+            "axes[0].series[line5].markerfacecolor",
+            "axes[0].series[line5].markerfacecolor_alpha",
+            "axes[0].series[line5].markersize",
+            "axes[0].series[line5].values",
+            "axes[0].series[line5].zorder",
+            "axes[0].series[line6].values",
+            "axes[0].series[line7].values",
+            "axes[0].series[line8].values",
+            "axes[0].series[line9].values",
+            "axes[0].xlabel",
+            "axes[0].ylim",
+            "axes[0].yticklabels",
+            "axes[0].yticks",
+            "axes[1].series[box0].values",
+            "axes[1].series[line0].values",
+            "axes[1].series[line10].values",
+            "axes[1].series[line12].values",
+            "axes[1].series[line13].values",
+            "axes[1].series[line14].values",
+            "axes[1].series[line15].values",
+            "axes[1].series[line16].values",
+            "axes[1].series[line1].values",
+            "axes[1].series[line2].values",
+            "axes[1].series[line3].values",
+            "axes[1].series[line4].values",
+            "axes[1].series[line5].alpha",
+            "axes[1].series[line5].color",
+            "axes[1].series[line5].color_alpha",
+            "axes[1].series[line5].drawstyle",
+            "axes[1].series[line5].fillstyle",
+            "axes[1].series[line5].kind",
+            "axes[1].series[line5].linestyle",
+            "axes[1].series[line5].linewidth",
+            "axes[1].series[line5].marker",
+            "axes[1].series[line5].markeredgecolor",
+            "axes[1].series[line5].markeredgecolor_alpha",
+            "axes[1].series[line5].markeredgewidth",
+            "axes[1].series[line5].markerfacecolor",
+            "axes[1].series[line5].markerfacecolor_alpha",
+            "axes[1].series[line5].markersize",
+            "axes[1].series[line5].values",
+            "axes[1].series[line5].zorder",
+            "axes[1].series[line6].values",
+            "axes[1].series[line7].values",
+            "axes[1].series[line8].values",
+            "axes[1].series[line9].values",
+            "axes[1].xlabel",
+            "axes[1].ylim",
+            "axes[1].yticklabels",
+            "axes[1].yticks",
+            "axes[2].xlabel"
+          ],
+          "lenient": [
+            "axes[0].series[box0].values",
+            "axes[0].series[line0].values",
+            "axes[0].series[line10].values",
+            "axes[0].series[line12].values",
+            "axes[0].series[line13].values",
+            "axes[0].series[line14].values",
+            "axes[0].series[line15].values",
+            "axes[0].series[line16].values",
+            "axes[0].series[line1].values",
+            "axes[0].series[line2].values",
+            "axes[0].series[line3].values",
+            "axes[0].series[line4].values",
+            "axes[0].series[line5].alpha",
+            "axes[0].series[line5].color",
+            "axes[0].series[line5].color_alpha",
+            "axes[0].series[line5].drawstyle",
+            "axes[0].series[line5].fillstyle",
+            "axes[0].series[line5].kind",
+            "axes[0].series[line5].linestyle",
+            "axes[0].series[line5].linewidth",
+            "axes[0].series[line5].marker",
+            "axes[0].series[line5].markeredgecolor",
+            "axes[0].series[line5].markeredgecolor_alpha",
+            "axes[0].series[line5].markeredgewidth",
+            "axes[0].series[line5].markerfacecolor",
+            "axes[0].series[line5].markerfacecolor_alpha",
+            "axes[0].series[line5].markersize",
+            "axes[0].series[line5].values",
+            "axes[0].series[line5].zorder",
+            "axes[0].series[line6].values",
+            "axes[0].series[line7].values",
+            "axes[0].series[line8].values",
+            "axes[0].series[line9].values",
+            "axes[0].xlabel",
+            "axes[0].ylim",
+            "axes[0].yticklabels",
+            "axes[0].yticks",
+            "axes[1].series[box0].values",
+            "axes[1].series[line0].values",
+            "axes[1].series[line10].values",
+            "axes[1].series[line12].values",
+            "axes[1].series[line13].values",
+            "axes[1].series[line14].values",
+            "axes[1].series[line15].values",
+            "axes[1].series[line16].values",
+            "axes[1].series[line1].values",
+            "axes[1].series[line2].values",
+            "axes[1].series[line3].values",
+            "axes[1].series[line4].values",
+            "axes[1].series[line5].alpha",
+            "axes[1].series[line5].color",
+            "axes[1].series[line5].color_alpha",
+            "axes[1].series[line5].drawstyle",
+            "axes[1].series[line5].fillstyle",
+            "axes[1].series[line5].kind",
+            "axes[1].series[line5].linestyle",
+            "axes[1].series[line5].linewidth",
+            "axes[1].series[line5].marker",
+            "axes[1].series[line5].markeredgecolor",
+            "axes[1].series[line5].markeredgecolor_alpha",
+            "axes[1].series[line5].markeredgewidth",
+            "axes[1].series[line5].markerfacecolor",
+            "axes[1].series[line5].markerfacecolor_alpha",
+            "axes[1].series[line5].markersize",
+            "axes[1].series[line5].values",
+            "axes[1].series[line5].zorder",
+            "axes[1].series[line6].values",
+            "axes[1].series[line7].values",
+            "axes[1].series[line8].values",
+            "axes[1].series[line9].values",
+            "axes[1].xlabel",
+            "axes[1].ylim",
+            "axes[1].yticklabels",
+            "axes[1].yticks",
+            "axes[2].xlabel"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 110,
+          "submission": 110
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 75,
+            "injected": 75,
+            "missed": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 75,
+            "injected": 75,
+            "missed": []
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 776,
+            "total": 776,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 776,
+            "total": 776,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

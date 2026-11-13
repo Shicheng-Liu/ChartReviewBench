@@ -1,0 +1,27 @@
+task:        8769ff70__multi2__axis-truncation+swapped-series__llm  (debug_repair)
+final_score: 0.767
+subgoals:    2/3 passed
+steps:       4/14  (horizon_hint=6)
+wall_time:   40.5s
+tools:       {'execute_python': 3, 'finish': 1}
+protocol:    xml  iterations=3/6  stop=agent_stop
+per-subgoal:
+  [PASS] code_valid               score=1.00  w=1.0  (first passed @step 1)
+        - ok execution    1.00  artifact 'output.png' present (354961 bytes)
+  [FAIL] flaw_fixed               score=0.40  w=1.0  (never passed)
+        - xx vlm_judge    0.40  REAL: The y-axis spans about -55 to 60, covering the -50 to 60 range described in summary.txt. However, the plotted points do not match table.csv per series: at Seed Funding, Advanced Semiconductors shows 25 instead of -22 and Biotech shows 28 instead of -25, and at Market Growth the value 12 is plotted as Artisan Coffee (teal) rather than Advanced Semiconductors.
+  [PASS] visual_quality           score=0.90  w=1.0  (never passed)
+        - ok vlm_judge    0.90  REAL: The title, axis labels, rotated x tick labels and the legend placed outside the plot area are all readable and unclipped, and there are no missing-glyph boxes. Some markers overlap at shared values (e.g., Supply Chain Setup at -30), but the data remains visible and fills the axes.
+progress:    [0.0, 0.3333, 0.3333, 0.3333]
+
+agent:      anthropic/claude-opus-5.5 via openrouter, 3 call(s)
+             in=14722 out=1725 (reasoning 317)
+             cost=n/a (no price on file)
+
+judge:      anthropic/claude-opus-5.5 via openrouter, 2 call(s)
+             in=13776 out=632 (reasoning 353)
+             cost=n/a (no price on file)
+
+tokens:      30855 total (28498 in, 2357 out) over 5 call(s)
+
+wrote: /home/tuo96248/projects/ChartNet/data/runs/openrouter-claude-opus-5.5-sample300/trackA/8769ff70__multi2__axis-truncation+swapped-series__llm/result.json

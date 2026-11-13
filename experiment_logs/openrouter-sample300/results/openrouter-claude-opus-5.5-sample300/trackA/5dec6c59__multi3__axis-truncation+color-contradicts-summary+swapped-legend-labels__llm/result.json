@@ -1,0 +1,540 @@
+{
+  "task_id": "5dec6c59__multi3__axis-truncation+color-contradicts-summary+swapped-legend-labels__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.8167,
+  "all_passed": false,
+  "subgoals_total": 3,
+  "subgoals_passed": 2,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 2,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (278179 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.95,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.95,
+          "detail": "REAL: The y-axis spans about 5.7\u20138.6, covering the 5.8\u20138.5 range in summary.txt. The legend maps pink\u2192Eastern Europe (Geo), yellow\u2192Southern Europe (Gre), green\u2192South America (Par), teal\u2192Southeast Asia (Vie) and blue\u2192Central America (Cos), consistent with table.csv and matching the plotted bubble colors."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": false,
+      "score": 0.5,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": false,
+          "score": 0.5,
+          "detail": "REAL: [score 0.55 contradicted a failing verdict; clamped to 0.50] Overall layout is clear, but at about (18, 7.4) the 'Vie' and 'Cos' annotation labels are drawn on top of each other and form an illegible smudge. The Cos and Vie markers at that spot also overlap. In addition, the 'Gre' label at x=32 runs into the right plot border."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 6,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 51.11,
+  "tool_counts": {
+    "execute_python": 5,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 5,
+    "usage": {
+      "input_tokens": 40829,
+      "output_tokens": 3536,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 1121
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463883-JxvgkdEUEL13NiK5rnhy",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 121,
+          "prompt_tokens": 1273,
+          "total_tokens": 1394,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.007512,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.007512,
+            "upstream_inference_prompt_cost": 0.005092,
+            "upstream_inference_completions_cost": 0.00242
+          }
+        }
+      },
+      {
+        "id": "gen-1794463886-hUVA5AQMnArDKVm8c3e0",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 491,
+          "prompt_tokens": 3727,
+          "total_tokens": 4218,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 242,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.024728,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.024728,
+            "upstream_inference_prompt_cost": 0.014908,
+            "upstream_inference_completions_cost": 0.00982
+          }
+        }
+      },
+      {
+        "id": "gen-1794463891-syo4IgRPwbDLBaTRKtu7",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 1447,
+          "prompt_tokens": 5058,
+          "total_tokens": 6505,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 613,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.049172,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.049172,
+            "upstream_inference_prompt_cost": 0.020232,
+            "upstream_inference_completions_cost": 0.02894
+          }
+        }
+      },
+      {
+        "id": "gen-1794463906-m0359qy90oXVsUfyAnuV",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 942,
+          "prompt_tokens": 12404,
+          "total_tokens": 13346,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 266,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.068456,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.068456,
+            "upstream_inference_prompt_cost": 0.049616,
+            "upstream_inference_completions_cost": 0.01884
+          }
+        }
+      },
+      {
+        "id": "gen-1794463917-wOHPvMNIDN0bjS2IYeHV",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 535,
+          "prompt_tokens": 18367,
+          "total_tokens": 18902,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.084168,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.084168,
+            "upstream_inference_prompt_cost": 0.073468,
+            "upstream_inference_completions_cost": 0.0107
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 5,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI haven't seen chart.py, table.csv or summary.txt yet. This turn I only read them so I can find the three flaws before changing anything.\n</reasoning>\n<code>\nfor f in ['chart.py','table.csv','summary.txt']:\n    print('=====',f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I haven't seen chart.py, table.csv or summary.txt yet. This turn I only read them so I can find the three flaws before changing anything.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe output of the last run was clipped, so I still haven't read summary.txt. Two flaws are already visible in chart.py:\n- **Axis cut:** `set_ylim(5.665, 8.4)` hides Georgia's 2023 value of 8.5.\n- **Legend labels:** the hand-written label list does not follow the data's hue order.\n\nThis turn I print the summary, which tells me which color is wrong, and check what handles seaborn actually creates for the legend.\n</reasoning>\n<code>\nprint(open('summary.txt').read())\nimport matplotlib; matplotlib.use('Agg')\nimport pandas as pd\nprint(pd.read_csv('table.csv').Region.unique())\n</code>\n<decision>continue</decision>",
+        "thinking": "I need to get the summary.txt contents, since the earlier output was cut off, so I'll print just the summary. Checking the plot, the y-axis limits look like they might clip the upper range, and the legend labels may not match the order the hues are drawn in.\n\nI still need to see the legend handles, since seaborn adds a title entry and size entries that would throw off a plain label list. Checking the summary output should settle the color question too.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The output of the last run was clipped, so I still haven't read summary.txt. Two flaws are already visible in chart.py:\n- **Axis cut:** `set_ylim(5.665, 8.4)` hides Georgia's 2023 value of 8.5.\n- **Legend labels:** the hand-written label list does not follow the data's hue order.\n\nThis turn I print the summary, which tells me which color is wrong, and check what handles seaborn actually creates for the legend.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe summary settles all three flaws:\n\n1. **Axis cut:** the y-axis should span 5.8 to 8.5, but `set_ylim(5.665, 8.4)` cuts off Georgia's 2023 point at 8.5. I'll widen the upper limit to 8.635, which mirrors the existing 0.135 margin below 5.8.\n2. **Colors:** the summary assigns pink to Eastern Europe, yellow to Southern Europe, green to South America, teal to Southeast Asia and blue to Central America. That is the husl sequence, which the script already sets with `sns.set_palette(\"husl\")`. The hard-coded palette overrides it and makes Eastern Europe blue. I'll remove the explicit palette so seaborn's default husl colors apply.\n3. **Swapped legend entries:** the hue order in the data is Eastern Europe, Southern Europe, South America, Southeast Asia, Central America. The legend list puts Central America and South America in each other's places, so I'll restore the data order.\n\nI'm unsure whether `plt.legend(labels)` attaches those labels to the region handles at all, so after rendering I'll print the legend's labels with the color of each handle.\n</reasoning>\n<code>\ns=open('chart.py').read()\ns=s.replace(\",\\n    palette=['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f']\",\"\")\ns=s.replace(\"['Eastern Europe', 'Southern Europe', 'Central America', 'South America', 'Southeast Asia']\",\"['Eastern Europe', 'Southern Europe', 'South America', 'Southeast Asia', 'Central America']\")\ns=s.replace(\"set_ylim(5.665, 8.4)\",\"set_ylim(5.665, 8.635)\")\nwith open('chart.py','w') as f: f.write(s)\nimport matplotlib.pyplot as plt\nplt.close('all')\nexec(s)\nax=plt.gca(); lg=ax.get_legend()\nprint(ax.get_ylim())\nfor h,t in zip(lg.legend_handles, lg.get_texts()):\n    c = h.get_facecolor() if hasattr(h,'get_facecolor') else None\n    try: c = h.get_markerfacecolor()\n    except Exception: pass\n    print(t.get_text(), c)\nprint([tuple(c) for c in ax.collections[0].get_facecolors()[::5]])\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm sorting out the color assignments for each region, and the palette hex codes don't line up with the labels I had in mind, which is causing a lot of tension in my mapping.\n\nI'm weighing whether the palette itself is the problem: the explicit hex values don't match the colors in my summary, so I'm considering dropping the explicit palette and using the husl palette, which should give the five colors I want. I'll also need to fix the legend order, since South America and Central America are swapped relative to the hue order, and check how seaborn's legend handles interact with plt.legend(labels).\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The summary settles all three flaws:\n\n1. **Axis cut:** the y-axis should span 5.8 to 8.5, but `set_ylim(5.665, 8.4)` cuts off Georgia's 2023 point at 8.5. I'll widen the upper limit to 8.635, which mirrors the existing 0.135 margin below 5.8.\n2. **Colors:** the summary assigns pink to Eastern Europe, yellow to Southern Europe, green to South America, teal to Southeast Asia and blue to Central America. That is the husl sequence, which the script already sets with `sns.set_palette(\"husl\")`. The hard-coded palette overrides it and makes Eastern Europe blue. I'll remove the explicit palette so seaborn's default husl colors apply.\n3. **Swapped legend entries:** the hue order in the data is Eastern Europe, Southern Europe, South America, Southeast Asia, Central America. The legend list puts Central America and South America in each other's places, so I'll restore the data order.\n\nI'm unsure whether `plt.legend(labels)` attaches those labels to the region handles at all, so after rendering I'll print the legend's labels with the color of each handle.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe axis fix and the colors are right:\n- The y-limits are now (5.665, 8.635), so the 8.5 Georgia point is visible.\n- The bubble colors read pink, yellow-olive, green, teal and blue in that region order, matching the summary.\n\nThe legend is still wrong. `plt.legend(labels)` attaches the labels to the wrong artists:\n- \"Eastern Europe\" is attached to the whole scatter collection.\n- \"Southern Europe\" is attached to an invisible title handle.\n- The remaining three labels are each one region off.\n\nSo I'll map labels to handles explicitly. I'll take seaborn's handles and labels, look up the handle for each region by name, and pass those pairs to `plt.legend`. The position arguments stay as they were. I'll then check that each legend entry's color matches its region's bubbles.\n</reasoning>\n<code>\ns=open('chart.py').read()\nold=\"plt.legend(['Eastern Europe', 'Southern Europe', 'South America', 'Southeast Asia', 'Central America'], bbox_to_anchor\"\nnew=(\"_h, _l = bubble_chart.get_legend_handles_labels()\\n_m = dict(zip(_l, _h))\\n\"\n     \"_regions = ['Eastern Europe', 'Southern Europe', 'South America', 'Southeast Asia', 'Central America']\\n\"\n     \"plt.legend([_m[r] for r in _regions], _regions, bbox_to_anchor\")\nassert old in s\ns=s.replace(old,new)\nwith open('chart.py','w') as f: f.write(s)\nplt.close('all')\nexec(s)\nax=plt.gca(); lg=ax.get_legend()\nprint(ax.get_ylim())\nfor h,t in zip(lg.legend_handles, lg.get_texts()):\n    print(t.get_text(), h.get_markerfacecolor() if hasattr(h,'get_markerfacecolor') else h.get_facecolor())\n</code>\n<decision>continue</decision>",
+        "thinking": "The legend is off because plt.legend(labels) pins the labels to the wrong handles, like the scatter collection and the title entry. I'll take the seaborn handles and labels, keep only the region entries, and rebuild the legend in the order I want.\n\nI'm swapping the legend call for one that pulls the handles and labels from the chart, maps them by name, and passes only the region entries in order. The size entries will drop out, though the original legend didn't show them either.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The axis fix and the colors are right:\n- The y-limits are now (5.665, 8.635), so the 8.5 Georgia point is visible.\n- The bubble colors read pink, yellow-olive, green, teal and blue in that region order, matching the summary.\n\nThe legend is still wrong. `plt.legend(labels)` attaches the labels to the wrong artists:\n- \"Eastern Europe\" is attached to the whole scatter collection.\n- \"Southern Europe\" is attached to an invisible title handle.\n- The remaining three labels are each one region off.\n\nSo I'll map labels to handles explicitly. I'll take seaborn's handles and labels, look up the handle for each region by name, and pass those pairs to `plt.legend`. The position arguments stay as they were. I'll then check that each legend entry's color matches its region's bubbles.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nAll three flaws are fixed in chart.py, and output.png has been regenerated from it.\n\n1. **Axis cut:** the y-limits were 5.665\u20138.4, which hid Georgia's 2023 point at 8.5. They are now 5.665\u20138.635, read back from `ax.get_ylim()`, so every point from 5.8 to 8.5 is visible.\n2. **Colors:** I removed the hard-coded palette that overrode the script's own `sns.set_palette(\"husl\")`. The bubble face colors, read from the figure, now match the summary: pink for Eastern Europe, yellow-olive for Southern Europe, green for South America, teal for Southeast Asia and blue for Central America.\n3. **Swapped legend entries:** the label list had Central America and South America in each other's places. In addition, `plt.legend(labels)` attached labels to the wrong artists, including the whole scatter and an invisible title handle. Each region's label is now paired with its own seaborn handle by name, and the legend keeps its original position. Each legend handle's color, read from the figure, matches its region's bubbles.\n\nNothing else was changed: title, axis labels, figure size, text labels and legend placement are as they were. In the rendered image the legend sits outside the axes and does not cover any data.\n\nOne minor point is left alone: the Vie and Cos labels overlap at (18, 7.4). The two countries share that data point and the original chart had the same overlap, so it was not one of the flaws to repair.\n</reasoning>\n<code>\nprint(open('chart.py').read()[-700:])\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "All three flaws are fixed in chart.py, and output.png has been regenerated from it.\n\n1. **Axis cut:** the y-limits were 5.665\u20138.4, which hid Georgia's 2023 point at 8.5. They are now 5.665\u20138.635, read back from `ax.get_ylim()`, so every point from 5.8 to 8.5 is visible.\n2. **Colors:** I removed the hard-coded palette that overrode the script's own `sns.set_palette(\"husl\")`. The bubble face colors, read from the figure, now match the summary: pink for Eastern Europe, yellow-olive for Southern Europe, green for South America, teal for Southeast Asia and blue for Central America.\n3. **Swapped legend entries:** the label list had Central America and South America in each other's places. In addition, `plt.legend(labels)` attached labels to the wrong artists, including the whole scatter and an invisible title handle. Each region's label is now paired with its own seaborn handle by name, and the legend keeps its original position. Each legend handle's color, read from the figure, matches its region's bubbles.\n\nNothing else was changed: title, axis labels, figure size, text labels and legend placement are as they were. In the rendered image the legend sits outside the axes and does not cover any data.\n\nOne minor point is left alone: the Vie and Cos labels overlap at (18, 7.4). The two countries share that data point and the original chart had the same overlap, so it was not one of the flaws to repair.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 12181,
+      "output_tokens": 551,
+      "reasoning_tokens": 274,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463925-MKp0H4QhG4u9lOzqx5BT",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 425,
+          "prompt_tokens": 6717,
+          "total_tokens": 7142,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 274,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.035368,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.035368,
+            "upstream_inference_prompt_cost": 0.026868,
+            "upstream_inference_completions_cost": 0.0085
+          }
+        }
+      },
+      {
+        "id": "gen-1794463931-aYJDe5hMAVO3MramTjlN",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 126,
+          "prompt_tokens": 5464,
+          "total_tokens": 5590,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.024376,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.024376,
+            "upstream_inference_prompt_cost": 0.021856,
+            "upstream_inference_completions_cost": 0.00252
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 5,
+      "input_tokens": 40829,
+      "output_tokens": 3536,
+      "total_tokens": 44365,
+      "reasoning_tokens": 1121,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 12181,
+      "output_tokens": 551,
+      "total_tokens": 12732,
+      "reasoning_tokens": 274,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 7,
+      "input_tokens": 53010,
+      "output_tokens": 4087,
+      "total_tokens": 57097,
+      "reasoning_tokens": 1395,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 0.7143,
+    "preservation": 1.0,
+    "recovery_binary": 0,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 0.7143,
+        "lenient": 0.6667
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].legend.labels",
+          "axes[0].series[scatter0].color",
+          "axes[0].series[scatter0].colors",
+          "axes[0].ylim",
+          "axes[0].yticklabels",
+          "axes[0].yticks"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[scatter0].color",
+            "axes[0].series[scatter0].colors",
+            "axes[0].ylim",
+            "axes[0].yticklabels",
+            "axes[0].yticks"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[scatter0].color",
+            "axes[0].series[scatter0].colors",
+            "axes[0].yticklabels",
+            "axes[0].yticks"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 25,
+          "submission": 25
+        },
+        "axis_rule_paths": [
+          "axes[0].ylim",
+          "axes[0].yticklabels",
+          "axes[0].yticks"
+        ],
+        "recovery_detail": {
+          "strict": {
+            "score": 0.7143,
+            "binary": 0,
+            "fixed": 5,
+            "injected": 7,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].legend.labels"
+            ]
+          },
+          "lenient": {
+            "score": 0.6667,
+            "binary": 0,
+            "fixed": 4,
+            "injected": 6,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].legend.labels"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 17,
+            "total": 17,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 17,
+            "total": 17,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

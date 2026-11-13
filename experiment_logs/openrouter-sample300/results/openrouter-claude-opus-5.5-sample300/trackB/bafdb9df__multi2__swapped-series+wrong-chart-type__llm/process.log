@@ -1,0 +1,27 @@
+task:        bafdb9df__multi2__swapped-series+wrong-chart-type__llm  (debug_repair)
+final_score: 0.783
+subgoals:    2/3 passed
+steps:       4/14  (horizon_hint=6)
+wall_time:   29.2s
+tools:       {'execute_python': 3, 'finish': 1}
+protocol:    xml  iterations=3/6  stop=agent_stop
+per-subgoal:
+  [PASS] code_valid               score=1.00  w=1.0  (first passed @step 1)
+        - ok execution    1.00  artifact 'output.png' present (56859 bytes)
+  [FAIL] flaw_fixed               score=0.40  w=1.0  (never passed)
+        - xx vlm_judge    0.40  REAL: summary.txt describes a line chart with a distinct colored line plus marker for each sector, but the image is a scatter plot of markers only, with no connecting lines, so criterion (1) fails. Criterion (2) holds: each series' markers match its own table.csv values, e.g. Eco Tourism 85→98 and Aquatic Farming 50→67.
+  [PASS] visual_quality           score=0.95  w=1.0  (never passed)
+        - ok vlm_judge    0.95  REAL: The title, axis labels and tick labels are all readable and unclipped. The legend sits outside the plot area on the right, so it covers no data, and the markers are distinct and spread across the axes. No overlapping text or missing-glyph boxes are visible.
+progress:    [0.0, 0.3333, 0.3333, 0.3333]
+
+agent:      anthropic/claude-opus-5.5 via openrouter, 3 call(s)
+             in=9557 out=1226 (reasoning 342)
+             cost=n/a (no price on file)
+
+judge:      anthropic/claude-opus-5.5 via openrouter, 2 call(s)
+             in=4230 out=416 (reasoning 175)
+             cost=n/a (no price on file)
+
+tokens:      15429 total (13787 in, 1642 out) over 5 call(s)
+
+wrote: /home/tuo96248/projects/ChartNet/data/runs/openrouter-claude-opus-5.5-sample300/trackB/bafdb9df__multi2__swapped-series+wrong-chart-type__llm/result.json

@@ -1,0 +1,31 @@
+{
+  "id": "5071243e__multi3__color-contradicts-summary+dropped-series+wrong-chart-type__llm",
+  "track": "A",
+  "clean": false,
+  "arity": "triple",
+  "n_flaws": 3,
+  "combination": "color-contradicts-summary+dropped-series+wrong-chart-type",
+  "flaws": [
+    {
+      "category": "wrong-chart-type",
+      "description": "Swapped sns.boxplot for sns.violinplot at its call site (used in the 2x2 grid loop), removing the boxplot-only `fliersize=4` keyword since violinplot does not accept it; width and linewidth kept as they remain valid."
+    },
+    {
+      "category": "dropped-series",
+      "description": "Removed 'Americas' from the region_order list used to build the Region categorical, so rows with Region='Americas' become NaN and are silently dropped from every violin/strip subplot even though the data and legend still reference it."
+    },
+    {
+      "category": "color-contradicts-summary",
+      "description": "Changed the stripplot marker colour from black to red, contradicting the summary's statement that individual data points are marked as black dots."
+    }
+  ],
+  "library": "seaborn",
+  "chart_type": "Box Plot",
+  "prompt_file": "prompts/c071c5660138996c19f36de826de54cef5c5d3e724594f9fc70ecbf96363d2ba.txt",
+  "modalities": [
+    "code",
+    "table",
+    "summary",
+    "chart"
+  ]
+}

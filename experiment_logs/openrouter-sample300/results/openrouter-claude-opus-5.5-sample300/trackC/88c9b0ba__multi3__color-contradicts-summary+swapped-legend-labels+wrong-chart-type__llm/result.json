@@ -1,0 +1,573 @@
+{
+  "task_id": "88c9b0ba__multi3__color-contradicts-summary+swapped-legend-labels+wrong-chart-type__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.7167,
+  "all_passed": false,
+  "subgoals_total": 3,
+  "subgoals_passed": 2,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 3,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (272013 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.9,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.9,
+          "detail": "REAL: The image is a funnel chart with six stages, matching the summary. The legend names 'Customer Journey' for the funnel segments and 'Revenue per User' for the yellow dotted line with circle markers, consistent with table.csv. Colors fit the description: multi-colored funnel segments and a dotted yellow revenue line. The line sits at x=0 rather than extending to the right as the summary claims, but that is a positioning issue, not a color one."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": false,
+      "score": 0.25,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": false,
+          "score": 0.25,
+          "detail": "REAL: The yellow revenue markers and dotted line run straight through the funnel's centered value labels (e.g., '85k', '71%', '48k', '9500'), so those labels are partly hidden. The '$' revenue annotations crowd against them, making the stage values hard to read."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 7,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 50.65,
+  "tool_counts": {
+    "execute_python": 6,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 6,
+    "usage": {
+      "input_tokens": 37100,
+      "output_tokens": 2592,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 626
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464007-yBo0O3nzucrA9KbV6cBv",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 144,
+          "prompt_tokens": 1186,
+          "total_tokens": 1330,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.007624,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.007624,
+            "upstream_inference_prompt_cost": 0.004744,
+            "upstream_inference_completions_cost": 0.00288
+          }
+        }
+      },
+      {
+        "id": "gen-1794464010-2FtSKJH4x4YOJBX5pJ9c",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 324,
+          "prompt_tokens": 3221,
+          "total_tokens": 3545,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 132,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.019364,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.019364,
+            "upstream_inference_prompt_cost": 0.012884,
+            "upstream_inference_completions_cost": 0.00648
+          }
+        }
+      },
+      {
+        "id": "gen-1794464014-G5gsbeRM8ndlFzzLTnO7",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 147,
+          "prompt_tokens": 3627,
+          "total_tokens": 3774,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 31,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.017448,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.017448,
+            "upstream_inference_prompt_cost": 0.014508,
+            "upstream_inference_completions_cost": 0.00294
+          }
+        }
+      },
+      {
+        "id": "gen-1794464017-yy6hritHL0X9nMPzCGtW",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 786,
+          "prompt_tokens": 4010,
+          "total_tokens": 4796,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 154,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.03176,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.03176,
+            "upstream_inference_prompt_cost": 0.01604,
+            "upstream_inference_completions_cost": 0.01572
+          }
+        }
+      },
+      {
+        "id": "gen-1794464026-iXeDyDXnEb2mr8v0C8R2",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 691,
+          "prompt_tokens": 9737,
+          "total_tokens": 10428,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 309,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.052768,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.052768,
+            "upstream_inference_prompt_cost": 0.038948,
+            "upstream_inference_completions_cost": 0.01382
+          }
+        }
+      },
+      {
+        "id": "gen-1794464039-bsgZKIJ1yR25dah8X7CX",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 500,
+          "prompt_tokens": 15319,
+          "total_tokens": 15819,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.071276,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.071276,
+            "upstream_inference_prompt_cost": 0.061276,
+            "upstream_inference_completions_cost": 0.01
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 6,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "continue",
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI haven't looked at anything yet, so I can't tell whether the chart is faithful. This turn I'll print chart.py, table.csv and summary.txt so I can compare them before deciding whether any edit is needed.\n</reasoning>\n<code>\nfor f in ['chart.py','table.csv','summary.txt']:\n    print('=====',f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I haven't looked at anything yet, so I can't tell whether the chart is faithful. This turn I'll print chart.py, table.csv and summary.txt so I can compare them before deciding whether any edit is needed.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nSeveral things in chart.py contradict summary.txt. The funnel is drawn as a plain go.Bar rather than a funnel. The two trace names are swapped: the summary says Customer Journey is the funnel and Revenue per User is the line. The line is red, but the summary says it is a dotted yellow line. Before editing anything I need the clipped end of the summary, which covers the x-axis, so I'll print that part now.\n</reasoning>\n<code>\ns=open('summary.txt').read(); print(s[2500:])\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm noticing the chart is drawn as a bar chart rather than a funnel, though the summary describes a funnel with value and percent labels. I also see the bar's name and the scatter line's color seem swapped with what they should be, and the x-axis range looks off for a centered funnel. Next I'll read the rest of the summary and look at the current image.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "Several things in chart.py contradict summary.txt. The funnel is drawn as a plain go.Bar rather than a funnel. The two trace names are swapped: the summary says Customer Journey is the funnel and Revenue per User is the line. The line is red, but the summary says it is a dotted yellow line. Before editing anything I need the clipped end of the summary, which covers the x-axis, so I'll print that part now.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nPrinting from character 2500 returned nothing, so the file is shorter than the \"4467 chars\" the clip note suggested. I'll print from 1800 on, plus the total length, to see the clipped tail.\n</reasoning>\n<code>\nprint(len(s)); print(s[1800:])\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm checking whether the byte count and character count differ here, and whether the summary string is under 2500 characters, so I can decide to print its tail from index 2000.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "Printing from character 2500 returned nothing, so the file is shorter than the \"4467 chars\" the clip note suggested. I'll print from 1800 on, plus the total length, to see the clipped tail.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe full summary confirms three faults in chart.py:\n1. **Wrong chart type.** The customer stages are drawn with go.Bar, but the summary describes a centered funnel. Each segment should show the count and its percent of the initial stage, and the x-axis should span about -60,000 to 60,000. Fix: switch to go.Funnel with textinfo \"value+percent initial\".\n2. **Swapped trace names.** The funnel should be named \"Customer Journey\" and the line \"Revenue per User\".\n3. **Wrong line colour.** The revenue line should be dotted yellow, not red.\n\nI'll leave everything else as is: title, layout, sizes, marker colours and data.\n</reasoning>\n<code>\nc=open('chart.py').read()\nc=c.replace(\"\"\"fig.add_trace(go.Bar(\n    name='Revenue per User',\"\"\",\"\"\"fig.add_trace(go.Funnel(\n    name='Customer Journey',\"\"\")\nc=c.replace(\"\"\"    marker=dict(color=['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3']),\n\"\"\",\"\"\"    marker=dict(color=['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3']),\n    textinfo=\"value+percent initial\",\n\"\"\")\nc=c.replace(\"\"\"    name='Customer Journey',\n    y=data['Stage'],\n    x=data['Revenue\"\"\",\"\"\"    name='Revenue per User',\n    y=data['Stage'],\n    x=data['Revenue\"\"\")\nc=c.replace(\"color='#FF0000', width=3\",\"color='#FFD700', width=3\")\nopen('chart.py','w').write(c)\nexec(c)\nprint([ (t.type,t.name) for t in fig.data], fig.data[1].line.color)\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm reconsidering the x-axis, since the description seems off. The original was probably a funnel chart with values and percentages shown, so I'll restore a go.Funnel named Customer Journey alongside a yellow scatter for Revenue per User, keeping the rest as is. The funnel's x range of -60000 to 60000 fits its centered shape, and I'll keep the hovertemplate.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The full summary confirms three faults in chart.py:\n1. **Wrong chart type.** The customer stages are drawn with go.Bar, but the summary describes a centered funnel. Each segment should show the count and its percent of the initial stage, and the x-axis should span about -60,000 to 60,000. Fix: switch to go.Funnel with textinfo \"value+percent initial\".\n2. **Swapped trace names.** The funnel should be named \"Customer Journey\" and the line \"Revenue per User\".\n3. **Wrong line colour.** The revenue line should be dotted yellow, not red.\n\nI'll leave everything else as is: title, layout, sizes, marker colours and data.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe funnel now renders with the right names, yellow line and value+percent labels. The x-axis runs -60k to 60k, matching the summary.\n\nOne remaining fault: the stage order is upside down. \"Awareness: Online Ads\" sits at the bottom, but the summary puts it at the top, the widest part of the funnel. The scatter trace shares the category y-axis, which flips the order, so I'll set yaxis autorange='reversed'.\n\nThere is also some overlap I'm leaving alone. The revenue markers and their labels sit near x\u22480 and partly cover the in-segment funnel labels. That follows from both metrics sharing one x-axis, which the summary describes, so moving them would change the chart beyond what I was asked to fix.\n</reasoning>\n<code>\nc=open('chart.py').read()\nc=c.replace(\"    plot_bgcolor='white'\\n)\",\"    plot_bgcolor='white',\\n    yaxis=dict(autorange='reversed')\\n)\")\nopen('chart.py','w').write(c)\nexec(c)\nprint(fig.layout.yaxis.autorange)\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm seeing that the funnel's order is reversed, with Awareness at the bottom when the summary has it on top. I suspect the scatter trace sharing the category axis is causing the flip, and I'm considering setting the y-axis to a reversed autorange, though that's a layout change I'd need to justify. I also notice the revenue line is flattened near zero because its values are tiny next to the counts, which is what's causing the overlapping labels.\n\nI'm weighing a reversed y-axis to fix the funnel order, though that would be a layout change I'd need to justify. The text overlap around the funnel labels seems inherent, since the funnel labels already sit inside and the scatter labels already use the middle-right position, so I'm leaning toward just reversing the axis and accepting the remaining overlap.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The funnel now renders with the right names, yellow line and value+percent labels. The x-axis runs -60k to 60k, matching the summary.\n\nOne remaining fault: the stage order is upside down. \"Awareness: Online Ads\" sits at the bottom, but the summary puts it at the top, the widest part of the funnel. The scatter trace shares the category y-axis, which flips the order, so I'll set yaxis autorange='reversed'.\n\nThere is also some overlap I'm leaving alone. The revenue markers and their labels sit near x\u22480 and partly cover the in-segment funnel labels. That follows from both metrics sharing one x-axis, which the summary describes, so moving them would change the chart beyond what I was asked to fix.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe original chart.py contradicted summary.txt in four ways, and I fixed each in chart.py:\n1. **Chart type:** the funnel was a plain go.Bar. It is now go.Funnel with textinfo \"value+percent initial\", so each segment shows its count and percent of the initial stage.\n2. **Trace names:** these were swapped. The funnel is now \"Customer Journey\" and the line is \"Revenue per User\".\n3. **Line colour:** the revenue line was red. It is now dotted yellow (#FFD700).\n4. **Stage order:** the stages ran bottom-up. I set yaxis autorange='reversed' so Awareness sits at the top, widest, and Loyalty at the bottom, narrowest.\n\nChecked on the figure object:\n- The traces are ('funnel', 'Customer Journey') and ('scatter', 'Revenue per User').\n- The line colour is #FFD700 and yaxis autorange is 'reversed'.\n\nIn the rendered image the x-axis runs -60k to 60k, as the summary says. The data values, title, layout and segment colours are unchanged.\n\nOne readability issue remains unfixed: the revenue markers and their labels sit near x\u22480 and partly overlap the funnel's in-segment labels. This comes from both metrics sharing one x-axis, as the summary describes, so I left it rather than restyle the chart.\n</reasoning>\n<code>\nprint(open('chart.py').read()[-300:])\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The original chart.py contradicted summary.txt in four ways, and I fixed each in chart.py:\n1. **Chart type:** the funnel was a plain go.Bar. It is now go.Funnel with textinfo \"value+percent initial\", so each segment shows its count and percent of the initial stage.\n2. **Trace names:** these were swapped. The funnel is now \"Customer Journey\" and the line is \"Revenue per User\".\n3. **Line colour:** the revenue line was red. It is now dotted yellow (#FFD700).\n4. **Stage order:** the stages ran bottom-up. I set yaxis autorange='reversed' so Awareness sits at the top, widest, and Loyalty at the bottom, narrowest.\n\nChecked on the figure object:\n- The traces are ('funnel', 'Customer Journey') and ('scatter', 'Revenue per User').\n- The line colour is #FFD700 and yaxis autorange is 'reversed'.\n\nIn the rendered image the x-axis runs -60k to 60k, as the summary says. The data values, title, layout and segment colours are unchanged.\n\nOne readability issue remains unfixed: the revenue markers and their labels sit near x\u22480 and partly overlap the funnel's in-segment labels. This comes from both metrics sharing one x-axis, as the summary describes, so I left it rather than restyle the chart.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 11866,
+      "output_tokens": 491,
+      "reasoning_tokens": 214,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464047-dJYQxKVaWbjqa8qMJtOt",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 381,
+          "prompt_tokens": 6402,
+          "total_tokens": 6783,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 214,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.033228,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.033228,
+            "upstream_inference_prompt_cost": 0.025608,
+            "upstream_inference_completions_cost": 0.00762
+          }
+        }
+      },
+      {
+        "id": "gen-1794464054-35VKPkcFDhjTXKWUxWIw",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 110,
+          "prompt_tokens": 5464,
+          "total_tokens": 5574,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.024056,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.024056,
+            "upstream_inference_prompt_cost": 0.021856,
+            "upstream_inference_completions_cost": 0.0022
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 6,
+      "input_tokens": 37100,
+      "output_tokens": 2592,
+      "total_tokens": 39692,
+      "reasoning_tokens": 626,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 11866,
+      "output_tokens": 491,
+      "total_tokens": 12357,
+      "reasoning_tokens": 214,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 8,
+      "input_tokens": 48966,
+      "output_tokens": 3083,
+      "total_tokens": 52049,
+      "reasoning_tokens": 840,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 0.8571,
+    "preservation": 1.0,
+    "recovery_binary": 0,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 0.8571,
+        "lenient": 0.8571
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.labels",
+          "axes[0].series[Customer Journey].color",
+          "axes[0].series[Customer Journey].kind",
+          "axes[0].series[Customer Journey].values",
+          "axes[0].series[Revenue per User].color",
+          "axes[0].series[Revenue per User].kind",
+          "axes[0].series[Revenue per User].values"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.labels",
+            "axes[0].series[Customer Journey].color",
+            "axes[0].series[Customer Journey].kind",
+            "axes[0].series[Customer Journey].values",
+            "axes[0].series[Revenue per User].color",
+            "axes[0].series[Revenue per User].kind",
+            "axes[0].series[Revenue per User].values"
+          ],
+          "lenient": [
+            "axes[0].legend.labels",
+            "axes[0].series[Customer Journey].color",
+            "axes[0].series[Customer Journey].kind",
+            "axes[0].series[Customer Journey].values",
+            "axes[0].series[Revenue per User].color",
+            "axes[0].series[Revenue per User].kind",
+            "axes[0].series[Revenue per User].values"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 12,
+          "submission": 12
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 0.8571,
+            "binary": 0,
+            "fixed": 6,
+            "injected": 7,
+            "missed": [
+              "axes[0].series[Revenue per User].color"
+            ]
+          },
+          "lenient": {
+            "score": 0.8571,
+            "binary": 0,
+            "fixed": 6,
+            "injected": 7,
+            "missed": [
+              "axes[0].series[Revenue per User].color"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 2,
+            "total": 2,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 2,
+            "total": 2,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+id: 305c6ba0__reference
+family: debug_repair
+instruction: 'chart.py builds a chart from the data in table.csv and saves it as output.png;
+
+  chart_current.png is how it looks right now. The chart may be faithful to
+
+  table.csv and summary.txt, or one or more things about it may contradict them.
+
+  Your first job is to decide which.
+
+
+  If the chart is faithful, do not edit chart.py: run it once so that output.png
+
+  exists and call finish. If something is wrong, fix chart.py, change only what is
+
+  actually wrong, run it so that output.png shows a faithful chart, and call
+
+  finish.
+
+  '
+horizon_hint: 6
+step_budget: 14
+max_turns: 6
+step_timeout_s: 90
+wall_time_s: 1800
+workspace_files:
+- chart.py
+- table.csv
+- summary.txt
+- chart_current.png
+subgoals:
+- id: code_valid
+  desc: The script runs and writes output.png
+  weight: 1.0
+  verifiers:
+  - type: execution
+    params:
+      produces: output.png
+- id: flaw_fixed
+  desc: The contradiction with the data is gone
+  weight: 1.0
+  verifiers:
+  - type: vlm_judge
+    params:
+      candidate: output.png
+      rubric: 'The chart is unchanged and still faithful to table.csv and summary.txt:
+        nothing that was already correct has been altered.'
+- id: visual_quality
+  desc: The chart is legible and well formed
+  weight: 1.0
+  verifiers:
+  - type: vlm_judge
+    params:
+      candidate: output.png
+      rubric: 'Judge only the legibility and presentation of this chart, not whether
+        its numbers or labels are factually right. It passes if a reader can take
+        it in without effort: title, axis labels, tick labels and legend are all readable
+        and none are clipped by the figure edge, overlapping each other, or covering
+        the plotted data; text is large enough to read; the plotted data is visible
+        rather than obscured or squeezed into a corner; nothing is drawn as a missing-glyph
+        box. It fails if any of those is violated, however correct the content is.'

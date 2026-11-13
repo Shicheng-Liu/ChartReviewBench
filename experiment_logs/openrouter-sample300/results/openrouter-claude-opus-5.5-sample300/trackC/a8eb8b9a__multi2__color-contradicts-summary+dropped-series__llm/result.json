@@ -1,0 +1,712 @@
+{
+  "task_id": "a8eb8b9a__multi2__color-contradicts-summary+dropped-series__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.9433,
+  "all_passed": true,
+  "subgoals_total": 3,
+  "subgoals_passed": 3,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 1,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (64254 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.95,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.95,
+          "detail": "REAL: All four series (Nigeria Exports, Nigeria Imports, Angola Exports, Angola Imports) are plotted across Jan\u2013Dec and listed in the legend. Their colors are blue, orange, green and red respectively, which matches the mapping in summary.txt. The overlapping dashed stems blend colors somewhat, but the markers and the legend clearly match."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.88,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.88,
+          "detail": "REAL: The title, axis labels, month ticks and the legend on the right are all readable, unclipped and kept clear of the data, and the markers are plainly visible. The overlapping dashed stems from all four series share one x position per month, which creates some visual clutter where the colors overlap, but this does not obscure the markers."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 4,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 27.54,
+  "tool_counts": {
+    "execute_python": 3,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 3,
+    "usage": {
+      "input_tokens": 10153,
+      "output_tokens": 1240,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 138
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464134-8oOi3qfb1sJqmsyFzUI8",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 98,
+          "prompt_tokens": 1186,
+          "total_tokens": 1284,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.006704,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.006704,
+            "upstream_inference_prompt_cost": 0.004744,
+            "upstream_inference_completions_cost": 0.00196
+          }
+        }
+      },
+      {
+        "id": "gen-1794464136-Z6ZNcQaVUgcR2YhnlYoJ",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 841,
+          "prompt_tokens": 3434,
+          "total_tokens": 4275,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 138,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.030556,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.030556,
+            "upstream_inference_prompt_cost": 0.013736,
+            "upstream_inference_completions_cost": 0.01682
+          }
+        }
+      },
+      {
+        "id": "gen-1794464145-ScfOyZc4mnQAdYQyxezB",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 301,
+          "prompt_tokens": 5533,
+          "total_tokens": 5834,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.028152,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.028152,
+            "upstream_inference_prompt_cost": 0.022132,
+            "upstream_inference_completions_cost": 0.00602
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 3,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nFirst inspect the files: chart.py, table.csv, summary.txt.\n</reasoning>\n<code>\nfor f in ['chart.py','table.csv','summary.txt']:\n    print('=====',f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "First inspect the files: chart.py, table.csv, summary.txt.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe data values in chart.py match table.csv. Two things contradict summary.txt:\n1. The summary says Nigeria's exports are blue, but the chart draws them in red (#e31a1c). That clashes with Angola's imports, which should be red.\n2. The Angola Imports marker trace is missing entirely. Only its stems are drawn, and it has no legend entry.\n\nFix: make the Nigeria Exports markers and stems blue (#1f78b4, which fits the Paired palette the other colours come from). Add an Angola Imports marker trace in red, matching its existing red stems. I will also print the rest of the summary to check for any other claims, then verify the trace names and colours on the figure object.\n</reasoning>\n<code>\ns=open('summary.txt').read(); print(s[1200:])\nsrc=open('chart.py').read()\nsrc=src.replace(\"\"\"    name='Nigeria Exports',\n    marker=dict(color='#e31a1c', size=10),\"\"\",\"\"\"    name='Nigeria Exports',\n    marker=dict(color='#1f78b4', size=10),\"\"\")\nsrc=src.replace(\"\"\"        y=[0, trade_data[\"Nigeria Exports\"][i]],\n        mode='lines',\n        line=dict(color='#e31a1c',\"\"\",\"\"\"        y=[0, trade_data[\"Nigeria Exports\"][i]],\n        mode='lines',\n        line=dict(color='#1f78b4',\"\"\")\nsrc=src.replace(\"\"\"for i, month in enumerate\"\"\",\"\"\"fig.add_trace(go.Scatter(\n    x=trade_data[\"Month\"],\n    y=trade_data[\"Angola Imports\"],\n    mode='markers',\n    name='Angola Imports',\n    marker=dict(color='#e31a1c', size=10),\n    line=dict(width=0)\n))\n\nfor i, month in enumerate\"\"\",1)\nopen('chart.py','w').write(src)\nns={}; exec(src,ns)\nfor t in ns['fig'].data[:4]: print(t.name, t.marker.color, list(t.y)[:3])\nprint(ns['fig'].data[4].line.color)\n</code>\n<decision>continue</decision>",
+        "thinking": "I've spotted two problems in the chart: the Nigeria exports stems are red when they should be blue, and the Angola imports marker trace is missing. I'll switch the exports to a blue like '#1f78b4' and add a red '#e31a1c' trace for Angola imports, then check the rest of the summary before making both fixes together.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The data values in chart.py match table.csv. Two things contradict summary.txt:\n1. The summary says Nigeria's exports are blue, but the chart draws them in red (#e31a1c). That clashes with Angola's imports, which should be red.\n2. The Angola Imports marker trace is missing entirely. Only its stems are drawn, and it has no legend entry.\n\nFix: make the Nigeria Exports markers and stems blue (#1f78b4, which fits the Paired palette the other colours come from). Add an Angola Imports marker trace in red, matching its existing red stems. I will also print the rest of the summary to check for any other claims, then verify the trace names and colours on the figure object.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe chart now matches table.csv and summary.txt. I made two changes:\n1. **Nigeria Exports colour:** the markers and stems were red and are now blue (#1f78b4), as the summary states.\n2. **Angola Imports markers:** this trace was missing; I added it in red (#e31a1c) with a legend entry, matching its existing red stems.\n\nVerified on the figure object:\n- The first four traces are named Nigeria Exports, Nigeria Imports, Angola Exports and Angola Imports.\n- Their colours are blue, orange, green and red, and their y-values match the table.\n- The Nigeria Exports stems are blue.\n\nIn the rendered image, the legend shows all four categories and does not cover any data. Nothing else (title, axes, size, template) was changed. output.png has been written.\n</reasoning>\n<code>\nprint('done')\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The chart now matches table.csv and summary.txt. I made two changes:\n1. **Nigeria Exports colour:** the markers and stems were red and are now blue (#1f78b4), as the summary states.\n2. **Angola Imports markers:** this trace was missing; I added it in red (#e31a1c) with a legend entry, matching its existing red stems.\n\nVerified on the figure object:\n- The first four traces are named Nigeria Exports, Nigeria Imports, Angola Exports and Angola Imports.\n- Their colours are blue, orange, green and red, and their y-values match the table.\n- The Nigeria Exports stems are blue.\n\nIn the rendered image, the legend shows all four categories and does not cover any data. Nothing else (title, axes, size, template) was changed. output.png has been written.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 3820,
+      "output_tokens": 263,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464156-BAm8S5m4cv1fyCzW4hwb",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 143,
+          "prompt_tokens": 2268,
+          "total_tokens": 2411,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.011932,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.011932,
+            "upstream_inference_prompt_cost": 0.009072,
+            "upstream_inference_completions_cost": 0.00286
+          }
+        }
+      },
+      {
+        "id": "gen-1794464158-EbeytxpZyFerdE6bQOFM",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 120,
+          "prompt_tokens": 1552,
+          "total_tokens": 1672,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.008608,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.008608,
+            "upstream_inference_prompt_cost": 0.006208,
+            "upstream_inference_completions_cost": 0.0024
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 3,
+      "input_tokens": 10153,
+      "output_tokens": 1240,
+      "total_tokens": 11393,
+      "reasoning_tokens": 138,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 3820,
+      "output_tokens": 263,
+      "total_tokens": 4083,
+      "reasoning_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 5,
+      "input_tokens": 13973,
+      "output_tokens": 1503,
+      "total_tokens": 15476,
+      "reasoning_tokens": 138,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 1.0,
+    "preservation": 1.0,
+    "recovery_binary": 1,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "recovery_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.labels",
+          "axes[0].series[Angola Imports].color",
+          "axes[0].series[Angola Imports].kind",
+          "axes[0].series[Angola Imports].values",
+          "axes[0].series[Nigeria Exports].color",
+          "axes[0].series[line10].color",
+          "axes[0].series[line10].values",
+          "axes[0].series[line11].values",
+          "axes[0].series[line12].color",
+          "axes[0].series[line12].values",
+          "axes[0].series[line13].color",
+          "axes[0].series[line13].values",
+          "axes[0].series[line14].color",
+          "axes[0].series[line14].values",
+          "axes[0].series[line15].values",
+          "axes[0].series[line16].color",
+          "axes[0].series[line16].values",
+          "axes[0].series[line17].color",
+          "axes[0].series[line17].values",
+          "axes[0].series[line18].color",
+          "axes[0].series[line18].values",
+          "axes[0].series[line19].values",
+          "axes[0].series[line20].color",
+          "axes[0].series[line20].values",
+          "axes[0].series[line21].color",
+          "axes[0].series[line21].values",
+          "axes[0].series[line22].color",
+          "axes[0].series[line22].values",
+          "axes[0].series[line23].values",
+          "axes[0].series[line24].color",
+          "axes[0].series[line24].values",
+          "axes[0].series[line25].color",
+          "axes[0].series[line25].values",
+          "axes[0].series[line26].color",
+          "axes[0].series[line26].values",
+          "axes[0].series[line27].values",
+          "axes[0].series[line28].color",
+          "axes[0].series[line28].values",
+          "axes[0].series[line29].color",
+          "axes[0].series[line29].values",
+          "axes[0].series[line30].color",
+          "axes[0].series[line30].values",
+          "axes[0].series[line31].values",
+          "axes[0].series[line32].color",
+          "axes[0].series[line32].values",
+          "axes[0].series[line33].color",
+          "axes[0].series[line33].values",
+          "axes[0].series[line34].color",
+          "axes[0].series[line34].values",
+          "axes[0].series[line35].values",
+          "axes[0].series[line36].color",
+          "axes[0].series[line36].values",
+          "axes[0].series[line37].color",
+          "axes[0].series[line37].values",
+          "axes[0].series[line38].color",
+          "axes[0].series[line38].values",
+          "axes[0].series[line39].values",
+          "axes[0].series[line3].color",
+          "axes[0].series[line3].kind",
+          "axes[0].series[line3].values",
+          "axes[0].series[line40].color",
+          "axes[0].series[line40].values",
+          "axes[0].series[line41].color",
+          "axes[0].series[line41].values",
+          "axes[0].series[line42].color",
+          "axes[0].series[line42].values",
+          "axes[0].series[line43].values",
+          "axes[0].series[line44].color",
+          "axes[0].series[line44].values",
+          "axes[0].series[line45].color",
+          "axes[0].series[line45].values",
+          "axes[0].series[line46].color",
+          "axes[0].series[line46].values",
+          "axes[0].series[line47].values",
+          "axes[0].series[line48].color",
+          "axes[0].series[line48].values",
+          "axes[0].series[line49].color",
+          "axes[0].series[line49].values",
+          "axes[0].series[line4].color",
+          "axes[0].series[line4].values",
+          "axes[0].series[line50].color",
+          "axes[0].series[line50].values",
+          "axes[0].series[line51].color",
+          "axes[0].series[line51].kind",
+          "axes[0].series[line51].values",
+          "axes[0].series[line5].color",
+          "axes[0].series[line5].values",
+          "axes[0].series[line6].color",
+          "axes[0].series[line6].values",
+          "axes[0].series[line7].values",
+          "axes[0].series[line8].color",
+          "axes[0].series[line8].values",
+          "axes[0].series[line9].color",
+          "axes[0].series[line9].values"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.labels",
+            "axes[0].series[Angola Imports].color",
+            "axes[0].series[Angola Imports].kind",
+            "axes[0].series[Angola Imports].values",
+            "axes[0].series[Nigeria Exports].color",
+            "axes[0].series[line10].color",
+            "axes[0].series[line10].values",
+            "axes[0].series[line11].values",
+            "axes[0].series[line12].color",
+            "axes[0].series[line12].values",
+            "axes[0].series[line13].color",
+            "axes[0].series[line13].values",
+            "axes[0].series[line14].color",
+            "axes[0].series[line14].values",
+            "axes[0].series[line15].values",
+            "axes[0].series[line16].color",
+            "axes[0].series[line16].values",
+            "axes[0].series[line17].color",
+            "axes[0].series[line17].values",
+            "axes[0].series[line18].color",
+            "axes[0].series[line18].values",
+            "axes[0].series[line19].values",
+            "axes[0].series[line20].color",
+            "axes[0].series[line20].values",
+            "axes[0].series[line21].color",
+            "axes[0].series[line21].values",
+            "axes[0].series[line22].color",
+            "axes[0].series[line22].values",
+            "axes[0].series[line23].values",
+            "axes[0].series[line24].color",
+            "axes[0].series[line24].values",
+            "axes[0].series[line25].color",
+            "axes[0].series[line25].values",
+            "axes[0].series[line26].color",
+            "axes[0].series[line26].values",
+            "axes[0].series[line27].values",
+            "axes[0].series[line28].color",
+            "axes[0].series[line28].values",
+            "axes[0].series[line29].color",
+            "axes[0].series[line29].values",
+            "axes[0].series[line30].color",
+            "axes[0].series[line30].values",
+            "axes[0].series[line31].values",
+            "axes[0].series[line32].color",
+            "axes[0].series[line32].values",
+            "axes[0].series[line33].color",
+            "axes[0].series[line33].values",
+            "axes[0].series[line34].color",
+            "axes[0].series[line34].values",
+            "axes[0].series[line35].values",
+            "axes[0].series[line36].color",
+            "axes[0].series[line36].values",
+            "axes[0].series[line37].color",
+            "axes[0].series[line37].values",
+            "axes[0].series[line38].color",
+            "axes[0].series[line38].values",
+            "axes[0].series[line39].values",
+            "axes[0].series[line3].color",
+            "axes[0].series[line3].kind",
+            "axes[0].series[line3].values",
+            "axes[0].series[line40].color",
+            "axes[0].series[line40].values",
+            "axes[0].series[line41].color",
+            "axes[0].series[line41].values",
+            "axes[0].series[line42].color",
+            "axes[0].series[line42].values",
+            "axes[0].series[line43].values",
+            "axes[0].series[line44].color",
+            "axes[0].series[line44].values",
+            "axes[0].series[line45].color",
+            "axes[0].series[line45].values",
+            "axes[0].series[line46].color",
+            "axes[0].series[line46].values",
+            "axes[0].series[line47].values",
+            "axes[0].series[line48].color",
+            "axes[0].series[line48].values",
+            "axes[0].series[line49].color",
+            "axes[0].series[line49].values",
+            "axes[0].series[line4].color",
+            "axes[0].series[line4].values",
+            "axes[0].series[line50].color",
+            "axes[0].series[line50].values",
+            "axes[0].series[line51].color",
+            "axes[0].series[line51].kind",
+            "axes[0].series[line51].values",
+            "axes[0].series[line5].color",
+            "axes[0].series[line5].values",
+            "axes[0].series[line6].color",
+            "axes[0].series[line6].values",
+            "axes[0].series[line7].values",
+            "axes[0].series[line8].color",
+            "axes[0].series[line8].values",
+            "axes[0].series[line9].color",
+            "axes[0].series[line9].values"
+          ],
+          "lenient": [
+            "axes[0].legend.labels",
+            "axes[0].series[Angola Imports].color",
+            "axes[0].series[Angola Imports].kind",
+            "axes[0].series[Angola Imports].values",
+            "axes[0].series[Nigeria Exports].color",
+            "axes[0].series[line10].color",
+            "axes[0].series[line10].values",
+            "axes[0].series[line11].values",
+            "axes[0].series[line12].color",
+            "axes[0].series[line12].values",
+            "axes[0].series[line13].color",
+            "axes[0].series[line13].values",
+            "axes[0].series[line14].color",
+            "axes[0].series[line14].values",
+            "axes[0].series[line15].values",
+            "axes[0].series[line16].color",
+            "axes[0].series[line16].values",
+            "axes[0].series[line17].color",
+            "axes[0].series[line17].values",
+            "axes[0].series[line18].color",
+            "axes[0].series[line18].values",
+            "axes[0].series[line19].values",
+            "axes[0].series[line20].color",
+            "axes[0].series[line20].values",
+            "axes[0].series[line21].color",
+            "axes[0].series[line21].values",
+            "axes[0].series[line22].color",
+            "axes[0].series[line22].values",
+            "axes[0].series[line23].values",
+            "axes[0].series[line24].color",
+            "axes[0].series[line24].values",
+            "axes[0].series[line25].color",
+            "axes[0].series[line25].values",
+            "axes[0].series[line26].color",
+            "axes[0].series[line26].values",
+            "axes[0].series[line27].values",
+            "axes[0].series[line28].color",
+            "axes[0].series[line28].values",
+            "axes[0].series[line29].color",
+            "axes[0].series[line29].values",
+            "axes[0].series[line30].color",
+            "axes[0].series[line30].values",
+            "axes[0].series[line31].values",
+            "axes[0].series[line32].color",
+            "axes[0].series[line32].values",
+            "axes[0].series[line33].color",
+            "axes[0].series[line33].values",
+            "axes[0].series[line34].color",
+            "axes[0].series[line34].values",
+            "axes[0].series[line35].values",
+            "axes[0].series[line36].color",
+            "axes[0].series[line36].values",
+            "axes[0].series[line37].color",
+            "axes[0].series[line37].values",
+            "axes[0].series[line38].color",
+            "axes[0].series[line38].values",
+            "axes[0].series[line39].values",
+            "axes[0].series[line3].color",
+            "axes[0].series[line3].kind",
+            "axes[0].series[line3].values",
+            "axes[0].series[line40].color",
+            "axes[0].series[line40].values",
+            "axes[0].series[line41].color",
+            "axes[0].series[line41].values",
+            "axes[0].series[line42].color",
+            "axes[0].series[line42].values",
+            "axes[0].series[line43].values",
+            "axes[0].series[line44].color",
+            "axes[0].series[line44].values",
+            "axes[0].series[line45].color",
+            "axes[0].series[line45].values",
+            "axes[0].series[line46].color",
+            "axes[0].series[line46].values",
+            "axes[0].series[line47].values",
+            "axes[0].series[line48].color",
+            "axes[0].series[line48].values",
+            "axes[0].series[line49].color",
+            "axes[0].series[line49].values",
+            "axes[0].series[line4].color",
+            "axes[0].series[line4].values",
+            "axes[0].series[line50].color",
+            "axes[0].series[line50].values",
+            "axes[0].series[line51].color",
+            "axes[0].series[line51].kind",
+            "axes[0].series[line51].values",
+            "axes[0].series[line5].color",
+            "axes[0].series[line5].values",
+            "axes[0].series[line6].color",
+            "axes[0].series[line6].values",
+            "axes[0].series[line7].values",
+            "axes[0].series[line8].color",
+            "axes[0].series[line8].values",
+            "axes[0].series[line9].color",
+            "axes[0].series[line9].values"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 144,
+          "submission": 144
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 94,
+            "injected": 94,
+            "missed": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 94,
+            "injected": 94,
+            "missed": []
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 71,
+            "total": 71,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 71,
+            "total": 71,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

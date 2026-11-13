@@ -1,0 +1,718 @@
+{
+  "task_id": "44c6e0ce__multi2__swapped-series+wrong-chart-type__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.8333,
+  "all_passed": false,
+  "subgoals_total": 3,
+  "subgoals_passed": 2,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 3,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (226026 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": false,
+      "score": 0.5,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": false,
+          "score": 0.5,
+          "detail": "REAL: [score 0.65 contradicted a failing verdict; clamped to 0.50] The chart uses the described KDE contours with separate public/private panels and two budget-category series. However, several visible density centers do not reflect the table: Portugal\u2019s Faculty Salaries contours concentrate near 70% rather than the listed 72\u201381%, and private South Korea\u2019s Campus Maintenance contours center near 30% rather than 36\u201340%."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 1.0,
+          "detail": "REAL: The title, subplot headings, axis labels, tick labels, and legend are readable and unclipped, with no text overlapping the plotted data. Both panels have ample plotting space, and the contour lines remain visible against the background with no missing-glyph boxes."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 6,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 53.78,
+  "tool_counts": {
+    "execute_python": 5,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.0,
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "openai/gpt-6.1-sol",
+    "calls": 5,
+    "usage": {
+      "input_tokens": 17811,
+      "output_tokens": 1363,
+      "reasoning_tokens": 311,
+      "cache_write_input_tokens": 6252,
+      "cache_read_input_tokens": 10687
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794466524-wrnmFn6PskmkUZcw8NDf",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 267,
+          "prompt_tokens": 860,
+          "total_tokens": 1127,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 66,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00439,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00439,
+            "upstream_inference_prompt_cost": 0.00172,
+            "upstream_inference_completions_cost": 0.00267
+          }
+        }
+      },
+      {
+        "id": "gen-1794466531-TeJw3dIPr8IyWkzJlBfo",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 105,
+          "prompt_tokens": 2833,
+          "total_tokens": 2938,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 10,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 2830,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.008131,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.008131,
+            "upstream_inference_prompt_cost": 0.007081,
+            "upstream_inference_completions_cost": 0.00105
+          }
+        }
+      },
+      {
+        "id": "gen-1794466534-vWbbd6XSBFzHQKHBYW3e",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 141,
+          "prompt_tokens": 3485,
+          "total_tokens": 3626,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 27,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 652,
+            "cached_tokens": 2830,
+            "video_tokens": 0
+          },
+          "cost": 0.003329,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.003329,
+            "upstream_inference_prompt_cost": 0.001919,
+            "upstream_inference_completions_cost": 0.00141
+          }
+        }
+      },
+      {
+        "id": "gen-1794466538-tZSxlcVGdRrVNwgq5tqq",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 504,
+          "prompt_tokens": 4378,
+          "total_tokens": 4882,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 160,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 893,
+            "cached_tokens": 3482,
+            "video_tokens": 0
+          },
+          "cost": 0.0076267,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0076267,
+            "upstream_inference_prompt_cost": 0.0025867,
+            "upstream_inference_completions_cost": 0.00504
+          }
+        }
+      },
+      {
+        "id": "gen-1794466550-b81TYj2yYSxhFHEFAshZ",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 346,
+          "prompt_tokens": 6255,
+          "total_tokens": 6601,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 48,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1877,
+            "cached_tokens": 4375,
+            "video_tokens": 0
+          },
+          "cost": 0.008596,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.008596,
+            "upstream_inference_prompt_cost": 0.005136,
+            "upstream_inference_completions_cost": 0.00346
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 5,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [
+      "multiple <reasoning> blocks; used the first",
+      "multiple <code> blocks; used the first",
+      "multiple <decision> blocks; used the first"
+    ],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI\u2019ll inspect the plotting code, data, and summary to identify the swapped series and the incorrect chart type, then change only those two flaws.\n</reasoning>\n<code>\nfrom pathlib import Path\nprint(\"CODE\\n\", Path(\"chart.py\").read_text())\nprint(\"SUMMARY\\n\", Path(\"summary.txt\").read_text())\nprint(\"DATA\\n\", Path(\"table.csv\").read_text())\n</code>\n<decision>continue</decision>\n\n<reasoning>\nI\u2019ll inspect the plotting code, data, and summary to identify the swapped series and the incorrect chart type, then change only those two flaws.\n</reasoning>\n<code>\nfrom pathlib import Path\nprint(\"CODE\\n\", Path(\"chart.py\").read_text())\nprint(\"SUMMARY\\n\", Path(\"summary.txt\").read_text())\nprint(\"DATA\\n\", Path(\"table.csv\").read_text())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I\u2019ll inspect the plotting code, data, and summary to identify the swapped series and the incorrect chart type, then change only those two flaws.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": [
+          "multiple <reasoning> blocks; used the first",
+          "multiple <code> blocks; used the first",
+          "multiple <decision> blocks; used the first"
+        ]
+      },
+      {
+        "text": "<reasoning>\nThe code currently creates a scatter plot, whereas the summary specifies a KDE contour plot. I\u2019ll inspect the full summary and compare the category values with the CSV to locate the swapped series before editing.\n</reasoning>\n<code>\nprint(Path(\"summary.txt\").read_text())\ntable = pd.read_csv(\"table.csv\")\nprint(table.shape)\nprint(table.to_string(index=False))\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The code currently creates a scatter plot, whereas the summary specifies a KDE contour plot. I\u2019ll inspect the full summary and compare the category values with the CSV to locate the swapped series before editing.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe summary confirms that Faculty Salaries should have the higher Dominican Republic/Haiti values, but the code assigns those values to Campus Maintenance. I\u2019ll verify the category assignments against the CSV. The previous inspection failed only because pandas had not been imported into the inspection session.\n</reasoning>\n<code>\nimport pandas as pd\ntable = pd.read_csv(\"table.csv\")\nprint(table.to_string(index=False))\nfrom PIL import Image\ndisplay(Image.open(\"chart_current.png\"))\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The summary confirms that Faculty Salaries should have the higher Dominican Republic/Haiti values, but the code assigns those values to Campus Maintenance. I\u2019ll verify the category assignments against the CSV. The previous inspection failed only because pandas had not been imported into the inspection session.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe CSV assigns the high Dominican Republic/Haiti allocations to Faculty Salaries and the low allocations to Campus Maintenance; the code reverses them. I\u2019ll use the CSV as the plotting source so both categories are correctly assigned, and replace the scatter marks with density contours while retaining the title, palette, panel arrangement, dimensions, and layout.\n</reasoning>\n<code>\nimport plotly.express as px\nprint(table.groupby([\"Institution Type\",\"Country\",\"Budget Category\"], sort=False)[\"Budget Allocation\"].agg(['min','max','count']).to_string())\nsource = Path(\"chart.py\").read_text()\nstart = source.index(\"df = pd.DataFrame()\")\nend = source.index(\"fig.update_layout(\")\nreplacement = '''df = pd.read_csv('table.csv').rename(columns={'Budget Category': 'Category'})\n\nfig = px.density_contour(\n    df,\n    x='Budget Allocation',\n    y='Country',\n    color='Category',\n    facet_col='Institution Type',\n    facet_col_wrap=1,\n    color_discrete_sequence=px.colors.qualitative.Pastel,\n    title='Density of University Budget Allocations by Category and Institution Type (2015-2023)',\n    labels={'Budget Allocation': 'Percentage of Total Budget', 'Category': 'Budget Category'},\n    height=800,\n    width=1000\n)\n\n'''\nsource = source[:start] + replacement + source[end:]\nPath(\"chart.py\").write_text(source)\nexec(compile(source, \"chart.py\", \"exec\"))\nprint([(t.type, t.name, len(t.x)) for t in fig.data])\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The CSV assigns the high Dominican Republic/Haiti allocations to Faculty Salaries and the low allocations to Campus Maintenance; the code reverses them. I\u2019ll use the CSV as the plotting source so both categories are correctly assigned, and replace the scatter marks with density contours while retaining the title, palette, panel arrangement, dimensions, and layout.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe rendered chart now shows density contours instead of scatter points, with Public above Private and the original title, palette, dimensions, and layout retained. The category values now come directly from the CSV. I\u2019ll finish by verifying every plotted country/allocation pair against its CSV category and institution type, and checking the figure\u2019s contour trace types and layout settings.\n</reasoning>\n<code>\nfrom collections import Counter\nfor trace in fig.data:\n    institution = \"Public\" if trace.xaxis == \"x2\" else \"Private\"\n    expected = table[\n        (table[\"Institution Type\"] == institution) &\n        (table[\"Budget Category\"] == trace.name)\n    ]\n    assert Counter(zip(trace.x, trace.y)) == Counter(\n        zip(expected[\"Budget Allocation\"], expected[\"Country\"])\n    )\n    assert trace.type == \"histogram2dcontour\"\nassert fig.layout.width == 1000 and fig.layout.height == 800\nassert fig.layout.title.text == 'Density of University Budget Allocations by Category and Institution Type (2015-2023)'\nprint(\"Verified: all plotted values match table.csv; all traces are density contours.\")\nprint(\"Panel annotations:\", [(a.text, a.y) for a in fig.layout.annotations])\nprint(\"Series colors:\", [(t.name, t.line.color) for t in fig.data])\nprint(\"output.png is saved.\")\n</code>\n<decision>stop</decision>",
+        "thinking": "**Evaluating data visualization options**\n\nI\u2019m considering whether to change the CSV minimal concern or just swap certain elements. I want to make sure that the KDE versus PX histogram meets what I expect from the histogram2D contour. I think I need to verify the precise multiset trace table and layout before making any final decisions. It\u2019s important to get this right, so I\u2019ll take some time to look into it carefully.",
+        "stop_reason": "stop",
+        "reasoning": "The rendered chart now shows density contours instead of scatter points, with Public above Private and the original title, palette, dimensions, and layout retained. The category values now come directly from the CSV. I\u2019ll finish by verifying every plotted country/allocation pair against its CSV category and institution type, and checking the figure\u2019s contour trace types and layout settings.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "openai/gpt-6.1-sol",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 4229,
+      "output_tokens": 504,
+      "reasoning_tokens": 334,
+      "cache_write_input_tokens": 4223
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794466557-SUE3QQ7aiW1JFTs3eiUJ",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 388,
+          "prompt_tokens": 2883,
+          "total_tokens": 3271,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 293,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 2880,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.011086,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.011086,
+            "upstream_inference_prompt_cost": 0.007206,
+            "upstream_inference_completions_cost": 0.00388
+          }
+        }
+      },
+      {
+        "id": "gen-1794466572-Lkn08tKZuLhDZxttiQXU",
+        "model": "openai/gpt-6.1-sol",
+        "provider": "OpenAI",
+        "usage": {
+          "completion_tokens": 116,
+          "prompt_tokens": 1346,
+          "total_tokens": 1462,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 41,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1343,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0045235,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0045235,
+            "upstream_inference_prompt_cost": 0.0033635,
+            "upstream_inference_completions_cost": 0.00116
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 5,
+      "input_tokens": 17811,
+      "output_tokens": 1363,
+      "total_tokens": 19174,
+      "reasoning_tokens": 311,
+      "cache_read_input_tokens": 10687,
+      "cache_write_input_tokens": 0,
+      "model": "openai/gpt-6.1-sol",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 4229,
+      "output_tokens": 504,
+      "total_tokens": 4733,
+      "reasoning_tokens": 334,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "openai/gpt-6.1-sol",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 7,
+      "input_tokens": 22040,
+      "output_tokens": 1867,
+      "total_tokens": 23907,
+      "reasoning_tokens": 645,
+      "cache_read_input_tokens": 10687,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 0.6204,
+    "recovery": 0.5,
+    "preservation": 1.0,
+    "recovery_binary": 0,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 0.6204,
+        "lenient": 0.6204
+      },
+      "data_fidelity_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "recovery": {
+        "strict": 0.5,
+        "lenient": 0.5
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].series[Campus Maintenance#0].kind",
+          "axes[0].series[Campus Maintenance#0].values",
+          "axes[0].series[Campus Maintenance#1].kind",
+          "axes[0].series[Campus Maintenance#1].values",
+          "axes[0].series[Faculty Salaries#0].kind",
+          "axes[0].series[Faculty Salaries#0].values",
+          "axes[0].series[Faculty Salaries#1].kind",
+          "axes[0].series[Faculty Salaries#1].values"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].series[Campus Maintenance#0].kind",
+            "axes[0].series[Campus Maintenance#0].values",
+            "axes[0].series[Campus Maintenance#1].kind",
+            "axes[0].series[Campus Maintenance#1].values",
+            "axes[0].series[Faculty Salaries#0].kind",
+            "axes[0].series[Faculty Salaries#0].values",
+            "axes[0].series[Faculty Salaries#1].kind",
+            "axes[0].series[Faculty Salaries#1].values"
+          ],
+          "lenient": [
+            "axes[0].series[Campus Maintenance#0].kind",
+            "axes[0].series[Campus Maintenance#0].values",
+            "axes[0].series[Campus Maintenance#1].kind",
+            "axes[0].series[Campus Maintenance#1].values",
+            "axes[0].series[Faculty Salaries#0].kind",
+            "axes[0].series[Faculty Salaries#0].values",
+            "axes[0].series[Faculty Salaries#1].kind",
+            "axes[0].series[Faculty Salaries#1].values"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 0.6786,
+            "recall": 0.5714,
+            "f1": 0.6204,
+            "binary": 0
+          },
+          "lenient": {
+            "precision": 0.6786,
+            "recall": 0.5714,
+            "f1": 0.6204,
+            "binary": 0
+          },
+          "wide": {
+            "precision": 0.6964,
+            "recall": 0.5865,
+            "f1": 0.6367,
+            "binary": 0
+          }
+        },
+        "data_fidelity_wide": 0.6367,
+        "hallucinations": [
+          {
+            "coordinate": "x",
+            "expected": 69.0,
+            "got": 49.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 70.0,
+            "got": 51.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 72.0,
+            "got": 53.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 78.0,
+            "got": 79.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 76.0,
+            "got": 80.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 76.0,
+            "got": 81.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 78.0,
+            "got": 43.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 18.0,
+            "got": 47.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 19.0,
+            "got": 49.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 17.0,
+            "got": 52.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 51.0,
+            "got": 65.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 53.0,
+            "got": 70.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 77.0,
+            "got": 67.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 78.0,
+            "got": 69.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 81.0,
+            "got": 45.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 21.0,
+            "got": 47.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 32.0,
+            "got": 25.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 34.0,
+            "got": 27.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 35.0,
+            "got": 29.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 8.0,
+            "got": 38.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 9.0,
+            "got": 40.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 9.0,
+            "got": 41.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 8.0,
+            "got": 11.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 10.0,
+            "got": 17.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 9.0,
+            "got": 18.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 25.0,
+            "got": 17.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 27.0,
+            "got": 19.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 25.0,
+            "got": 20.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 26.0,
+            "got": 21.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 29.0,
+            "got": 32.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 38.0,
+            "got": 34.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 42.0,
+            "got": 35.0
+          },
+          {
+            "coordinate": "x",
+            "expected": 40.0,
+            "got": 37.0
+          }
+        ],
+        "n_points": {
+          "gt": 133,
+          "submission": 112
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 0.5,
+            "binary": 0,
+            "fixed": 4,
+            "injected": 8,
+            "missed": [
+              "axes[0].series[Campus Maintenance#0].values",
+              "axes[0].series[Campus Maintenance#1].values",
+              "axes[0].series[Faculty Salaries#0].values",
+              "axes[0].series[Faculty Salaries#1].values"
+            ]
+          },
+          "lenient": {
+            "score": 0.5,
+            "binary": 0,
+            "fixed": 4,
+            "injected": 8,
+            "missed": [
+              "axes[0].series[Campus Maintenance#0].values",
+              "axes[0].series[Campus Maintenance#1].values",
+              "axes[0].series[Faculty Salaries#0].values",
+              "axes[0].series[Faculty Salaries#1].values"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 10,
+            "total": 10,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 10,
+            "total": 10,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

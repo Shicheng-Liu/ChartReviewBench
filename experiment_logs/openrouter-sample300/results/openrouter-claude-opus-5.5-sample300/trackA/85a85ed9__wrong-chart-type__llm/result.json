@@ -1,0 +1,774 @@
+{
+  "task_id": "85a85ed9__wrong-chart-type__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.75,
+  "all_passed": false,
+  "subgoals_total": 3,
+  "subgoals_passed": 2,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 2,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (121331 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.95,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.95,
+          "detail": "REAL: The image shows overlapping smooth filled density curves for six regions, titled 'Kernel Density Estimate', which matches the shaded KDE plot described in summary.txt. The y-axis is clipped at 0.10 so the curves' peaks are cut off, but the chart type is still a KDE."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": false,
+      "score": 0.3,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": false,
+          "score": 0.3,
+          "detail": "REAL: The title, axis labels, ticks and legend are readable and unclipped. However, every density curve is cut off at the y=0.1 limit, so no peak is visible. The stacked translucent fills merge into one opaque brown block from about 57\u201373%, hiding the individual distributions."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 4,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 22.29,
+  "tool_counts": {
+    "execute_python": 3,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.0,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 3,
+    "usage": {
+      "input_tokens": 10137,
+      "output_tokens": 1090,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 173
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463963-mfOJBr2Qak1sZEB4LNQa",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 136,
+          "prompt_tokens": 1231,
+          "total_tokens": 1367,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.007644,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.007644,
+            "upstream_inference_prompt_cost": 0.004924,
+            "upstream_inference_completions_cost": 0.00272
+          }
+        }
+      },
+      {
+        "id": "gen-1794463966-jNG4QjWtctqFL5s5TyGe",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 183,
+          "prompt_tokens": 3636,
+          "total_tokens": 3819,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.018204,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.018204,
+            "upstream_inference_prompt_cost": 0.014544,
+            "upstream_inference_completions_cost": 0.00366
+          }
+        }
+      },
+      {
+        "id": "gen-1794463969-6dJkuvjT5jAEoF96xnNa",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 771,
+          "prompt_tokens": 5270,
+          "total_tokens": 6041,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 173,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0365,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0365,
+            "upstream_inference_prompt_cost": 0.02108,
+            "upstream_inference_completions_cost": 0.01542
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 3,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI haven't looked at any of the files yet. First I'll read chart.py, summary.txt and table.csv so I can see which chart type the summary expects and what the code currently uses.\n</reasoning>\n<code>\nfor f in ['chart.py','summary.txt','table.csv']:\n    print('=====',f); print(open(f).read()[:3000])\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I haven't looked at any of the files yet. First I'll read chart.py, summary.txt and table.csv so I can see which chart type the summary expects and what the code currently uses.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe summary describes a KDE plot: smooth curves with shaded areas under them, one per region. The first 3000 characters of chart.py only cover the data dictionaries, so I still haven't seen the plotting code. Next I'll print the rest of chart.py and the remainder of summary.txt to find the chart-type mismatch.\n</reasoning>\n<code>\ns=open('chart.py').read(); print(s[3000:])\nprint('=====');print(open('summary.txt').read()[800:])\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The summary describes a KDE plot: smooth curves with shaded areas under them, one per region. The first 3000 characters of chart.py only cover the data dictionaries, so I still haven't seen the plotting code. Next I'll print the rest of chart.py and the remainder of summary.txt to find the chart-type mismatch.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe summary describes each region as a smooth KDE curve with shading beneath it. chart.py instead draws the density estimate with `plt.scatter`, which produces dots rather than a curve. That is the chart-type mismatch, so I will replace `plt.scatter` with `plt.plot` and change nothing else.\n\nSomething I noticed but am deliberately not changing: the density values are never divided by the kernel normalising constant (1/(5\u00b7\u221a(2\u03c0)) \u2248 0.08). They can therefore reach roughly 1, while the y-axis is fixed at 0\u20130.1, so the curve tops are probably cut off. That is a separate flaw from the one diagnosed, so I am leaving it alone.\n\nAfter running the fixed script I will check:\n- that the axes contain six lines and no scatter collections;\n- the line labels and colours;\n- the axis limits;\n- the legend entries;\n- the rendered image.\n</reasoning>\n<code>\ns=open('chart.py').read()\ns=s.replace(\"plt.scatter(density, kde, label=region, color=colors[i])\",\"plt.plot(density, kde, label=region, color=colors[i])\")\nopen('chart.py','w').write(s)\nimport matplotlib; matplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n_orig=plt.close; plt.close=lambda *a,**k:None\nexec(compile(s,'chart.py','exec'))\nax=plt.gca()\nprint(len(ax.lines),len(ax.collections),[ (l.get_label(),l.get_color()) for l in ax.lines])\nprint(ax.get_xlim(),ax.get_ylim(),ax.get_legend_handles_labels()[1])\nplt.close=_orig; plt.close('all')\n</code>\n<decision>stop</decision>",
+        "thinking": "The chart is using scatter points where it should draw a smooth line, so I'll switch that to a plotted curve. The KDE values also look off: they aren't normalized, reaching about 0.8, and the y-axis stops at 0.1, so part of the curve gets cut off. The diagnosis only asks for the chart type to change, so I'll keep the fix to that and check the clipping separately.\n\nI'm keeping the change limited to swapping the scatter for a plot, since that's all the diagnosis calls for.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The summary describes each region as a smooth KDE curve with shading beneath it. chart.py instead draws the density estimate with `plt.scatter`, which produces dots rather than a curve. That is the chart-type mismatch, so I will replace `plt.scatter` with `plt.plot` and change nothing else.\n\nSomething I noticed but am deliberately not changing: the density values are never divided by the kernel normalising constant (1/(5\u00b7\u221a(2\u03c0)) \u2248 0.08). They can therefore reach roughly 1, while the y-axis is fixed at 0\u20130.1, so the curve tops are probably cut off. That is a separate flaw from the one diagnosed, so I am leaving it alone.\n\nAfter running the fixed script I will check:\n- that the axes contain six lines and no scatter collections;\n- the line labels and colours;\n- the axis limits;\n- the legend entries;\n- the rendered image.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 4485,
+      "output_tokens": 421,
+      "reasoning_tokens": 190,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794463978-LOrqrz32gjdKwjjGuCvf",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 176,
+          "prompt_tokens": 2478,
+          "total_tokens": 2654,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 57,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.013432,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.013432,
+            "upstream_inference_prompt_cost": 0.009912,
+            "upstream_inference_completions_cost": 0.00352
+          }
+        }
+      },
+      {
+        "id": "gen-1794463980-VgWLXXdb5wiYSXMByjYf",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 245,
+          "prompt_tokens": 2007,
+          "total_tokens": 2252,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 133,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.012928,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.012928,
+            "upstream_inference_prompt_cost": 0.008028,
+            "upstream_inference_completions_cost": 0.0049
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 3,
+      "input_tokens": 10137,
+      "output_tokens": 1090,
+      "total_tokens": 11227,
+      "reasoning_tokens": 173,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 4485,
+      "output_tokens": 421,
+      "total_tokens": 4906,
+      "reasoning_tokens": 190,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 5,
+      "input_tokens": 14622,
+      "output_tokens": 1511,
+      "total_tokens": 16133,
+      "reasoning_tokens": 363,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 0.9358,
+    "preservation": 1.0,
+    "recovery_binary": 0,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 0.9358,
+        "lenient": 0.9358
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].series[Central Asia].alpha",
+          "axes[0].series[Central Asia].color_alpha",
+          "axes[0].series[Central Asia].drawstyle",
+          "axes[0].series[Central Asia].fillstyle",
+          "axes[0].series[Central Asia].kind",
+          "axes[0].series[Central Asia].linestyle",
+          "axes[0].series[Central Asia].linewidth",
+          "axes[0].series[Central Asia].markeredgecolor",
+          "axes[0].series[Central Asia].markeredgecolor_alpha",
+          "axes[0].series[Central Asia].markeredgewidth",
+          "axes[0].series[Central Asia].markerfacecolor",
+          "axes[0].series[Central Asia].markerfacecolor_alpha",
+          "axes[0].series[Central Asia].markersize",
+          "axes[0].series[Central Asia].zorder",
+          "axes[0].series[Latin America].alpha",
+          "axes[0].series[Latin America].color_alpha",
+          "axes[0].series[Latin America].drawstyle",
+          "axes[0].series[Latin America].fillstyle",
+          "axes[0].series[Latin America].kind",
+          "axes[0].series[Latin America].linestyle",
+          "axes[0].series[Latin America].linewidth",
+          "axes[0].series[Latin America].markeredgecolor",
+          "axes[0].series[Latin America].markeredgecolor_alpha",
+          "axes[0].series[Latin America].markeredgewidth",
+          "axes[0].series[Latin America].markerfacecolor",
+          "axes[0].series[Latin America].markerfacecolor_alpha",
+          "axes[0].series[Latin America].markersize",
+          "axes[0].series[Latin America].zorder",
+          "axes[0].series[North Africa].alpha",
+          "axes[0].series[North Africa].color_alpha",
+          "axes[0].series[North Africa].drawstyle",
+          "axes[0].series[North Africa].fillstyle",
+          "axes[0].series[North Africa].kind",
+          "axes[0].series[North Africa].linestyle",
+          "axes[0].series[North Africa].linewidth",
+          "axes[0].series[North Africa].markeredgecolor",
+          "axes[0].series[North Africa].markeredgecolor_alpha",
+          "axes[0].series[North Africa].markeredgewidth",
+          "axes[0].series[North Africa].markerfacecolor",
+          "axes[0].series[North Africa].markerfacecolor_alpha",
+          "axes[0].series[North Africa].markersize",
+          "axes[0].series[North Africa].zorder",
+          "axes[0].series[South Asia].alpha",
+          "axes[0].series[South Asia].color_alpha",
+          "axes[0].series[South Asia].drawstyle",
+          "axes[0].series[South Asia].fillstyle",
+          "axes[0].series[South Asia].kind",
+          "axes[0].series[South Asia].linestyle",
+          "axes[0].series[South Asia].linewidth",
+          "axes[0].series[South Asia].markeredgecolor",
+          "axes[0].series[South Asia].markeredgecolor_alpha",
+          "axes[0].series[South Asia].markeredgewidth",
+          "axes[0].series[South Asia].markerfacecolor",
+          "axes[0].series[South Asia].markerfacecolor_alpha",
+          "axes[0].series[South Asia].markersize",
+          "axes[0].series[South Asia].zorder",
+          "axes[0].series[Southeast Asia].alpha",
+          "axes[0].series[Southeast Asia].color_alpha",
+          "axes[0].series[Southeast Asia].drawstyle",
+          "axes[0].series[Southeast Asia].fillstyle",
+          "axes[0].series[Southeast Asia].kind",
+          "axes[0].series[Southeast Asia].linestyle",
+          "axes[0].series[Southeast Asia].linewidth",
+          "axes[0].series[Southeast Asia].markeredgecolor",
+          "axes[0].series[Southeast Asia].markeredgecolor_alpha",
+          "axes[0].series[Southeast Asia].markeredgewidth",
+          "axes[0].series[Southeast Asia].markerfacecolor",
+          "axes[0].series[Southeast Asia].markerfacecolor_alpha",
+          "axes[0].series[Southeast Asia].markersize",
+          "axes[0].series[Southeast Asia].zorder",
+          "axes[0].series[West Africa].alpha",
+          "axes[0].series[West Africa].color_alpha",
+          "axes[0].series[West Africa].drawstyle",
+          "axes[0].series[West Africa].fillstyle",
+          "axes[0].series[West Africa].kind",
+          "axes[0].series[West Africa].linestyle",
+          "axes[0].series[West Africa].linewidth",
+          "axes[0].series[West Africa].markeredgecolor",
+          "axes[0].series[West Africa].markeredgecolor_alpha",
+          "axes[0].series[West Africa].markeredgewidth",
+          "axes[0].series[West Africa].markerfacecolor",
+          "axes[0].series[West Africa].markerfacecolor_alpha",
+          "axes[0].series[West Africa].markersize",
+          "axes[0].series[West Africa].zorder",
+          "axes[0].series[area0].color",
+          "axes[0].series[area0].kind",
+          "axes[0].series[area0].values",
+          "axes[0].series[area11].color",
+          "axes[0].series[area11].kind",
+          "axes[0].series[area11].values",
+          "axes[0].series[area1].color",
+          "axes[0].series[area1].values",
+          "axes[0].series[area2].color",
+          "axes[0].series[area2].kind",
+          "axes[0].series[area2].values",
+          "axes[0].series[area3].color",
+          "axes[0].series[area3].values",
+          "axes[0].series[area4].color",
+          "axes[0].series[area4].kind",
+          "axes[0].series[area4].values",
+          "axes[0].series[area5].color",
+          "axes[0].series[area5].values",
+          "axes[0].series[area7].color",
+          "axes[0].series[area7].kind",
+          "axes[0].series[area7].values",
+          "axes[0].series[area9].color",
+          "axes[0].series[area9].kind",
+          "axes[0].series[area9].values"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].series[Central Asia].alpha",
+            "axes[0].series[Central Asia].color_alpha",
+            "axes[0].series[Central Asia].drawstyle",
+            "axes[0].series[Central Asia].fillstyle",
+            "axes[0].series[Central Asia].kind",
+            "axes[0].series[Central Asia].linestyle",
+            "axes[0].series[Central Asia].linewidth",
+            "axes[0].series[Central Asia].markeredgecolor",
+            "axes[0].series[Central Asia].markeredgecolor_alpha",
+            "axes[0].series[Central Asia].markeredgewidth",
+            "axes[0].series[Central Asia].markerfacecolor",
+            "axes[0].series[Central Asia].markerfacecolor_alpha",
+            "axes[0].series[Central Asia].markersize",
+            "axes[0].series[Central Asia].zorder",
+            "axes[0].series[Latin America].alpha",
+            "axes[0].series[Latin America].color_alpha",
+            "axes[0].series[Latin America].drawstyle",
+            "axes[0].series[Latin America].fillstyle",
+            "axes[0].series[Latin America].kind",
+            "axes[0].series[Latin America].linestyle",
+            "axes[0].series[Latin America].linewidth",
+            "axes[0].series[Latin America].markeredgecolor",
+            "axes[0].series[Latin America].markeredgecolor_alpha",
+            "axes[0].series[Latin America].markeredgewidth",
+            "axes[0].series[Latin America].markerfacecolor",
+            "axes[0].series[Latin America].markerfacecolor_alpha",
+            "axes[0].series[Latin America].markersize",
+            "axes[0].series[Latin America].zorder",
+            "axes[0].series[North Africa].alpha",
+            "axes[0].series[North Africa].color_alpha",
+            "axes[0].series[North Africa].drawstyle",
+            "axes[0].series[North Africa].fillstyle",
+            "axes[0].series[North Africa].kind",
+            "axes[0].series[North Africa].linestyle",
+            "axes[0].series[North Africa].linewidth",
+            "axes[0].series[North Africa].markeredgecolor",
+            "axes[0].series[North Africa].markeredgecolor_alpha",
+            "axes[0].series[North Africa].markeredgewidth",
+            "axes[0].series[North Africa].markerfacecolor",
+            "axes[0].series[North Africa].markerfacecolor_alpha",
+            "axes[0].series[North Africa].markersize",
+            "axes[0].series[North Africa].zorder",
+            "axes[0].series[South Asia].alpha",
+            "axes[0].series[South Asia].color_alpha",
+            "axes[0].series[South Asia].drawstyle",
+            "axes[0].series[South Asia].fillstyle",
+            "axes[0].series[South Asia].kind",
+            "axes[0].series[South Asia].linestyle",
+            "axes[0].series[South Asia].linewidth",
+            "axes[0].series[South Asia].markeredgecolor",
+            "axes[0].series[South Asia].markeredgecolor_alpha",
+            "axes[0].series[South Asia].markeredgewidth",
+            "axes[0].series[South Asia].markerfacecolor",
+            "axes[0].series[South Asia].markerfacecolor_alpha",
+            "axes[0].series[South Asia].markersize",
+            "axes[0].series[South Asia].zorder",
+            "axes[0].series[Southeast Asia].alpha",
+            "axes[0].series[Southeast Asia].color_alpha",
+            "axes[0].series[Southeast Asia].drawstyle",
+            "axes[0].series[Southeast Asia].fillstyle",
+            "axes[0].series[Southeast Asia].kind",
+            "axes[0].series[Southeast Asia].linestyle",
+            "axes[0].series[Southeast Asia].linewidth",
+            "axes[0].series[Southeast Asia].markeredgecolor",
+            "axes[0].series[Southeast Asia].markeredgecolor_alpha",
+            "axes[0].series[Southeast Asia].markeredgewidth",
+            "axes[0].series[Southeast Asia].markerfacecolor",
+            "axes[0].series[Southeast Asia].markerfacecolor_alpha",
+            "axes[0].series[Southeast Asia].markersize",
+            "axes[0].series[Southeast Asia].zorder",
+            "axes[0].series[West Africa].alpha",
+            "axes[0].series[West Africa].color_alpha",
+            "axes[0].series[West Africa].drawstyle",
+            "axes[0].series[West Africa].fillstyle",
+            "axes[0].series[West Africa].kind",
+            "axes[0].series[West Africa].linestyle",
+            "axes[0].series[West Africa].linewidth",
+            "axes[0].series[West Africa].markeredgecolor",
+            "axes[0].series[West Africa].markeredgecolor_alpha",
+            "axes[0].series[West Africa].markeredgewidth",
+            "axes[0].series[West Africa].markerfacecolor",
+            "axes[0].series[West Africa].markerfacecolor_alpha",
+            "axes[0].series[West Africa].markersize",
+            "axes[0].series[West Africa].zorder",
+            "axes[0].series[area0].color",
+            "axes[0].series[area0].kind",
+            "axes[0].series[area0].values",
+            "axes[0].series[area11].color",
+            "axes[0].series[area11].kind",
+            "axes[0].series[area11].values",
+            "axes[0].series[area1].color",
+            "axes[0].series[area1].values",
+            "axes[0].series[area2].color",
+            "axes[0].series[area2].kind",
+            "axes[0].series[area2].values",
+            "axes[0].series[area3].color",
+            "axes[0].series[area3].values",
+            "axes[0].series[area4].color",
+            "axes[0].series[area4].kind",
+            "axes[0].series[area4].values",
+            "axes[0].series[area5].color",
+            "axes[0].series[area5].values",
+            "axes[0].series[area7].color",
+            "axes[0].series[area7].kind",
+            "axes[0].series[area7].values",
+            "axes[0].series[area9].color",
+            "axes[0].series[area9].kind",
+            "axes[0].series[area9].values"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].series[Central Asia].alpha",
+            "axes[0].series[Central Asia].color_alpha",
+            "axes[0].series[Central Asia].drawstyle",
+            "axes[0].series[Central Asia].fillstyle",
+            "axes[0].series[Central Asia].kind",
+            "axes[0].series[Central Asia].linestyle",
+            "axes[0].series[Central Asia].linewidth",
+            "axes[0].series[Central Asia].markeredgecolor",
+            "axes[0].series[Central Asia].markeredgecolor_alpha",
+            "axes[0].series[Central Asia].markeredgewidth",
+            "axes[0].series[Central Asia].markerfacecolor",
+            "axes[0].series[Central Asia].markerfacecolor_alpha",
+            "axes[0].series[Central Asia].markersize",
+            "axes[0].series[Central Asia].zorder",
+            "axes[0].series[Latin America].alpha",
+            "axes[0].series[Latin America].color_alpha",
+            "axes[0].series[Latin America].drawstyle",
+            "axes[0].series[Latin America].fillstyle",
+            "axes[0].series[Latin America].kind",
+            "axes[0].series[Latin America].linestyle",
+            "axes[0].series[Latin America].linewidth",
+            "axes[0].series[Latin America].markeredgecolor",
+            "axes[0].series[Latin America].markeredgecolor_alpha",
+            "axes[0].series[Latin America].markeredgewidth",
+            "axes[0].series[Latin America].markerfacecolor",
+            "axes[0].series[Latin America].markerfacecolor_alpha",
+            "axes[0].series[Latin America].markersize",
+            "axes[0].series[Latin America].zorder",
+            "axes[0].series[North Africa].alpha",
+            "axes[0].series[North Africa].color_alpha",
+            "axes[0].series[North Africa].drawstyle",
+            "axes[0].series[North Africa].fillstyle",
+            "axes[0].series[North Africa].kind",
+            "axes[0].series[North Africa].linestyle",
+            "axes[0].series[North Africa].linewidth",
+            "axes[0].series[North Africa].markeredgecolor",
+            "axes[0].series[North Africa].markeredgecolor_alpha",
+            "axes[0].series[North Africa].markeredgewidth",
+            "axes[0].series[North Africa].markerfacecolor",
+            "axes[0].series[North Africa].markerfacecolor_alpha",
+            "axes[0].series[North Africa].markersize",
+            "axes[0].series[North Africa].zorder",
+            "axes[0].series[South Asia].alpha",
+            "axes[0].series[South Asia].color_alpha",
+            "axes[0].series[South Asia].drawstyle",
+            "axes[0].series[South Asia].fillstyle",
+            "axes[0].series[South Asia].kind",
+            "axes[0].series[South Asia].linestyle",
+            "axes[0].series[South Asia].linewidth",
+            "axes[0].series[South Asia].markeredgecolor",
+            "axes[0].series[South Asia].markeredgecolor_alpha",
+            "axes[0].series[South Asia].markeredgewidth",
+            "axes[0].series[South Asia].markerfacecolor",
+            "axes[0].series[South Asia].markerfacecolor_alpha",
+            "axes[0].series[South Asia].markersize",
+            "axes[0].series[South Asia].zorder",
+            "axes[0].series[Southeast Asia].alpha",
+            "axes[0].series[Southeast Asia].color_alpha",
+            "axes[0].series[Southeast Asia].drawstyle",
+            "axes[0].series[Southeast Asia].fillstyle",
+            "axes[0].series[Southeast Asia].kind",
+            "axes[0].series[Southeast Asia].linestyle",
+            "axes[0].series[Southeast Asia].linewidth",
+            "axes[0].series[Southeast Asia].markeredgecolor",
+            "axes[0].series[Southeast Asia].markeredgecolor_alpha",
+            "axes[0].series[Southeast Asia].markeredgewidth",
+            "axes[0].series[Southeast Asia].markerfacecolor",
+            "axes[0].series[Southeast Asia].markerfacecolor_alpha",
+            "axes[0].series[Southeast Asia].markersize",
+            "axes[0].series[Southeast Asia].zorder",
+            "axes[0].series[West Africa].alpha",
+            "axes[0].series[West Africa].color_alpha",
+            "axes[0].series[West Africa].drawstyle",
+            "axes[0].series[West Africa].fillstyle",
+            "axes[0].series[West Africa].kind",
+            "axes[0].series[West Africa].linestyle",
+            "axes[0].series[West Africa].linewidth",
+            "axes[0].series[West Africa].markeredgecolor",
+            "axes[0].series[West Africa].markeredgecolor_alpha",
+            "axes[0].series[West Africa].markeredgewidth",
+            "axes[0].series[West Africa].markerfacecolor",
+            "axes[0].series[West Africa].markerfacecolor_alpha",
+            "axes[0].series[West Africa].markersize",
+            "axes[0].series[West Africa].zorder",
+            "axes[0].series[area0].color",
+            "axes[0].series[area0].kind",
+            "axes[0].series[area0].values",
+            "axes[0].series[area11].color",
+            "axes[0].series[area11].kind",
+            "axes[0].series[area11].values",
+            "axes[0].series[area1].color",
+            "axes[0].series[area1].values",
+            "axes[0].series[area2].color",
+            "axes[0].series[area2].kind",
+            "axes[0].series[area2].values",
+            "axes[0].series[area3].color",
+            "axes[0].series[area3].values",
+            "axes[0].series[area4].color",
+            "axes[0].series[area4].kind",
+            "axes[0].series[area4].values",
+            "axes[0].series[area5].color",
+            "axes[0].series[area5].values",
+            "axes[0].series[area7].color",
+            "axes[0].series[area7].kind",
+            "axes[0].series[area7].values",
+            "axes[0].series[area9].color",
+            "axes[0].series[area9].kind",
+            "axes[0].series[area9].values"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 1206,
+          "submission": 1206
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 0.9358,
+            "binary": 0,
+            "fixed": 102,
+            "injected": 109,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].series[Central Asia].linewidth",
+              "axes[0].series[Latin America].linewidth",
+              "axes[0].series[North Africa].linewidth",
+              "axes[0].series[South Asia].linewidth",
+              "axes[0].series[Southeast Asia].linewidth",
+              "axes[0].series[West Africa].linewidth"
+            ]
+          },
+          "lenient": {
+            "score": 0.9358,
+            "binary": 0,
+            "fixed": 102,
+            "injected": 109,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].series[Central Asia].linewidth",
+              "axes[0].series[Latin America].linewidth",
+              "axes[0].series[North Africa].linewidth",
+              "axes[0].series[South Asia].linewidth",
+              "axes[0].series[Southeast Asia].linewidth",
+              "axes[0].series[West Africa].linewidth"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 31,
+            "total": 31,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 31,
+            "total": 31,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

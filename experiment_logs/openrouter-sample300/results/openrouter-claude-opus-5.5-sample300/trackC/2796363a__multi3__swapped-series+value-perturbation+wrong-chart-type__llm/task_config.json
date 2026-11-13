@@ -1,0 +1,31 @@
+{
+  "id": "2796363a__multi3__swapped-series+value-perturbation+wrong-chart-type__llm",
+  "track": "C",
+  "clean": false,
+  "arity": "triple",
+  "n_flaws": 3,
+  "combination": "swapped-series+value-perturbation+wrong-chart-type",
+  "flaws": [
+    {
+      "category": "wrong-chart-type",
+      "description": "Swapped sns.lineplot for sns.scatterplot at its single call site, turning the line chart into a scatter plot; removed the markersize=8 keyword since scatterplot does not accept it (marker size is controlled via 's' instead), while keeping linewidth, marker, hue and palette unchanged."
+    },
+    {
+      "category": "swapped-series",
+      "description": "Swapped the numeric value lists assigned to the 'Qatar' and 'Rwanda' keys in the data dict, so the chart now plots Rwanda's low survival rates under the Qatar label and Qatar's high rates under the Rwanda label, while all labels, colors, and plot order remain unchanged."
+    },
+    {
+      "category": "value-perturbation",
+      "description": "Changed the sixth Tanzania value in the inline data list from 69.0 to 110.4 (69.0 * 1.6), corrupting a single plotted point while table.csv still holds the true value."
+    }
+  ],
+  "library": "seaborn",
+  "chart_type": "Line Chart",
+  "prompt_file": "prompts/73a5a37c9f3fa1097d7821f09834af0522eccd47d363ce0f8eec1806700a0aca.txt",
+  "modalities": [
+    "code",
+    "table",
+    "summary",
+    "chart"
+  ]
+}

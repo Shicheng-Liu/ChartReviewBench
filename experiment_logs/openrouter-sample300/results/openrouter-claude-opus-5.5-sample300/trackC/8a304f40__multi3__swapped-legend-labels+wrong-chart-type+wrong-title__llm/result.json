@@ -1,0 +1,606 @@
+{
+  "task_id": "8a304f40__multi3__swapped-legend-labels+wrong-chart-type+wrong-title__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.95,
+  "all_passed": true,
+  "subgoals_total": 3,
+  "subgoals_passed": 3,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 1,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (82426 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 1.0,
+          "detail": "REAL: The chart is a log-log bubble scatter plot, which matches the summary's description. The title 'Tax Collection Efficiency vs Amount Collected (2002)' matches the summary, and the legend entries (Angola blue, Congo orange, Iceland green) agree with the plotted points from table.csv, e.g. the blue point near 1e9 at 0.5 and the green point at 3e9 at 1.2."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.85,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.85,
+          "detail": "REAL: Title, axis labels, log tick labels and the legend (placed outside the plot on the right) are all readable and unclipped, with no overlap with the data. Some bubbles overlap slightly (Congo/Angola near 1.2e11) and most points cluster in the upper right because of two low outliers, but the data remains visible."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 4,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 31.63,
+  "tool_counts": {
+    "execute_python": 3,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 3,
+    "usage": {
+      "input_tokens": 10932,
+      "output_tokens": 1494,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 178
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464016-D9K6b3qchHLesnFj4XIm",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 144,
+          "prompt_tokens": 1186,
+          "total_tokens": 1330,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.007624,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.007624,
+            "upstream_inference_prompt_cost": 0.004744,
+            "upstream_inference_completions_cost": 0.00288
+          }
+        }
+      },
+      {
+        "id": "gen-1794464018-dpA4Khf93XFhorwLSmpj",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 958,
+          "prompt_tokens": 3118,
+          "total_tokens": 4076,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 178,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.031632,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.031632,
+            "upstream_inference_prompt_cost": 0.012472,
+            "upstream_inference_completions_cost": 0.01916
+          }
+        }
+      },
+      {
+        "id": "gen-1794464028-x9QTwjzhE3etdVQ7PFKu",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 392,
+          "prompt_tokens": 6628,
+          "total_tokens": 7020,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.034352,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.034352,
+            "upstream_inference_prompt_cost": 0.026512,
+            "upstream_inference_completions_cost": 0.00784
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 3,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI haven't looked at anything yet. First step is to read chart.py, table.csv and summary.txt, and view chart_current.png, so I can judge whether the chart is faithful.\n</reasoning>\n<code>\nfrom pathlib import Path\nfor f in ['chart.py','table.csv','summary.txt']:\n    print('=====',f); print(Path(f).read_text())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I haven't looked at anything yet. First step is to read chart.py, table.csv and summary.txt, and view chart_current.png, so I can judge whether the chart is faithful.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe data values in chart.py match table.csv. Several things contradict summary.txt, though:\n1. It uses `sns.lineplot`. The summary describes a scatter plot whose point size encodes Collection Ratio (%).\n2. The title is wrong. It should be \"Tax Collection Efficiency vs Amount Collected (2002)\".\n3. The legend labels are hard-coded in the wrong order (Iceland, Congo, Angola) against handles in Angola, Congo, Iceland order. That mislabels the colors.\n\nFixes: switch to scatterplot with `size=`, correct the title, and build the legend from the actual country handles so the labels match. I'll also print the rest of the summary to check for any other requirements.\n</reasoning>\n<code>\nprint(Path('summary.txt').read_text()[1500:])\nsrc = Path('chart.py').read_text()\nsrc = src.replace(\"\"\"scatter = sns.lineplot(\n    data=df,\n    x='Amount Collected (in $)',\n    y='Tax Efficiency Index',\n    hue='Country',\"\"\", \"\"\"scatter = sns.scatterplot(\n    data=df,\n    x='Amount Collected (in $)',\n    y='Tax Efficiency Index',\n    hue='Country',\n    size='Collection Ratio (%)',\n    sizes=(40, 600),\"\"\")\nsrc = src.replace(\"GDP Growth vs Industrial Output (1995)\", \"Tax Collection Efficiency vs Amount Collected (2002)\")\nsrc = src.replace(\"\"\"plt.legend(handles[:4], ['Iceland', 'Congo (Democratic)', 'Angola'], title='Country',\"\"\",\n\"\"\"countries = list(df['Country'].unique())\ncountry_handles = [h for h, l in zip(handles, labels) if l in countries]\ncountry_labels = [l for l in labels if l in countries]\nplt.legend(country_handles, country_labels, title='Country',\"\"\")\nPath('chart.py').write_text(src)\nexec(compile(src, 'chart.py', 'exec'))\nax = plt.gca()\nprint(ax.get_title(), ax.get_legend_handles_labels()[1] if False else [t.get_text() for t in ax.get_legend().get_texts()])\nprint([c.get_facecolor()[0] for c in ax.collections])\n</code>\n<decision>continue</decision>",
+        "thinking": "I've spotted a few problems with the plot: it's drawn as a line plot when it should be a scatterplot sized by Collection Ratio, the title is off, and the legend labels don't match. The data itself lines up with the table. I'll switch to a scatterplot with point sizes driven by Collection Ratio and then check how the legend looks.\n\nI'm keeping the legend to just the country colors and correcting the labels, and I still want to read the rest of the summary.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The data values in chart.py match table.csv. Several things contradict summary.txt, though:\n1. It uses `sns.lineplot`. The summary describes a scatter plot whose point size encodes Collection Ratio (%).\n2. The title is wrong. It should be \"Tax Collection Efficiency vs Amount Collected (2002)\".\n3. The legend labels are hard-coded in the wrong order (Iceland, Congo, Angola) against handles in Angola, Congo, Iceland order. That mislabels the colors.\n\nFixes: switch to scatterplot with `size=`, correct the title, and build the legend from the actual country handles so the labels match. I'll also print the rest of the summary to check for any other requirements.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe data values in chart.py already matched table.csv. Three things contradicted summary.txt, and I fixed only those:\n1. **Chart type:** `sns.lineplot` became `sns.scatterplot`, with point size mapped to Collection Ratio (%), as the summary describes.\n2. **Title:** \"GDP Growth vs Industrial Output (1995)\" became \"Tax Collection Efficiency vs Amount Collected (2002)\".\n3. **Legend:** the hard-coded labels were in reversed order, so Iceland was labeled with Angola's color. The labels now come from the actual country handles.\n\nChecked on the figure object:\n- The title reads correctly.\n- The legend labels are Angola, Congo (Democratic), Iceland, in seaborn's deep palette of blue, orange, green, matching the summary.\n\nChecked on the image:\n- Both axes are log scale and the grid is kept.\n- Point positions match the table.\n- The legend sits outside the plot area and nothing overlaps.\n\nEverything else in chart.py is unchanged.\n</reasoning>\n<code>\nprint(Path('output.png').exists())\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The data values in chart.py already matched table.csv. Three things contradicted summary.txt, and I fixed only those:\n1. **Chart type:** `sns.lineplot` became `sns.scatterplot`, with point size mapped to Collection Ratio (%), as the summary describes.\n2. **Title:** \"GDP Growth vs Industrial Output (1995)\" became \"Tax Collection Efficiency vs Amount Collected (2002)\".\n3. **Legend:** the hard-coded labels were in reversed order, so Iceland was labeled with Angola's color. The labels now come from the actual country handles.\n\nChecked on the figure object:\n- The title reads correctly.\n- The legend labels are Angola, Congo (Democratic), Iceland, in seaborn's deep palette of blue, orange, green, matching the summary.\n\nChecked on the image:\n- Both axes are log scale and the grid is kept.\n- Point positions match the table.\n- The legend sits outside the plot area and nothing overlaps.\n\nEverything else in chart.py is unchanged.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 7108,
+      "output_tokens": 284,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464041-LSICmc2g3PNnpEFGj0ZK",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 158,
+          "prompt_tokens": 3980,
+          "total_tokens": 4138,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.01908,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.01908,
+            "upstream_inference_prompt_cost": 0.01592,
+            "upstream_inference_completions_cost": 0.00316
+          }
+        }
+      },
+      {
+        "id": "gen-1794464044-LIa2x6YtPPdDyCb5j5Lz",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 126,
+          "prompt_tokens": 3128,
+          "total_tokens": 3254,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.015032,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.015032,
+            "upstream_inference_prompt_cost": 0.012512,
+            "upstream_inference_completions_cost": 0.00252
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 3,
+      "input_tokens": 10932,
+      "output_tokens": 1494,
+      "total_tokens": 12426,
+      "reasoning_tokens": 178,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 7108,
+      "output_tokens": 284,
+      "total_tokens": 7392,
+      "reasoning_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 5,
+      "input_tokens": 18040,
+      "output_tokens": 1778,
+      "total_tokens": 19818,
+      "reasoning_tokens": 178,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 0.9464,
+    "preservation": 1.0,
+    "recovery_binary": 0,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 0.9464,
+        "lenient": 0.9464
+      },
+      "recovery_binary": {
+        "strict": 0,
+        "lenient": 0
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].legend.labels",
+          "axes[0].series[line0].alpha",
+          "axes[0].series[line0].color",
+          "axes[0].series[line0].color_alpha",
+          "axes[0].series[line0].drawstyle",
+          "axes[0].series[line0].fillstyle",
+          "axes[0].series[line0].kind",
+          "axes[0].series[line0].linestyle",
+          "axes[0].series[line0].linewidth",
+          "axes[0].series[line0].markeredgecolor",
+          "axes[0].series[line0].markeredgecolor_alpha",
+          "axes[0].series[line0].markeredgewidth",
+          "axes[0].series[line0].markerfacecolor",
+          "axes[0].series[line0].markerfacecolor_alpha",
+          "axes[0].series[line0].markersize",
+          "axes[0].series[line0].values",
+          "axes[0].series[line0].zorder",
+          "axes[0].series[line1].alpha",
+          "axes[0].series[line1].color",
+          "axes[0].series[line1].color_alpha",
+          "axes[0].series[line1].drawstyle",
+          "axes[0].series[line1].fillstyle",
+          "axes[0].series[line1].kind",
+          "axes[0].series[line1].linestyle",
+          "axes[0].series[line1].linewidth",
+          "axes[0].series[line1].markeredgecolor",
+          "axes[0].series[line1].markeredgecolor_alpha",
+          "axes[0].series[line1].markeredgewidth",
+          "axes[0].series[line1].markerfacecolor",
+          "axes[0].series[line1].markerfacecolor_alpha",
+          "axes[0].series[line1].markersize",
+          "axes[0].series[line1].values",
+          "axes[0].series[line1].zorder",
+          "axes[0].series[line2].alpha",
+          "axes[0].series[line2].color",
+          "axes[0].series[line2].color_alpha",
+          "axes[0].series[line2].drawstyle",
+          "axes[0].series[line2].fillstyle",
+          "axes[0].series[line2].kind",
+          "axes[0].series[line2].linestyle",
+          "axes[0].series[line2].linewidth",
+          "axes[0].series[line2].markeredgecolor",
+          "axes[0].series[line2].markeredgecolor_alpha",
+          "axes[0].series[line2].markeredgewidth",
+          "axes[0].series[line2].markerfacecolor",
+          "axes[0].series[line2].markerfacecolor_alpha",
+          "axes[0].series[line2].markersize",
+          "axes[0].series[line2].values",
+          "axes[0].series[line2].zorder",
+          "axes[0].series[scatter0].color",
+          "axes[0].series[scatter0].colors",
+          "axes[0].series[scatter0].kind",
+          "axes[0].series[scatter0].sizes",
+          "axes[0].series[scatter0].values",
+          "axes[0].title"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[line0].alpha",
+            "axes[0].series[line0].color",
+            "axes[0].series[line0].color_alpha",
+            "axes[0].series[line0].drawstyle",
+            "axes[0].series[line0].fillstyle",
+            "axes[0].series[line0].kind",
+            "axes[0].series[line0].linestyle",
+            "axes[0].series[line0].linewidth",
+            "axes[0].series[line0].markeredgecolor",
+            "axes[0].series[line0].markeredgecolor_alpha",
+            "axes[0].series[line0].markeredgewidth",
+            "axes[0].series[line0].markerfacecolor",
+            "axes[0].series[line0].markerfacecolor_alpha",
+            "axes[0].series[line0].markersize",
+            "axes[0].series[line0].values",
+            "axes[0].series[line0].zorder",
+            "axes[0].series[line1].alpha",
+            "axes[0].series[line1].color",
+            "axes[0].series[line1].color_alpha",
+            "axes[0].series[line1].drawstyle",
+            "axes[0].series[line1].fillstyle",
+            "axes[0].series[line1].kind",
+            "axes[0].series[line1].linestyle",
+            "axes[0].series[line1].linewidth",
+            "axes[0].series[line1].markeredgecolor",
+            "axes[0].series[line1].markeredgecolor_alpha",
+            "axes[0].series[line1].markeredgewidth",
+            "axes[0].series[line1].markerfacecolor",
+            "axes[0].series[line1].markerfacecolor_alpha",
+            "axes[0].series[line1].markersize",
+            "axes[0].series[line1].values",
+            "axes[0].series[line1].zorder",
+            "axes[0].series[line2].alpha",
+            "axes[0].series[line2].color",
+            "axes[0].series[line2].color_alpha",
+            "axes[0].series[line2].drawstyle",
+            "axes[0].series[line2].fillstyle",
+            "axes[0].series[line2].kind",
+            "axes[0].series[line2].linestyle",
+            "axes[0].series[line2].linewidth",
+            "axes[0].series[line2].markeredgecolor",
+            "axes[0].series[line2].markeredgecolor_alpha",
+            "axes[0].series[line2].markeredgewidth",
+            "axes[0].series[line2].markerfacecolor",
+            "axes[0].series[line2].markerfacecolor_alpha",
+            "axes[0].series[line2].markersize",
+            "axes[0].series[line2].values",
+            "axes[0].series[line2].zorder",
+            "axes[0].series[scatter0].color",
+            "axes[0].series[scatter0].colors",
+            "axes[0].series[scatter0].kind",
+            "axes[0].series[scatter0].sizes",
+            "axes[0].series[scatter0].values",
+            "axes[0].title"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].legend.labels",
+            "axes[0].series[line0].alpha",
+            "axes[0].series[line0].color",
+            "axes[0].series[line0].color_alpha",
+            "axes[0].series[line0].drawstyle",
+            "axes[0].series[line0].fillstyle",
+            "axes[0].series[line0].kind",
+            "axes[0].series[line0].linestyle",
+            "axes[0].series[line0].linewidth",
+            "axes[0].series[line0].markeredgecolor",
+            "axes[0].series[line0].markeredgecolor_alpha",
+            "axes[0].series[line0].markeredgewidth",
+            "axes[0].series[line0].markerfacecolor",
+            "axes[0].series[line0].markerfacecolor_alpha",
+            "axes[0].series[line0].markersize",
+            "axes[0].series[line0].values",
+            "axes[0].series[line0].zorder",
+            "axes[0].series[line1].alpha",
+            "axes[0].series[line1].color",
+            "axes[0].series[line1].color_alpha",
+            "axes[0].series[line1].drawstyle",
+            "axes[0].series[line1].fillstyle",
+            "axes[0].series[line1].kind",
+            "axes[0].series[line1].linestyle",
+            "axes[0].series[line1].linewidth",
+            "axes[0].series[line1].markeredgecolor",
+            "axes[0].series[line1].markeredgecolor_alpha",
+            "axes[0].series[line1].markeredgewidth",
+            "axes[0].series[line1].markerfacecolor",
+            "axes[0].series[line1].markerfacecolor_alpha",
+            "axes[0].series[line1].markersize",
+            "axes[0].series[line1].values",
+            "axes[0].series[line1].zorder",
+            "axes[0].series[line2].alpha",
+            "axes[0].series[line2].color",
+            "axes[0].series[line2].color_alpha",
+            "axes[0].series[line2].drawstyle",
+            "axes[0].series[line2].fillstyle",
+            "axes[0].series[line2].kind",
+            "axes[0].series[line2].linestyle",
+            "axes[0].series[line2].linewidth",
+            "axes[0].series[line2].markeredgecolor",
+            "axes[0].series[line2].markeredgecolor_alpha",
+            "axes[0].series[line2].markeredgewidth",
+            "axes[0].series[line2].markerfacecolor",
+            "axes[0].series[line2].markerfacecolor_alpha",
+            "axes[0].series[line2].markersize",
+            "axes[0].series[line2].values",
+            "axes[0].series[line2].zorder",
+            "axes[0].series[scatter0].color",
+            "axes[0].series[scatter0].colors",
+            "axes[0].series[scatter0].kind",
+            "axes[0].series[scatter0].sizes",
+            "axes[0].series[scatter0].values",
+            "axes[0].title"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 11,
+          "submission": 11
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 0.9464,
+            "binary": 0,
+            "fixed": 53,
+            "injected": 56,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].legend.labels",
+              "axes[0].series[scatter0].sizes"
+            ]
+          },
+          "lenient": {
+            "score": 0.9464,
+            "binary": 0,
+            "fixed": 53,
+            "injected": 56,
+            "missed": [
+              "axes[0].legend.entries",
+              "axes[0].legend.labels",
+              "axes[0].series[scatter0].sizes"
+            ]
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 14,
+            "total": 14,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 14,
+            "total": 14,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}

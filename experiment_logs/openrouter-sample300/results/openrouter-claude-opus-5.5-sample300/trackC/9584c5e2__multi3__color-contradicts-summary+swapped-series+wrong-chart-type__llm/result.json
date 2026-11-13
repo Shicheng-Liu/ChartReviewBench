@@ -1,0 +1,556 @@
+{
+  "task_id": "9584c5e2__multi3__color-contradicts-summary+swapped-series+wrong-chart-type__llm",
+  "family": "debug_repair",
+  "finished": true,
+  "stop_reason": "finished",
+  "finish_origin": "agent",
+  "restored_renders": [],
+  "final_score": 0.9833,
+  "all_passed": true,
+  "subgoals_total": 3,
+  "subgoals_passed": 3,
+  "subgoal_results": [
+    {
+      "id": "code_valid",
+      "desc": "The script runs and writes output.png",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": 1,
+      "verifiers": [
+        {
+          "name": "execution",
+          "passed": true,
+          "score": 1.0,
+          "detail": "artifact 'output.png' present (205287 bytes)"
+        }
+      ]
+    },
+    {
+      "id": "flaw_fixed",
+      "desc": "The contradiction with the data is gone",
+      "weight": 1.0,
+      "passed": true,
+      "score": 1.0,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 1.0,
+          "detail": "REAL: The image is a tornado chart with horizontal bars extending both ways from zero, matching the description in summary.txt. Negative bars are red and positive bars are blue as the summary states, and the bar lengths match table.csv (e.g., Tourism Growth about -58.7 and 72.3, Infrastructure Investment about -48.1 and 64.8)."
+        }
+      ]
+    },
+    {
+      "id": "visual_quality",
+      "desc": "The chart is legible and well formed",
+      "weight": 1.0,
+      "passed": true,
+      "score": 0.95,
+      "first_pass_step": null,
+      "verifiers": [
+        {
+          "name": "vlm_judge",
+          "passed": true,
+          "score": 0.95,
+          "detail": "REAL: The title, axis labels, category tick labels and the legend (placed outside the plot at right) are all readable and unclipped, and none of them overlap each other or the bars. The bars fill the axes clearly and there are no missing-glyph boxes."
+        }
+      ]
+    }
+  ],
+  "steps_taken": 4,
+  "step_budget": 14,
+  "episode_wall_time_limit_s": 1800,
+  "horizon_hint": 6,
+  "wall_time_s": 31.7,
+  "tool_counts": {
+    "execute_python": 3,
+    "finish": 1
+  },
+  "progress_curve": [
+    0.0,
+    0.3333,
+    0.3333,
+    0.3333
+  ],
+  "agent_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 3,
+    "usage": {
+      "input_tokens": 13819,
+      "output_tokens": 1915,
+      "cache_write_input_tokens": 0,
+      "reasoning_tokens": 389
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464072-kDvnueiEOFCiqoY1yIuR",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 127,
+          "prompt_tokens": 1186,
+          "total_tokens": 1313,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.007284,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.007284,
+            "upstream_inference_prompt_cost": 0.004744,
+            "upstream_inference_completions_cost": 0.00254
+          }
+        }
+      },
+      {
+        "id": "gen-1794464076-l2r5uLcdicfhdhUkPcYe",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 1191,
+          "prompt_tokens": 3009,
+          "total_tokens": 4200,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 389,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.035856,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.035856,
+            "upstream_inference_prompt_cost": 0.012036,
+            "upstream_inference_completions_cost": 0.02382
+          }
+        }
+      },
+      {
+        "id": "gen-1794464088-ft8219N9pbf4jbgG4t6S",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 597,
+          "prompt_tokens": 9624,
+          "total_tokens": 10221,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.050436,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.050436,
+            "upstream_inference_prompt_cost": 0.038496,
+            "upstream_inference_completions_cost": 0.01194
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null,
+    "protocol": "xml",
+    "turns_taken": 3,
+    "max_turns": 6,
+    "max_turns_requested": null,
+    "stop_reason": "agent_stop",
+    "decisions": [
+      "continue",
+      "continue",
+      "stop"
+    ],
+    "parse_failures": 0,
+    "format_warnings": [],
+    "transcript": [
+      {
+        "text": "<reasoning>\nI haven't looked at anything yet, so the first step is to read chart.py, table.csv and summary.txt. That will tell me whether the chart contradicts the data.\n</reasoning>\n<code>\nfor f in ['chart.py','table.csv','summary.txt']:\n    print('=====',f); print(open(f).read())\n</code>\n<decision>continue</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "I haven't looked at anything yet, so the first step is to read chart.py, table.csv and summary.txt. That will tell me whether the chart contradicts the data.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe data table, chart.py and the summary disagree in two ways.\n\n1. **The impact labels are swapped.** chart.py stores the negative values (-58.7 \u2026) under 'Positive Impact' and the positive values (72.3 \u2026) under 'Negative Impact'. table.csv and the summary say the reverse. The red/blue colors also end up on the wrong series as a result. Fix: swap the two column names, and map colors explicitly so Negative is red (#E15759) and Positive is blue (#4E79A7).\n\n2. **The chart type is wrong.** The summary and the title describe a tornado chart made of horizontal bars, but the code draws a line plot. Fix: replace the line plot with a horizontal barplot that has no dodge, so each indicator's two bars extend left and right from zero.\n\nEverything else stays as it is: title, axis labels, grid, legend placement, figure size and dpi. I will check the result by reading values off the figure, not just the image.\n</reasoning>\n<code>\nsrc = open('chart.py').read()\nsrc = src.replace(\"\"\"    'Positive Impact': [\n        -58.7\"\"\", \"\"\"    'Negative Impact': [\n        -58.7\"\"\").replace(\"\"\"    'Negative Impact': [\n        72.3\"\"\", \"\"\"    'Positive Impact': [\n        72.3\"\"\")\nsrc = src.replace(\"\"\"sns.lineplot(\n    data=df_melted,\n    y='Indicator',\n    x='Impact Score',\n    hue='Impact Type',\n    palette=['#E15759', '#4E79A7']\n)\"\"\", \"\"\"sns.barplot(\n    data=df_melted,\n    y='Indicator',\n    x='Impact Score',\n    hue='Impact Type',\n    palette={'Negative Impact': '#E15759', 'Positive Impact': '#4E79A7'},\n    orient='h',\n    dodge=False\n)\"\"\")\nopen('chart.py','w').write(src)\nplt_ns = {}\nexec(compile(src,'chart.py','exec'), plt_ns)\nimport matplotlib.pyplot as plt\nax = plt.gca()\nprint([t.get_text() for t in ax.get_yticklabels()])\nprint(ax.get_legend_handles_labels()[1])\nfor p in ax.patches[:12]:\n    print(round(p.get_width(),1), p.get_facecolor()[:3])\nprint(ax.get_xlim(), ax.get_title())\n</code>\n<decision>continue</decision>",
+        "thinking": "I'm spotting problems in the chart: it's drawn as a lineplot when it should be horizontal bars, and the labels are swapped, since 'Positive Impact' currently holds the negative values. The colors are also backwards, with the negative side showing red and the positive side blue. I'm planning to rename the labels so 'Negative Impact' matches the negative values, and I'll check the palette order against the melted data.\n\nI'm settling on a horizontal barplot with the palette set as a dict so the colors stay tied to the right labels. The chart is meant to be a tornado chart, so the line plot looks like a mistake. I'll keep everything else as is and let the axis range auto-scale, since the data runs past the stated limits. The first indicator, Tourism Growth, should land at the top, and I'm leaving the legend order as it comes from the value_vars.\n\n",
+        "stop_reason": "stop",
+        "reasoning": "The data table, chart.py and the summary disagree in two ways.\n\n1. **The impact labels are swapped.** chart.py stores the negative values (-58.7 \u2026) under 'Positive Impact' and the positive values (72.3 \u2026) under 'Negative Impact'. table.csv and the summary say the reverse. The red/blue colors also end up on the wrong series as a result. Fix: swap the two column names, and map colors explicitly so Negative is red (#E15759) and Positive is blue (#4E79A7).\n\n2. **The chart type is wrong.** The summary and the title describe a tornado chart made of horizontal bars, but the code draws a line plot. Fix: replace the line plot with a horizontal barplot that has no dodge, so each indicator's two bars extend left and right from zero.\n\nEverything else stays as it is: title, axis labels, grid, legend placement, figure size and dpi. I will check the result by reading values off the figure, not just the image.",
+        "decision": "continue",
+        "has_code": true,
+        "warnings": []
+      },
+      {
+        "text": "<reasoning>\nThe original chart contradicted table.csv and summary.txt in two ways, and I fixed only those two in chart.py.\n\n1. **Swapped labels.** The negative values were labelled 'Positive Impact' and the positive values 'Negative Impact', which also put the colors on the wrong series. I swapped the names back and mapped colors explicitly: Negative is red (#E15759) and Positive is blue (#4E79A7).\n2. **Wrong chart type.** The code drew a line plot instead of the tornado chart the summary describes. I replaced it with a horizontal barplot without dodge, so each indicator's bars extend left and right from zero.\n\nI checked the result on the figure object, not just by eye:\n- The y-tick order runs Tourism Growth through Infrastructure Investment, top to bottom.\n- The bar widths match table.csv exactly: positive bars 72.3, 69.8, 67.5, 65.1, 64.2, 64.8 in blue, and negative bars -58.7 through -48.1 in red.\n- The legend labels are Positive Impact and Negative Impact.\n- The title, axis labels, grid, legend placement, figure size and dpi are unchanged.\n- In the rendered image, nothing overlaps and the legend sits outside the plot area.\n\nOne remaining discrepancy, which I left alone on purpose: the summary says the x-axis spans -60 to 60, but the positive values go up to 72.3. The axis is left on auto limits (-65.25 to 78.85) so those bars are not clipped.\n\nThe only warnings were ResourceWarnings from my own file reads in the workspace kernel, not from chart.py.\n\noutput.png has been regenerated from the fixed chart.py.\n</reasoning>\n<code>\nprint('done')\n</code>\n<decision>stop</decision>",
+        "thinking": "",
+        "stop_reason": "stop",
+        "reasoning": "The original chart contradicted table.csv and summary.txt in two ways, and I fixed only those two in chart.py.\n\n1. **Swapped labels.** The negative values were labelled 'Positive Impact' and the positive values 'Negative Impact', which also put the colors on the wrong series. I swapped the names back and mapped colors explicitly: Negative is red (#E15759) and Positive is blue (#4E79A7).\n2. **Wrong chart type.** The code drew a line plot instead of the tornado chart the summary describes. I replaced it with a horizontal barplot without dodge, so each indicator's bars extend left and right from zero.\n\nI checked the result on the figure object, not just by eye:\n- The y-tick order runs Tourism Growth through Infrastructure Investment, top to bottom.\n- The bar widths match table.csv exactly: positive bars 72.3, 69.8, 67.5, 65.1, 64.2, 64.8 in blue, and negative bars -58.7 through -48.1 in red.\n- The legend labels are Positive Impact and Negative Impact.\n- The title, axis labels, grid, legend placement, figure size and dpi are unchanged.\n- In the rendered image, nothing overlaps and the legend sits outside the plot area.\n\nOne remaining discrepancy, which I left alone on purpose: the summary says the x-axis spans -60 to 60, but the positive values go up to 72.3. The axis is left on auto limits (-65.25 to 78.85) so those bars are not clipped.\n\nThe only warnings were ResourceWarnings from my own file reads in the workspace kernel, not from chart.py.\n\noutput.png has been regenerated from the fixed chart.py.",
+        "decision": "stop",
+        "has_code": true,
+        "warnings": []
+      }
+    ]
+  },
+  "judge_stats": {
+    "provider": "openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "calls": 2,
+    "usage": {
+      "input_tokens": 11709,
+      "output_tokens": 238,
+      "cache_write_input_tokens": 0
+    },
+    "cost_usd": null,
+    "base_url": "https://openrouter.ai/api/v1",
+    "responses": [
+      {
+        "id": "gen-1794464097-vE6LPms4FtYdHUM638XE",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 138,
+          "prompt_tokens": 6245,
+          "total_tokens": 6383,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.02774,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.02774,
+            "upstream_inference_prompt_cost": 0.02498,
+            "upstream_inference_completions_cost": 0.00276
+          }
+        }
+      },
+      {
+        "id": "gen-1794464100-aPgUArB61eVv5zPoSWiE",
+        "model": "anthropic/claude-opus-5.5",
+        "provider": "Google",
+        "usage": {
+          "completion_tokens": 100,
+          "prompt_tokens": 5464,
+          "total_tokens": 5564,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.023856,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.023856,
+            "upstream_inference_prompt_cost": 0.021856,
+            "upstream_inference_completions_cost": 0.002
+          }
+        }
+      }
+    ],
+    "reasoning_effort": null
+  },
+  "token_usage": {
+    "agent": {
+      "calls": 3,
+      "input_tokens": 13819,
+      "output_tokens": 1915,
+      "total_tokens": 15734,
+      "reasoning_tokens": 389,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "judge": {
+      "calls": 2,
+      "input_tokens": 11709,
+      "output_tokens": 238,
+      "total_tokens": 11947,
+      "reasoning_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "model": "anthropic/claude-opus-5.5",
+      "cost_usd": null
+    },
+    "total": {
+      "calls": 5,
+      "input_tokens": 25528,
+      "output_tokens": 2153,
+      "total_tokens": 27681,
+      "reasoning_tokens": 389,
+      "cache_read_input_tokens": 0,
+      "cost_usd": null
+    }
+  },
+  "artifact_version": 1,
+  "evaluation_errors": [],
+  "rule_based": {
+    "executability": 1,
+    "data_fidelity": 1.0,
+    "recovery": 1.0,
+    "preservation": 1.0,
+    "recovery_binary": 1,
+    "preservation_binary": 1,
+    "full": {
+      "executability": 1,
+      "data_fidelity": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "data_fidelity_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "recovery": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "recovery_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "preservation": {
+        "strict": 1.0,
+        "lenient": 1.0
+      },
+      "preservation_binary": {
+        "strict": 1,
+        "lenient": 1
+      },
+      "diagnostics": {
+        "status": "ok",
+        "footprint": [
+          "axes[0].legend.entries",
+          "axes[0].series[bar0].color",
+          "axes[0].series[bar0].edgecolor",
+          "axes[0].series[bar0].kind",
+          "axes[0].series[bar0].values",
+          "axes[0].series[bar1].color",
+          "axes[0].series[bar1].edgecolor",
+          "axes[0].series[bar1].kind",
+          "axes[0].series[bar1].values",
+          "axes[0].series[line0].alpha",
+          "axes[0].series[line0].color",
+          "axes[0].series[line0].color_alpha",
+          "axes[0].series[line0].drawstyle",
+          "axes[0].series[line0].fillstyle",
+          "axes[0].series[line0].kind",
+          "axes[0].series[line0].linestyle",
+          "axes[0].series[line0].linewidth",
+          "axes[0].series[line0].markeredgecolor",
+          "axes[0].series[line0].markeredgecolor_alpha",
+          "axes[0].series[line0].markeredgewidth",
+          "axes[0].series[line0].markerfacecolor",
+          "axes[0].series[line0].markerfacecolor_alpha",
+          "axes[0].series[line0].markersize",
+          "axes[0].series[line0].values",
+          "axes[0].series[line0].zorder",
+          "axes[0].series[line1].alpha",
+          "axes[0].series[line1].color",
+          "axes[0].series[line1].color_alpha",
+          "axes[0].series[line1].drawstyle",
+          "axes[0].series[line1].fillstyle",
+          "axes[0].series[line1].kind",
+          "axes[0].series[line1].linestyle",
+          "axes[0].series[line1].linewidth",
+          "axes[0].series[line1].markeredgecolor",
+          "axes[0].series[line1].markeredgecolor_alpha",
+          "axes[0].series[line1].markeredgewidth",
+          "axes[0].series[line1].markerfacecolor",
+          "axes[0].series[line1].markerfacecolor_alpha",
+          "axes[0].series[line1].markersize",
+          "axes[0].series[line1].values",
+          "axes[0].series[line1].zorder",
+          "axes[0].ylim"
+        ],
+        "footprint_by_mode": {
+          "strict": [
+            "axes[0].legend.entries",
+            "axes[0].series[bar0].color",
+            "axes[0].series[bar0].edgecolor",
+            "axes[0].series[bar0].kind",
+            "axes[0].series[bar0].values",
+            "axes[0].series[bar1].color",
+            "axes[0].series[bar1].edgecolor",
+            "axes[0].series[bar1].kind",
+            "axes[0].series[bar1].values",
+            "axes[0].series[line0].alpha",
+            "axes[0].series[line0].color",
+            "axes[0].series[line0].color_alpha",
+            "axes[0].series[line0].drawstyle",
+            "axes[0].series[line0].fillstyle",
+            "axes[0].series[line0].kind",
+            "axes[0].series[line0].linestyle",
+            "axes[0].series[line0].linewidth",
+            "axes[0].series[line0].markeredgecolor",
+            "axes[0].series[line0].markeredgecolor_alpha",
+            "axes[0].series[line0].markeredgewidth",
+            "axes[0].series[line0].markerfacecolor",
+            "axes[0].series[line0].markerfacecolor_alpha",
+            "axes[0].series[line0].markersize",
+            "axes[0].series[line0].values",
+            "axes[0].series[line0].zorder",
+            "axes[0].series[line1].alpha",
+            "axes[0].series[line1].color",
+            "axes[0].series[line1].color_alpha",
+            "axes[0].series[line1].drawstyle",
+            "axes[0].series[line1].fillstyle",
+            "axes[0].series[line1].kind",
+            "axes[0].series[line1].linestyle",
+            "axes[0].series[line1].linewidth",
+            "axes[0].series[line1].markeredgecolor",
+            "axes[0].series[line1].markeredgecolor_alpha",
+            "axes[0].series[line1].markeredgewidth",
+            "axes[0].series[line1].markerfacecolor",
+            "axes[0].series[line1].markerfacecolor_alpha",
+            "axes[0].series[line1].markersize",
+            "axes[0].series[line1].values",
+            "axes[0].series[line1].zorder",
+            "axes[0].ylim"
+          ],
+          "lenient": [
+            "axes[0].legend.entries",
+            "axes[0].series[bar0].color",
+            "axes[0].series[bar0].edgecolor",
+            "axes[0].series[bar0].kind",
+            "axes[0].series[bar0].values",
+            "axes[0].series[bar1].color",
+            "axes[0].series[bar1].edgecolor",
+            "axes[0].series[bar1].kind",
+            "axes[0].series[bar1].values",
+            "axes[0].series[line0].alpha",
+            "axes[0].series[line0].color",
+            "axes[0].series[line0].color_alpha",
+            "axes[0].series[line0].drawstyle",
+            "axes[0].series[line0].fillstyle",
+            "axes[0].series[line0].kind",
+            "axes[0].series[line0].linestyle",
+            "axes[0].series[line0].linewidth",
+            "axes[0].series[line0].markeredgecolor",
+            "axes[0].series[line0].markeredgecolor_alpha",
+            "axes[0].series[line0].markeredgewidth",
+            "axes[0].series[line0].markerfacecolor",
+            "axes[0].series[line0].markerfacecolor_alpha",
+            "axes[0].series[line0].markersize",
+            "axes[0].series[line0].values",
+            "axes[0].series[line0].zorder",
+            "axes[0].series[line1].alpha",
+            "axes[0].series[line1].color",
+            "axes[0].series[line1].color_alpha",
+            "axes[0].series[line1].drawstyle",
+            "axes[0].series[line1].fillstyle",
+            "axes[0].series[line1].kind",
+            "axes[0].series[line1].linestyle",
+            "axes[0].series[line1].linewidth",
+            "axes[0].series[line1].markeredgecolor",
+            "axes[0].series[line1].markeredgecolor_alpha",
+            "axes[0].series[line1].markeredgewidth",
+            "axes[0].series[line1].markerfacecolor",
+            "axes[0].series[line1].markerfacecolor_alpha",
+            "axes[0].series[line1].markersize",
+            "axes[0].series[line1].values",
+            "axes[0].series[line1].zorder",
+            "axes[0].ylim"
+          ]
+        },
+        "data_fidelity_detail": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "lenient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          },
+          "wide": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "binary": 1
+          }
+        },
+        "data_fidelity_wide": 1.0,
+        "hallucinations": [],
+        "n_points": {
+          "gt": 12,
+          "submission": 12
+        },
+        "recovery_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 42,
+            "injected": 42,
+            "missed": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "fixed": 42,
+            "injected": 42,
+            "missed": []
+          }
+        },
+        "preservation_detail": {
+          "strict": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 16,
+            "total": 16,
+            "damaged": [],
+            "added": []
+          },
+          "lenient": {
+            "score": 1.0,
+            "binary": 1,
+            "kept": 16,
+            "total": 16,
+            "damaged": [],
+            "added": []
+          }
+        }
+      }
+    }
+  }
+}
